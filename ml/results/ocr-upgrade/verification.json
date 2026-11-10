@@ -1,0 +1,48 @@
+{
+  "scope": "Actual local CPU OCR, source evidence and staff fallback; functional tests are not production accuracy.",
+  "database_suite": {
+    "passed": 200,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 84.55,
+    "log_sha256": "240eeac37ecb186a454523b8494c29097e069c22c197637b1b1ecb7820523a30"
+  },
+  "coordinate_scale_regressions": {
+    "passed": 9,
+    "log_sha256": "edea1fe2e925f38d64cba1ee0f8ba3f25b2723ff28e7e65063c9b7b3e2414e63"
+  },
+  "initial_application_failure": {
+    "passed": 196,
+    "failed": 1,
+    "reason": "New OCR withheld a low-confidence pack description. Former test required automatic acceptance. Test now checks source verification, explicit authored reviewer correction, successful revalidation and preservation of original readings. No OCR score is credited for that correction.",
+    "log_sha256": "8b3fad6c6f44c503f6f9c1f7e41651e05415f9ed703125739d204e57f84d916f"
+  },
+  "pre_scale_full_regression": {
+    "passed": 197,
+    "failed": 0,
+    "seconds": 82.07
+  },
+  "public_dataset": {
+    "documents": 261,
+    "main_test": 197,
+    "adversarial": 24,
+    "regional": 40,
+    "technical_failures": 0,
+    "metric": "Unchanged publisher-label scoring v1; inspected-test re-score explicitly disclosed"
+  },
+  "proxy_policy": "Private connection URLs stay outside Git. New-session heartbeat executes a basic kernel cell every five minutes, capped to a twelve-hour process lifetime. No proxy URL or credentials in artifacts.",
+  "browser": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "duration_ms": 22071.233,
+    "report_sha256": "4d20edf259d826e0345ef53d41594ac78333a81b7ce82d1278d159f0c943c700",
+    "scope": "Isolated company: existing journey plus actual PP-OCRv5 scanned upload, original-coordinate highlight, explicit source correction, unchanged original reading and current benchmark page",
+    "axe_violations_in_scanned_views": {
+      "login": 0,
+      "workspace": 0
+    }
+  },
+  "final_source_hashes_match_run": true
+}

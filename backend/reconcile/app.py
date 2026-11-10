@@ -106,9 +106,18 @@ def create_app():
             except SQLAlchemyError:
                 pass
         try:
-            subprocess.run(['tesseract', '--version'], capture_output=True, timeout=3, check=True)
+            selected=os.getenv('OCR_ENGINE','tesseract')
+            if selected=='paddle':
+                import rapidocr
+                from reconcile.ocr_models import verify
+                verify(os.getenv('OCR_MODEL_DIR','/opt/reconcile/ppocr-v5'),os.getenv('OCR_PROFILE','server'))
+                checks['ocr_engine']='ppocr-v5-'+os.getenv('OCR_PROFILE','server')
+            elif selected=='tesseract':
+                subprocess.run(['tesseract', '--version'], capture_output=True, timeout=3, check=True)
+                checks['ocr_engine']='tesseract'
+            else:raise ValueError('Unsupported OCR engine')
             checks['ocr'] = 'ok'
-        except (OSError, subprocess.SubprocessError):
+        except (OSError, subprocess.SubprocessError, RuntimeError, ValueError, ImportError):
             pass
         try:
             from reconcile.retrieval import encoder

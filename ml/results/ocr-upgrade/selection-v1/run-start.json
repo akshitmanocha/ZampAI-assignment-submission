@@ -1,0 +1,17 @@
+{
+  "frozen_before_scoring_at": "2026-11-10T19:26:18.001122+00:00",
+  "development_manifest_sha256": "32a8115a15f5d493b72094775a1e890f801d328daaec51b6d51bec8a18de50e6",
+  "source_sha256": {
+    "backend/reconcile/invoice_parser.py": "73a2577f28787ebcf26947a15546c3e08f86980dd65b174c8d6baaa2ca635eb2",
+    "backend/reconcile/gst_parser.py": "da8e556b2c08cb035fb09931257704c02ea6df3f16730d41692ac016d7dc3d34",
+    "backend/reconcile/paddle_text.py": "fc08d20b9d2f1b951f39e56b01398d6c6ba05ea244b133e72017dd8b7e55e3f2",
+    "backend/reconcile/ocr_models.py": "2eb70fab1ce676049afe8c14431ad44d8462ee5ddd7d534c0e08902e70058b3d",
+    "backend/reconcile/source_quality.py": "803cc7e7d72f8830e49fc2d238d4366634efb440d1768c89fac7e359b0335a3f",
+    "backend/reconcile/document_types.py": "c2f7e09f31fa0158d858c1d3f47332d855ee6fc11756da7864013eb0f8911f91",
+    "ml/indian_gst_metrics.py": "e622cd521d343b7b317a254821add3ef07e3fe38cb24f0d4588b81b4cf73a238"
+  },
+  "original_parser_sha256": "036346dac2e9d1ebce12783476805cdc9ed3c78b9142f2cea3c0f89fbd613a5a",
+  "original_commit": "12a8dd4",
+  "rule": "All requested records must be present; no failure/example filtering. Gold joined after parsing.",
+  "parser_development": "24 source training images; validation model choice is separate; calibration is not parser fitting."
+}

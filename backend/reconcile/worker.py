@@ -80,7 +80,8 @@ def claim():
 
 
 def extract(data, callback):
-    environment = {k: os.environ[k] for k in ['PATH', 'LANG', 'PYTHONPATH'] if k in os.environ}
+    environment = {k: os.environ[k] for k in ['PATH', 'LANG', 'PYTHONPATH',
+        'OCR_ENGINE','OCR_PROFILE','OCR_MODEL_DIR'] if k in os.environ}
     # Tesseract uses OMP_THREAD_LIMIT; OMP_NUM_THREADS alone does not bound its
     # worker pool and can make OCR hit the wall timeout on a shared CPU host.
     environment.update(OPENBLAS_NUM_THREADS='1', OMP_NUM_THREADS='1', OMP_THREAD_LIMIT='1',

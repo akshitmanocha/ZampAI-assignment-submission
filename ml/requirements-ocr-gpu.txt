@@ -1,0 +1,7 @@
+# Observed Kaggle Python 3.13.16, T4, preinstalled torch 2.11.0+cu130.
+# Keep the CUDA wheel appropriate for the host; the public version matches it.
+torch==2.11.0
+transformers==5.20.2
+huggingface-hub==1.33.0
+pillow==13.0.0
+docling-core==2.106.0

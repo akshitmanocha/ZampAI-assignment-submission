@@ -6,6 +6,8 @@
 
 See [methodology and results](../docs/indian-gst-evaluation.md), [dataset attribution and manifest](data/indian-gst-v1/), [evaluation registry](evaluation_config.json), and [raw evidence](results/indian-gst/). Labels come from the dataset publisher, remain unchanged, and are joined only after the production PDF reader returns. No model was trained for this baseline. The dataset has no linked company records for measuring approval or retrieval accuracy.
 
+The current default Docker reader is **PP-OCRv5 English mobile**, approximately 3.1M stored weight/buffer values, with a GST-aware parser. See [the OCR upgrade](../docs/ocr-upgrade.md), [frozen development groups](data/indian-gst-ocr-v1/), and [selection/calibration evidence](results/ocr-upgrade/). Historical Tesseract metrics are retained. GPU model-size checks and common twelve-image qualifications are separate from the 60-image CPU selection comparison and the official test.
+
 The matching and older OCR experiments below are retained as historical development evidence. Authored business fixtures remain regression tests. Changing the invoice benchmark does not retrain MiniLM or replace product-pair labels with invoice images.
 
 ## Pair matching: real GPU training, fictional data

@@ -3,24 +3,24 @@
   "experiments": [
     {
       "name": "Indian GST invoice extraction — primary benchmark",
-      "scope": "All 197 official test invoices from Divya52/indian-gst-invoices. Current local PDF/Tesseract reader, original publisher labels, no fine-tuning. Five core header fields; numbers below use raw found readings.",
+      "scope": "All 197 official test invoices from Divya52/indian-gst-invoices. PP-OCRv5 English mobile on CPU (about 3.1M stored model values), GST-aware parser, original publisher labels, no fine-tuning. Five core header fields; numbers below use raw found readings.",
       "metrics": {
         "Official test invoices": "197",
-        "Correct core header values": "350 / 985 (35.5%)",
-        "Precision of proposed headers": "83.5%",
-        "All five headers correct": "0 / 197",
-        "Complete line-row F1": "0.0%",
+        "Correct core header values": "891 / 985 (90.5%)",
+        "Precision of proposed headers": "98.0%",
+        "All five headers correct": "120 / 197",
+        "Complete line-row F1": "85.0%",
         "Reader failures (included)": "0 / 197"
       },
-      "limitation": "Synthetic Indian invoices; publisher labels are not independently human audited. Core values are not every GST field. Missing readings and processing failures count against recall. No verified purchase-order history or catalog-match labels: these are extraction scores, not invoice approval accuracy or automation."
+      "limitation": "Synthetic Indian invoices; publisher labels are not independently human audited. Core values are not every GST field. Missing readings and processing failures count against recall. This test was already inspected in the older baseline; the new pipeline was developed on training/validation data. No verified purchase-order history or catalog-match labels: these are extraction scores, not invoice approval accuracy or automation."
     },
     {
       "name": "Indian GST source-verification gate",
       "scope": "Same 197 test invoices after withholding readings flagged by the application for source verification. No human corrections are applied. Denominators include all labelled core values.",
       "metrics": {
-        "Core header recall after gate": "33.3%",
-        "Precision after gate": "86.1%",
-        "All five headers present": "0 / 197"
+        "Core header recall after gate": "88.1%",
+        "Precision after gate": "98.0%",
+        "All five headers present": "114 / 197"
       },
       "limitation": "The gate is an OCR-quality heuristic, not a calibrated correctness probability. Withholding reduces coverage and does not prove that retained readings are safe to approve."
     },
@@ -28,16 +28,27 @@
       "name": "Indian GST separate robustness suites",
       "scope": "24 source adversarial invoices and 40 Hindi/Kannada invoices, reported separately from the main English test. Raw five-header recall includes missing values and technical failures.",
       "metrics": {
-        "Adversarial header recall (24 documents)": "54.2%",
-        "Hindi/Kannada header recall (40 documents)": "33.0%"
+        "Adversarial header recall (24 documents)": "91.7%",
+        "Hindi/Kannada header recall (40 documents)": "69.0%"
       },
       "limitation": "Regional scripts exceed the current automatic application scope. These scores are not averaged into the primary result and do not establish resistance to every document attack."
+    },
+    {
+      "name": "OCR validation comparison",
+      "scope": "Same 60 validation images with the GST parser. Model selection evidence; separate from the official test. Both readers run without invoice-answer access.",
+      "metrics": {
+        "Tesseract header recall": "59.3%",
+        "Compact OCR header recall": "89.3%",
+        "Tesseract complete-row F1": "42.4%",
+        "Compact OCR complete-row F1": "87.3%"
+      },
+      "limitation": "Validation is used for selection, not independent confirmation. Separate 130-image calibration retains some high-confidence errors; OCR scores are not correctness probabilities."
     },
     {
       "name": "Local application acceptance",
       "scope": "Actual PDF processing, PostgreSQL, staff review, current-balance approval and the browser UI. Latest full regression run.",
       "metrics": {
-        "Tests with PostgreSQL": "191 passed",
+        "Tests with PostgreSQL": "200 passed",
         "Browser journey": "Passed",
         "Axe violations in scanned views": "0"
       },
@@ -87,9 +98,12 @@
     "label_source": "Unmodified publisher structured invoice labels",
     "stage": "PDF/OCR/field extraction with source-quality policy",
     "headline": "External Indian GST baseline; no full invoice approval or retrieval truth",
-    "results": "ml/results/indian-gst/baseline-v2/metrics.json",
-    "report": "ml/results/indian-gst/baseline-v2/metrics.json",
-    "report_sha256": "dd1f1c14dabcac770a7840ce6abea7fb54a92fd6e27ff93e7e68036991b47db2",
-    "finished_at": "2026-11-10T18:25:33.847332+00:00"
+    "results": "ml/results/indian-gst/baseline-v4-ppocr/metrics.json",
+    "reader": "PP-OCRv5 English mobile ONNX CPU + printed GST columns",
+    "development_manifest": "ml/data/indian-gst-ocr-v1/manifest.json",
+    "test_status": "Disclosed re-score of previously inspected test; source labels unchanged",
+    "report": "ml/results/indian-gst/baseline-v4-ppocr/metrics.json",
+    "report_sha256": "4958c14db02594595f4c9f16c707682b05ae37c4749f19e6fd019232d53a4875",
+    "finished_at": "2026-11-10T19:55:31.189404+00:00"
   }
 }

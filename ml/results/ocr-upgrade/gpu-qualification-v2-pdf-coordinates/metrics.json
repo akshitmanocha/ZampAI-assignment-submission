@@ -1,0 +1,1410 @@
+{
+  "qualification_documents": 12,
+  "source_manifest_sha256": "32a8115a15f5d493b72094775a1e890f801d328daaec51b6d51bec8a18de50e6",
+  "engines": {
+    "granite-v3": {
+      "model": {
+        "model": "ibm-granite/granite-docling-258M",
+        "revision": "982fe3b40f2fa73c365bdb1bcacf6c81b7184bfe",
+        "actual_parameters": 257517120,
+        "torch": "2.11.0+cu130",
+        "transformers": "5.20.2",
+        "gpu": "Tesla T4",
+        "dtype": "torch.float32",
+        "prompt": "Convert this page to docling.",
+        "use_cache": true,
+        "processor_image_size": "SizeDict(height=None, width=None, longest_edge=2048, shortest_edge=None, max_height=None, max_width=None, min_pixels=None, max_pixels=None)",
+        "manifest_sha256": "32a8115a15f5d493b72094775a1e890f801d328daaec51b6d51bec8a18de50e6",
+        "max_new_tokens": 4096,
+        "max_time_seconds": 90,
+        "do_sample": false,
+        "resumed_records": 3,
+        "resume_sha256": "ef2d62790520149afa5f3561d4046d6286ecf3675739e1717f006b6760c4fa91",
+        "protocol": "Granite is full-page conversion; Paddle native Spotting task is a qualification only, not the separate official layout pipeline. No gold input."
+      },
+      "score": {
+        "raw_extracted": {
+          "documents": 12,
+          "technical_failures": 0,
+          "core_headers": {
+            "vendor_name": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 11,
+              "correct": 10,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.8333333333333334,
+              "precision_of_found_values": 0.9090909090909091
+            },
+            "invoice_number": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 6,
+              "correct": 5,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.4166666666666667,
+              "precision_of_found_values": 0.8333333333333334
+            },
+            "invoice_date": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 6,
+              "correct": 6,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.5,
+              "precision_of_found_values": 1.0
+            },
+            "subtotal": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 5,
+              "correct": 5,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.4166666666666667,
+              "precision_of_found_values": 1.0
+            },
+            "grand_total": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 4,
+              "correct": 4,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.3333333333333333,
+              "precision_of_found_values": 1.0
+            }
+          },
+          "core_header_micro": {
+            "cells": 60,
+            "labelled_non_null": 60,
+            "predicted_found": 32,
+            "correct": 30,
+            "predicted_when_label_null": 0,
+            "correct_absence": 0,
+            "recall_on_non_null_labels": 0.5,
+            "precision_of_found_values": 0.9375
+          },
+          "additional_publisher_headers": {
+            "supplier_gstin": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "supplier_address": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "supplier_state": {
+              "cells": 12,
+              "labelled_non_null": 9,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 3,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "buyer_name": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "buyer_gstin": {
+              "cells": 12,
+              "labelled_non_null": 10,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 2,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "buyer_address": {
+              "cells": 12,
+              "labelled_non_null": 9,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 3,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "buyer_state": {
+              "cells": 12,
+              "labelled_non_null": 9,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 3,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "place_of_supply": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "supply_type": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "reverse_charge": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "cgst_total": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 4,
+              "correct": 4,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.3333333333333333,
+              "precision_of_found_values": 1.0
+            },
+            "sgst_total": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 4,
+              "correct": 3,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.25,
+              "precision_of_found_values": 0.75
+            },
+            "igst_total": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "round_off": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 4,
+              "correct": 4,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.3333333333333333,
+              "precision_of_found_values": 1.0
+            }
+          },
+          "row_fields": {
+            "description": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "qty": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "unit_price": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "amount": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "unit": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "hsn_sac": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "gst_rate": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "cgst_amount": {
+              "cells": 30,
+              "labelled_non_null": 22,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 8,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "sgst_amount": {
+              "cells": 30,
+              "labelled_non_null": 22,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 8,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "igst_amount": {
+              "cells": 30,
+              "labelled_non_null": 3,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 27,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "gross_amount": {
+              "cells": 30,
+              "labelled_non_null": 0,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 30,
+              "recall_on_non_null_labels": null,
+              "precision_of_found_values": null
+            }
+          },
+          "complete_core_rows": {
+            "true_positive": 0,
+            "predicted": 0,
+            "labelled": 30,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "all_five_core_headers": {
+            "eligible_documents": 12,
+            "complete_predictions": 1,
+            "correct_documents": 1,
+            "accuracy": 0.08333333333333333,
+            "complete_prediction_coverage": 0.08333333333333333,
+            "precision_among_complete_predictions": 1.0
+          }
+        },
+        "source_verified": {
+          "documents": 12,
+          "technical_failures": 0,
+          "core_headers": {
+            "vendor_name": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "invoice_number": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "invoice_date": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "subtotal": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "grand_total": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            }
+          },
+          "core_header_micro": {
+            "cells": 60,
+            "labelled_non_null": 60,
+            "predicted_found": 0,
+            "correct": 0,
+            "predicted_when_label_null": 0,
+            "correct_absence": 0,
+            "recall_on_non_null_labels": 0.0,
+            "precision_of_found_values": null
+          },
+          "additional_publisher_headers": {
+            "supplier_gstin": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "supplier_address": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "supplier_state": {
+              "cells": 12,
+              "labelled_non_null": 9,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 3,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "buyer_name": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "buyer_gstin": {
+              "cells": 12,
+              "labelled_non_null": 10,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 2,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "buyer_address": {
+              "cells": 12,
+              "labelled_non_null": 9,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 3,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "buyer_state": {
+              "cells": 12,
+              "labelled_non_null": 9,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 3,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "place_of_supply": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "supply_type": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "reverse_charge": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "cgst_total": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "sgst_total": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "igst_total": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "round_off": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            }
+          },
+          "row_fields": {
+            "description": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "qty": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "unit_price": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "amount": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "unit": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "hsn_sac": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "gst_rate": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "cgst_amount": {
+              "cells": 30,
+              "labelled_non_null": 22,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 8,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "sgst_amount": {
+              "cells": 30,
+              "labelled_non_null": 22,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 8,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "igst_amount": {
+              "cells": 30,
+              "labelled_non_null": 3,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 27,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "gross_amount": {
+              "cells": 30,
+              "labelled_non_null": 0,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 30,
+              "recall_on_non_null_labels": null,
+              "precision_of_found_values": null
+            }
+          },
+          "complete_core_rows": {
+            "true_positive": 0,
+            "predicted": 0,
+            "labelled": 30,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "all_five_core_headers": {
+            "eligible_documents": 12,
+            "complete_predictions": 0,
+            "correct_documents": 0,
+            "accuracy": 0.0,
+            "complete_prediction_coverage": 0.0,
+            "precision_among_complete_predictions": null
+          }
+        }
+      },
+      "incomplete_generations": 3,
+      "mean_seconds": 44.59706821183371,
+      "original_prediction_jsonl_sha256": "749f824f701099f95e0090b52657849f0c58db8a767ac422274175b155bac82c",
+      "original_export_path": "/workspace/reconcile-artifacts/ocr-gpu-progress/granite-v3",
+      "export_policy": "Embedded copies of original images omitted; OCR text, table data and proposed coordinates unchanged."
+    },
+    "paddle-vl-v3": {
+      "model": {
+        "model": "PaddlePaddle/PaddleOCR-VL-1.6",
+        "revision": "132c45f52c0a26ed5a6b2f6bd8e3985794cc27dd",
+        "actual_parameters": 905601648,
+        "torch": "2.11.0+cu130",
+        "transformers": "5.20.2",
+        "gpu": "Tesla T4",
+        "dtype": "torch.float16",
+        "prompt": "Spotting:",
+        "use_cache": true,
+        "processor_image_size": "SizeDict(height=None, width=None, longest_edge=1003520, shortest_edge=112896, max_height=None, max_width=None, min_pixels=None, max_pixels=None)",
+        "manifest_sha256": "32a8115a15f5d493b72094775a1e890f801d328daaec51b6d51bec8a18de50e6",
+        "max_new_tokens": 4096,
+        "max_time_seconds": 90,
+        "do_sample": false,
+        "resumed_records": 11,
+        "resume_sha256": "8a8855e7a728e175a23fa42d1aac914b1f7c8010a844e6b2432aa9fd61e0dcf8",
+        "protocol": "Granite is full-page conversion; Paddle native Spotting task is a qualification only, not the separate official layout pipeline. No gold input."
+      },
+      "score": {
+        "raw_extracted": {
+          "documents": 12,
+          "technical_failures": 0,
+          "core_headers": {
+            "vendor_name": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 12,
+              "correct": 12,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 1.0,
+              "precision_of_found_values": 1.0
+            },
+            "invoice_number": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 11,
+              "correct": 11,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.9166666666666666,
+              "precision_of_found_values": 1.0
+            },
+            "invoice_date": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 6,
+              "correct": 6,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.5,
+              "precision_of_found_values": 1.0
+            },
+            "subtotal": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 12,
+              "correct": 12,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 1.0,
+              "precision_of_found_values": 1.0
+            },
+            "grand_total": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 11,
+              "correct": 11,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.9166666666666666,
+              "precision_of_found_values": 1.0
+            }
+          },
+          "core_header_micro": {
+            "cells": 60,
+            "labelled_non_null": 60,
+            "predicted_found": 52,
+            "correct": 52,
+            "predicted_when_label_null": 0,
+            "correct_absence": 0,
+            "recall_on_non_null_labels": 0.8666666666666667,
+            "precision_of_found_values": 1.0
+          },
+          "additional_publisher_headers": {
+            "supplier_gstin": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "supplier_address": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "supplier_state": {
+              "cells": 12,
+              "labelled_non_null": 9,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 3,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "buyer_name": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "buyer_gstin": {
+              "cells": 12,
+              "labelled_non_null": 10,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 2,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "buyer_address": {
+              "cells": 12,
+              "labelled_non_null": 9,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 3,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "buyer_state": {
+              "cells": 12,
+              "labelled_non_null": 9,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 3,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "place_of_supply": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "supply_type": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "reverse_charge": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "cgst_total": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 9,
+              "correct": 9,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.75,
+              "precision_of_found_values": 1.0
+            },
+            "sgst_total": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 9,
+              "correct": 9,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.75,
+              "precision_of_found_values": 1.0
+            },
+            "igst_total": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 2,
+              "correct": 2,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.16666666666666666,
+              "precision_of_found_values": 1.0
+            },
+            "round_off": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 12,
+              "correct": 12,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 1.0,
+              "precision_of_found_values": 1.0
+            }
+          },
+          "row_fields": {
+            "description": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 19,
+              "correct": 17,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.5666666666666667,
+              "precision_of_found_values": 0.8947368421052632
+            },
+            "qty": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 19,
+              "correct": 19,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.6333333333333333,
+              "precision_of_found_values": 1.0
+            },
+            "unit_price": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 19,
+              "correct": 19,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.6333333333333333,
+              "precision_of_found_values": 1.0
+            },
+            "amount": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 19,
+              "correct": 18,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.6,
+              "precision_of_found_values": 0.9473684210526315
+            },
+            "unit": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 19,
+              "correct": 18,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.6,
+              "precision_of_found_values": 0.9473684210526315
+            },
+            "hsn_sac": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 19,
+              "correct": 17,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.5666666666666667,
+              "precision_of_found_values": 0.8947368421052632
+            },
+            "gst_rate": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 19,
+              "correct": 19,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.6333333333333333,
+              "precision_of_found_values": 1.0
+            },
+            "cgst_amount": {
+              "cells": 30,
+              "labelled_non_null": 22,
+              "predicted_found": 11,
+              "correct": 11,
+              "predicted_when_label_null": 0,
+              "correct_absence": 8,
+              "recall_on_non_null_labels": 0.5,
+              "precision_of_found_values": 1.0
+            },
+            "sgst_amount": {
+              "cells": 30,
+              "labelled_non_null": 22,
+              "predicted_found": 9,
+              "correct": 9,
+              "predicted_when_label_null": 0,
+              "correct_absence": 8,
+              "recall_on_non_null_labels": 0.4090909090909091,
+              "precision_of_found_values": 1.0
+            },
+            "igst_amount": {
+              "cells": 30,
+              "labelled_non_null": 3,
+              "predicted_found": 3,
+              "correct": 3,
+              "predicted_when_label_null": 0,
+              "correct_absence": 27,
+              "recall_on_non_null_labels": 1.0,
+              "precision_of_found_values": 1.0
+            },
+            "gross_amount": {
+              "cells": 30,
+              "labelled_non_null": 0,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 30,
+              "recall_on_non_null_labels": null,
+              "precision_of_found_values": null
+            }
+          },
+          "complete_core_rows": {
+            "true_positive": 16,
+            "predicted": 19,
+            "labelled": 30,
+            "precision": 0.8421052631578947,
+            "recall": 0.5333333333333333,
+            "f1": 0.6530612244897959
+          },
+          "all_five_core_headers": {
+            "eligible_documents": 12,
+            "complete_predictions": 5,
+            "correct_documents": 5,
+            "accuracy": 0.4166666666666667,
+            "complete_prediction_coverage": 0.4166666666666667,
+            "precision_among_complete_predictions": 1.0
+          }
+        },
+        "source_verified": {
+          "documents": 12,
+          "technical_failures": 0,
+          "core_headers": {
+            "vendor_name": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "invoice_number": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "invoice_date": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "subtotal": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "grand_total": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            }
+          },
+          "core_header_micro": {
+            "cells": 60,
+            "labelled_non_null": 60,
+            "predicted_found": 0,
+            "correct": 0,
+            "predicted_when_label_null": 0,
+            "correct_absence": 0,
+            "recall_on_non_null_labels": 0.0,
+            "precision_of_found_values": null
+          },
+          "additional_publisher_headers": {
+            "supplier_gstin": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "supplier_address": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "supplier_state": {
+              "cells": 12,
+              "labelled_non_null": 9,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 3,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "buyer_name": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "buyer_gstin": {
+              "cells": 12,
+              "labelled_non_null": 10,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 2,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "buyer_address": {
+              "cells": 12,
+              "labelled_non_null": 9,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 3,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "buyer_state": {
+              "cells": 12,
+              "labelled_non_null": 9,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 3,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "place_of_supply": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "supply_type": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "reverse_charge": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "cgst_total": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "sgst_total": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "igst_total": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "round_off": {
+              "cells": 12,
+              "labelled_non_null": 12,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            }
+          },
+          "row_fields": {
+            "description": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "qty": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "unit_price": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "amount": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "unit": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "hsn_sac": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "gst_rate": {
+              "cells": 30,
+              "labelled_non_null": 30,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 0,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "cgst_amount": {
+              "cells": 30,
+              "labelled_non_null": 22,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 8,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "sgst_amount": {
+              "cells": 30,
+              "labelled_non_null": 22,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 8,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "igst_amount": {
+              "cells": 30,
+              "labelled_non_null": 3,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 27,
+              "recall_on_non_null_labels": 0.0,
+              "precision_of_found_values": null
+            },
+            "gross_amount": {
+              "cells": 30,
+              "labelled_non_null": 0,
+              "predicted_found": 0,
+              "correct": 0,
+              "predicted_when_label_null": 0,
+              "correct_absence": 30,
+              "recall_on_non_null_labels": null,
+              "precision_of_found_values": null
+            }
+          },
+          "complete_core_rows": {
+            "true_positive": 0,
+            "predicted": 19,
+            "labelled": 30,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "all_five_core_headers": {
+            "eligible_documents": 12,
+            "complete_predictions": 0,
+            "correct_documents": 0,
+            "accuracy": 0.0,
+            "complete_prediction_coverage": 0.0,
+            "precision_among_complete_predictions": null
+          }
+        }
+      },
+      "incomplete_generations": 0,
+      "mean_seconds": 21.62760137008323,
+      "original_prediction_jsonl_sha256": "bc4713aa7e15b99bb457d03772a9d127caab2fc0aa1fcf6adacaeb1b7f74fd11",
+      "original_export_path": "/workspace/reconcile-artifacts/ocr-gpu-progress/paddle-vl-v3",
+      "export_policy": "Embedded copies of original images omitted; OCR text, table data and proposed coordinates unchanged."
+    }
+  },
+  "adapter_sha256": "f6dae50242319c4562c942cf2b02083a352aa7ef3b13b394e574928e9238582a",
+  "parser_sha256": "73a2577f28787ebcf26947a15546c3e08f86980dd65b174c8d6baaa2ca635eb2",
+  "gst_parser_sha256": "7148534177de4eb9e30160ef54ab997c17357cda79ad9e53a87acfd07e54d05b",
+  "scope": "Exploratory native VLM adapters, not the vendor official layout pipeline or intrinsic model leaderboard. Proposed geometry is unverified; every VLM reading requires source review."
+}

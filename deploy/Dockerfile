@@ -22,6 +22,10 @@ COPY --chmod=755 backend/reconcile/model_setup.py backend/reconcile/retrieval.py
 RUN --mount=type=secret,id=proxy_ca \
     if [ -s /run/secrets/proxy_ca ]; then export SSL_CERT_FILE=/run/secrets/proxy_ca; fi; \
     PYTHONPATH=/bootstrap /app/backend/.venv/bin/python -m reconcile.model_setup --directory /opt/reconcile/minilm
+COPY --chmod=755 backend/reconcile/ocr_models.py /bootstrap/reconcile/
+RUN --mount=type=secret,id=proxy_ca \
+    if [ -s /run/secrets/proxy_ca ]; then export SSL_CERT_FILE=/run/secrets/proxy_ca; fi; \
+    PYTHONPATH=/bootstrap /app/backend/.venv/bin/python -m reconcile.ocr_models --directory /opt/reconcile/ppocr-v5 --profile mobile
 
 FROM dependencies AS runtime
 COPY --chmod=755 backend/reconcile /app/backend/reconcile
@@ -30,6 +34,7 @@ COPY --chmod=755 backend/migrations /app/backend/migrations
 COPY --from=web /build/web/dist /app/web/dist
 USER reconcile
 ENV MINILM_DIR="/opt/reconcile/minilm" TOKENIZERS_PARALLELISM="false" OMP_NUM_THREADS="2"
+ENV OCR_ENGINE="paddle" OCR_PROFILE="mobile" OCR_MODEL_DIR="/opt/reconcile/ppocr-v5"
 ENV PYTHONPATH="/app/backend" PATH="/app/backend/.venv/bin:$PATH"
 EXPOSE 8000
 CMD ["sh", "-c", "exec uvicorn reconcile.app:app --host 0.0.0.0 --port ${PORT:-8000}"]

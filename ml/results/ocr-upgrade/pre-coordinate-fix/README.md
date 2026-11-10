@@ -1,0 +1,1 @@
+This exact component snapshot matches the GST parser hash in baseline-v3-ppocr before the scale-invariance repair. Other production components are unchanged between the v3 and v4 re-scores; compare their run-start hashes. Retained for reproducing the intermediate failure, never imported into the live application.

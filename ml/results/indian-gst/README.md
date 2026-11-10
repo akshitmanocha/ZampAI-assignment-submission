@@ -1,4 +1,7 @@
-# Primary Indian GST extraction baseline
+# Indian GST extraction evaluations
+
+**Current:** `baseline-v4-ppocr` uses the small pretrained PP-OCRv5 English mobile reader and scale-invariant GST parser. See `docs/ocr-upgrade.md` and `docs/indian-gst-evaluation.md` for the disclosed inspected-test re-score, exact results and validation boundaries. `baseline-v3-ppocr` preserves the intermediate coordinate-unit failure. The original baseline below remains historical.
+
 
 Source and license: [Divya52/indian-gst-invoices](https://huggingface.co/datasets/Divya52/indian-gst-invoices), pinned revision in the [frozen manifest](../../data/indian-gst-v1/manifest.json), CC BY 4.0. Publisher-generated labels are preserved; this project does not claim independent human annotation.
 

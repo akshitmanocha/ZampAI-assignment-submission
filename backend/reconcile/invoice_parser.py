@@ -11,7 +11,7 @@ import statistics
 from typing import Literal
 from reconcile.document_types import PageText,Word
 
-PARSER_VERSION = 'x2-geometry-baseline-0.7'
+PARSER_VERSION = 'x3-printed-gst-columns-1.0'
 
 @dataclass(frozen=True)
 class Evidence:
@@ -37,7 +37,10 @@ class Row:
     def text(self):return ' '.join(w.text for w in self.words)
     @property
     def bbox(self):return (min(w.bbox[0] for w in self.words),min(w.bbox[1] for w in self.words),max(w.bbox[2] for w in self.words),max(w.bbox[3] for w in self.words))
-    def evidence(self):return Evidence(self.page,self.bbox,self.text,self.method)
+    def evidence(self):
+        boxes=[w.source_bbox or w.bbox for w in self.words]
+        box=(min(b[0] for b in boxes),min(b[1] for b in boxes),max(b[2] for b in boxes),max(b[3] for b in boxes))
+        return Evidence(self.page,box,self.text,self.method)
 
 
 def text_rows(pages):
@@ -231,7 +234,7 @@ def supplier(rows,pages):
             parts.insert(0,previous)
         text=' '.join(p.text for p in parts)
         if len(text.split())>=2:
-            candidates.append((text,Evidence(row.page,(min(p.bbox[0] for p in parts),min(p.bbox[1] for p in parts),max(p.bbox[2] for p in parts),max(p.bbox[3] for p in parts)),text,row.method)))
+            candidates.append((text,Row(row.page,row.method,tuple(w for p in parts for w in p.words)).evidence()))
     return resolve(anchored if anchored else candidates)
 
 
@@ -283,4 +286,6 @@ def parse_invoice(pages):
     rows=text_rows(pages)
     lines,warnings=line_items(rows)
     header={'vendor_name':supplier(rows,pages),'invoice_number':reference(rows,'invoice'),'po_reference':reference(rows,'po'),'invoice_date':date_reading(rows),'currency':currency(rows),'subtotal':monetary_field(rows,r'\b(?:subtotal|sub-total|net total)\b'),'tax_total':monetary_field(rows,r'\b(?:tax total|total tax|tax|gst|vat)\b',r'\b(?:analysis|rate|base)\b'),'grand_total':monetary_field(rows,r'\b(?:grand total|invoice total|amount due|balance due|total due|total)\b',r'\b(?:subtotal|sub-total|tax total|vat total|net total|total tax|total vat|total net)\b')}
-    return {'parser_version':PARSER_VERSION,'header':{k:asdict(v) for k,v in header.items()},'lines':[{k:asdict(v) if isinstance(v,Reading) else v for k,v in line.items()} for line in lines],'warnings':sorted(set(warnings+[w for p in pages for w in p.warnings]))}
+    extraction={'parser_version':PARSER_VERSION,'header':{k:asdict(v) for k,v in header.items()},'lines':[{k:asdict(v) if isinstance(v,Reading) else v for k,v in line.items()} for line in lines],'warnings':sorted(set(warnings+[w for p in pages for w in p.warnings]))}
+    from reconcile.gst_parser import enrich
+    return enrich(extraction,pages)

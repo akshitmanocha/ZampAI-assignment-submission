@@ -17,7 +17,7 @@ def percent(value):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--report', type=Path,
-                        default=ROOT / 'ml/results/indian-gst/baseline-v2/metrics.json')
+                        default=ROOT / 'ml/results/indian-gst/baseline-v4-ppocr/metrics.json')
     args = parser.parse_args()
     report = json.loads(args.report.read_text())
     registry = json.loads((ROOT / 'ml/evaluation_config.json').read_text())['primary_invoice_evaluation']
@@ -41,7 +41,7 @@ def main():
         {
             'name': 'Indian GST invoice extraction — primary benchmark',
             'scope': 'All 197 official test invoices from Divya52/indian-gst-invoices. '
-                     'Current local PDF/Tesseract reader, original publisher labels, no fine-tuning. '
+                     'PP-OCRv5 English mobile on CPU (about 3.1M stored model values), GST-aware parser, original publisher labels, no fine-tuning. '
                      'Five core header fields; numbers below use raw found readings.',
             'metrics': {
                 'Official test invoices': '197',
@@ -53,6 +53,7 @@ def main():
             },
             'limitation': 'Synthetic Indian invoices; publisher labels are not independently human audited. '
                           'Core values are not every GST field. Missing readings and processing failures count against recall. '
+                          'This test was already inspected in the older baseline; the new pipeline was developed on training/validation data. '
                           'No verified purchase-order history or catalog-match labels: these are extraction scores, not invoice approval accuracy or automation.'
         },
         {
@@ -79,11 +80,23 @@ def main():
                           'These scores are not averaged into the primary result and do not establish resistance to every document attack.'
         }
     ]
+    selection_path=ROOT/'ml/results/ocr-upgrade/selection-v2-pdf-coordinates/metrics.json'
+    if selection_path.exists():
+        selection=json.loads(selection_path.read_text())['model_selection']
+        cards.append({
+            'name':'OCR validation comparison',
+            'scope':'Same 60 validation images with the GST parser. Model selection evidence; separate from the official test. Both readers run without invoice-answer access.',
+            'metrics':{
+                'Tesseract header recall':percent(selection['tesseract']['raw_extracted']['core_header_micro']['recall_on_non_null_labels']),
+                'Compact OCR header recall':percent(selection['paddle-mobile']['raw_extracted']['core_header_micro']['recall_on_non_null_labels']),
+                'Tesseract complete-row F1':percent(selection['tesseract']['raw_extracted']['complete_core_rows']['f1']),
+                'Compact OCR complete-row F1':percent(selection['paddle-mobile']['raw_extracted']['complete_core_rows']['f1'])},
+            'limitation':'Validation is used for selection, not independent confirmation. Separate 130-image calibration retains some high-confidence errors; OCR scores are not correctness probabilities.'})
     saved['primary_invoice_evaluation'] = {**registry, 'report': str(args.report.relative_to(ROOT)),
         'report_sha256': hashlib.sha256(args.report.read_bytes()).hexdigest(),
         'finished_at': report['finished_at']}
     saved['experiments'] = cards + [card for card in saved['experiments']
-                                     if not card['name'].startswith('Indian GST')]
+                                     if not card['name'].startswith('Indian GST') and card['name']!='OCR validation comparison']
     target.write_text(json.dumps(saved, indent=2, ensure_ascii=False) + '\n')
     print('Updated local benchmark cards from', args.report.relative_to(ROOT))
 

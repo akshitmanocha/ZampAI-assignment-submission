@@ -18,7 +18,7 @@ The workspace includes downloadable fictional PDFs covering packaging, material 
 
 - Argon2id staff passwords, revocable 12-hour sessions, role checks, CSRF protection and database-backed login/upload limits.
 - Durable processing queue, real stage events, retries, worker heartbeats and fenced recovery after worker death.
-- Native PDF reading or Tesseract OCR in a bounded subprocess; source-page previews and field highlights.
+- Native PDF reading or PP-OCRv5 English mobile OCR (about 3.1M stored model values) in a bounded subprocess; source-page previews and original-coordinate field highlights.
 - Pinned `all-MiniLM-L6-v2` embeddings on CPU retrieve top product candidates after supplier/PO filtering. Similarity alone never confirms a match.
 - Decimal business checks: supplier/order eligibility, duplicates, specifications, explicit packaging conversions, line prices, arithmetic, uniform separated tax and cumulative quantity/value balances.
 - Human corrections and candidate choices preserve original readings and trigger a new validation run.
@@ -44,6 +44,8 @@ See [local application and operations](docs/local-application.md), [demo walkthr
 ## Evaluation and limits
 
 Our primary invoice-reading benchmark is now [Divya52/indian-gst-invoices](https://huggingface.co/datasets/Divya52/indian-gst-invoices), pinned to an immutable source revision. We evaluate every one of its **197 official test invoices**; 24 adversarial and 40 Hindi/Kannada documents form separate robustness suites. Publisher-supplied labels remain unchanged and never enter the reader. This replaces InvoiceOCR-Synth as the primary OCR benchmark; earlier results remain historical evidence.
+
+The [small-model OCR upgrade](docs/ocr-upgrade.md) compares the compact reader with Tesseract, a larger PP-OCR model and two GPU vision models below one billion parameters. GST columns and receipt rows now have source-based parsing. Development uses 24 training images, 60 model-selection images and 130 separate calibration images. No model was fine-tuned. The official test is a disclosed re-score of an already inspected test, not a new blind benchmark. OCR confidence remains a heuristic; high scores can still be wrong.
 
 ```sh
 make invoice-data             # original images/metadata outside Git; verify frozen hashes

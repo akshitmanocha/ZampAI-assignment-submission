@@ -1,0 +1,73 @@
+{
+  "selected": "PP-OCRv5 English mobile via RapidOCR 3.10.0 / ONNX Runtime CPU",
+  "selected_assets": {
+    "ch_PP-OCRv5_det_mobile.onnx": {
+      "initializer_scalars_including_buffers": 1171745,
+      "bytes": 4819576
+    },
+    "en_PP-OCRv5_rec_mobile.onnx": {
+      "initializer_scalars_including_buffers": 1941669,
+      "bytes": 7872351
+    }
+  },
+  "selected_initializer_scalars_including_buffers": 3113414,
+  "selected_weight_bytes": 12691927,
+  "count_method": "onnx graph initializer scalar count; includes buffers/constants and is an approximate model-size description, not a trained-parameter performance metric.",
+  "onnx_comparison_assets": {
+    "ch_PP-OCRv5_det_server.onnx": {
+      "initializer_scalars_including_buffers": 21979711,
+      "bytes": 88118768
+    },
+    "ch_PP-OCRv5_det_mobile.onnx": {
+      "initializer_scalars_including_buffers": 1171745,
+      "bytes": 4819576
+    },
+    "en_PP-OCRv5_rec_mobile.onnx": {
+      "initializer_scalars_including_buffers": 1941669,
+      "bytes": 7872351
+    },
+    "ch_PP-OCRv5_rec_server.onnx": {
+      "initializer_scalars_including_buffers": 21094617,
+      "bytes": 84577022
+    }
+  },
+  "vlm_candidates": [
+    {
+      "id": "ibm-granite/granite-docling-258M",
+      "revision": "982fe3b40f2fa73c365bdb1bcacf6c81b7184bfe",
+      "hf_stored_parameter_count": 257517120,
+      "license": "apache-2.0",
+      "api_response_sha256": "6c7cc4bacae69902dea44359bca23ddc6a1303259eeaf745b70b1f99e591164f",
+      "source": "https://huggingface.co/ibm-granite/granite-docling-258M",
+      "stored_values_below_1B": true,
+      "status": "Benchmarked; unique loaded parameter count is separately asserted below 1B and recorded in GPU model.json."
+    },
+    {
+      "id": "PaddlePaddle/PaddleOCR-VL-1.6",
+      "revision": "132c45f52c0a26ed5a6b2f6bd8e3985794cc27dd",
+      "hf_stored_parameter_count": 958588736,
+      "license": "apache-2.0",
+      "api_response_sha256": "eac3f431670e530267b8ca1c4eccd658696df1f49a80e50feed9b6cd0d747181",
+      "source": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6",
+      "stored_values_below_1B": true,
+      "status": "Benchmarked; unique loaded parameter count is separately asserted below 1B and recorded in GPU model.json."
+    },
+    {
+      "id": "zai-org/GLM-OCR",
+      "revision": "2e85a62840ccac27daa451df36c736c4636b8628",
+      "hf_stored_parameter_count": 1325258240,
+      "license": "mit",
+      "api_response_sha256": "2dfe3d1a05a4e77564cc7cecaf270e939ff1c79832057235e69708f5e7b6c065",
+      "source": "https://huggingface.co/zai-org/GLM-OCR",
+      "stored_values_below_1B": false,
+      "status": "Not benchmarked. Stored checkpoint count is not a verified unique loaded-parameter count; no claim about satisfying the unique-parameter limit."
+    }
+  ],
+  "license": "Apache 2.0 (PaddleOCR/RapidOCR; individual source references retained)",
+  "sources": [
+    "https://github.com/RapidAI/RapidOCR/tree/v3.10.0",
+    "https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_det",
+    "https://huggingface.co/PaddlePaddle/en_PP-OCRv5_mobile_rec"
+  ],
+  "weights_policy": "Original model weights outside Git; URLs and SHA-256 pinned in reconcile.ocr_models; inference never downloads or sends documents externally."
+}

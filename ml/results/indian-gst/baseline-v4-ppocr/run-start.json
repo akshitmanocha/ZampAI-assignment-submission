@@ -1,0 +1,49 @@
+{
+  "started_at": "2026-11-10T19:48:49.479687+00:00",
+  "dataset_manifest_sha256": "d538a5fba1e3bfa9b809e0490d433a74196521a9a0da03d818755bb862fc6cc6",
+  "metric_version": "indian-gst-extraction-metrics-v1",
+  "expected_documents": 261,
+  "source_sha256": {
+    "backend/reconcile/invoice_parser.py": "73a2577f28787ebcf26947a15546c3e08f86980dd65b174c8d6baaa2ca635eb2",
+    "backend/reconcile/document_text.py": "13c78bdbd21a289e23c97ffc469a24278b9312d4ef84ffe1dbd859591c4adc0d",
+    "backend/reconcile/gst_parser.py": "7148534177de4eb9e30160ef54ab997c17357cda79ad9e53a87acfd07e54d05b",
+    "backend/reconcile/paddle_text.py": "fc08d20b9d2f1b951f39e56b01398d6c6ba05ea244b133e72017dd8b7e55e3f2",
+    "backend/reconcile/ocr_models.py": "2eb70fab1ce676049afe8c14431ad44d8462ee5ddd7d534c0e08902e70058b3d",
+    "backend/reconcile/document_types.py": "c2f7e09f31fa0158d858c1d3f47332d855ee6fc11756da7864013eb0f8911f91",
+    "backend/reconcile/ingest.py": "e0f0676c17c14dac96f0d01413730291881d9d923f698ac437c82657e822572b",
+    "backend/reconcile/source_quality.py": "803cc7e7d72f8830e49fc2d238d4366634efb440d1768c89fac7e359b0335a3f",
+    "backend/reconcile/tax_validation.py": "c8db381a1b3b2c0f0ddef7214a89ab6cd828e1a5f3877e2beb5e3945fadbc622",
+    "backend/reconcile/worker.py": "8cca471f18155083b4ea5836b551f989a1f604599f0bfd55f21d7b7e1d2965e5",
+    "ml/indian_gst_dataset.py": "97ac8310c2283bacd467dfd03b5bf4377a1ccda307b8983bc9d974f64c35b34d",
+    "ml/indian_gst_metrics.py": "e622cd521d343b7b317a254821add3ef07e3fe38cb24f0d4588b81b4cf73a238",
+    "ml/evaluate_indian_gst.py": "34a71ed86b44d4b215fa02345967a90ecf3b1056602f393281b8e2f1a7c91d3f"
+  },
+  "execution": {
+    "extraction_workers": 3,
+    "tesseract_timeout_seconds": 30,
+    "pdf_child_cpu_seconds": 100,
+    "pdf_child_wall_seconds": 150,
+    "ocr_engine": "paddle",
+    "ocr_profile": "mobile",
+    "ocr_child_omp_thread_limit": 1,
+    "shared_host": true,
+    "latency_benchmark": false
+  },
+  "python": "3.12.16",
+  "tesseract": "tesseract 5.5.0",
+  "packages": {
+    "pytesseract": "0.3.13",
+    "rapidocr": "3.10.0",
+    "onnxruntime": "1.31.1",
+    "opencv-python-headless": "5.0.0.93",
+    "pdfplumber": "0.11.10",
+    "pypdfium2": "5.15.2",
+    "reportlab": "4.5.1",
+    "pillow": "13.0.0",
+    "scipy": "1.18.1"
+  },
+  "label_policy": "Unmodified publisher JSON. Decimal comparisons exact. No label fitting or test-time training.",
+  "pdf_wrapper": "Original image embedded in a neutral PDF at 200 DPI without deliberate resampling or augmentation; actual application OCR renders at 200 DPI.",
+  "prediction_input": "PDF bytes only; source IDs, metadata, gold and filenames never passed to extractor",
+  "line_alignment": "Hungarian description-only similarity >= 0.65; row correctness still requires exact normalized description and numeric fields. No price/quantity alignment."
+}

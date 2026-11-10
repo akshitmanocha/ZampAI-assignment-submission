@@ -1,0 +1,26 @@
+{
+  "scope": "Complete, preserved intermediate and final comparison reports; publisher labels unchanged.",
+  "reports": {
+    "selection-v1/metrics.json": "ce19caa023897ec7373d096a787de2c6c7f7d2159767d7e4516a8a2584f0e85b",
+    "selection-v2-pdf-coordinates/metrics.json": "aa26da442ccc67d02eb2b4b56c3b4cfc7c1b7117601a3933b5e36d899d842f31",
+    "gpu-qualification-v1/metrics.json": "3b157601163756ba69e4b05d103af78367280252b1498f9254e6f7cddc0672af",
+    "gpu-qualification-v2-pdf-coordinates/metrics.json": "7da27e8da8a0a48796a5454e42975f53aa9d6e6d7326bfc1bc442e4bd0a7dba0"
+  },
+  "runtime_probes": {
+    "invalid_paddle_processor_api": "12 AttributeError results before image inference; not a quality score",
+    "invalid_granite_fp16": "Numerical degeneration produced exclamation marks; switched to FP32 on T4 before the valid qualification",
+    "stopped_no_explicit_cache": "Partial high-latency probe; corrected generation explicitly uses KV cache",
+    "old_gpu_checkpoint_directory": "/workspace/reconcile-artifacts/ocr-gpu-checkpoint-old",
+    "new_gpu_export_directory": "/workspace/reconcile-artifacts/ocr-gpu-progress",
+    "old_session_checkpoint": {
+      "granite-v3": {
+        "records": 3,
+        "sha256": "ef2d62790520149afa5f3561d4046d6286ecf3675739e1717f006b6760c4fa91"
+      },
+      "paddle-vl-v3": {
+        "records": 11,
+        "sha256": "8a8855e7a728e175a23fa42d1aac914b1f7c8010a844e6b2432aa9fd61e0dcf8"
+      }
+    }
+  }
+}

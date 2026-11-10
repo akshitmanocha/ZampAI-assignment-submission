@@ -2,7 +2,54 @@
 
 The primary invoice-reading dataset is [Divya52/indian-gst-invoices](https://huggingface.co/datasets/Divya52/indian-gst-invoices), revision `fece40b9a96ac3949934fc05c714853a5283d730`, CC BY 4.0. It replaces InvoiceOCR-Synth for new invoice-extraction evaluations. Historical results and deterministic business-rule fixtures are retained with their original scope.
 
-## Measured baseline — 10 November 2026
+## Current result — 11 November 2026
+
+The default local reader is now **PP-OCRv5 English mobile (~3.1M stored model values) with GST-aware parsing**. See [the OCR upgrade report](ocr-upgrade.md) for training/validation boundaries, GPU comparisons and the coordinate-consistency repair. The original Tesseract baseline below remains historical evidence.
+
+The same 197 official test images were re-scored after development; this is explicitly an inspected-test re-score, not a new blind evaluation. All 261 images, including separate robustness suites, processed with zero technical failures.
+
+| Main official test metric | Original Tesseract + old parser | Current compact OCR + GST parser |
+|---|---:|---:|
+| Core header recall | 35.5% | 90.5% |
+| Precision of proposed core headers | 83.5% | 98.0% |
+| Correct core values / labels | 350 / 985 | 891 / 985 |
+| All five core headers correct | 0 / 197 | 120 / 197 (60.9%) |
+| Complete rows correct / labelled | 0 / 769 | 640 / 769 |
+| Complete-row precision | Undefined (no rows) | 87.0% |
+| Complete-row recall | 0.0% | 83.2% |
+| Complete-row F1 | 0.0% | 85.0% |
+| Technical failures | 0 / 197 | 0 / 197 |
+
+Header recall counts individual values across invoices. A document with all five core headers correct can still have bad item rows or fail procurement checks. **These metrics do not establish invoice accept/reject accuracy or invoice automation.**
+
+After the minimum-score source gate, 868/985 core values are correct and 868/886 proposals are correct (88.1% recall, 98.0% conditional precision). Eighteen incorrect proposals remain. Raising an OCR score alone is not a correctness guarantee; the separate 130-image diagnostic also exposes high-confidence errors.
+
+| Current core field | Correct / labelled | Proposed values |
+|---|---:|---:|
+| vendor name | 191 / 197 | 196 |
+| invoice number | 188 / 197 | 193 |
+| invoice date | 131 / 197 | 131 |
+| subtotal | 191 / 197 | 194 |
+| grand total | 190 / 197 | 195 |
+
+| Source quality | Documents | Core-header recall | Complete-row F1 |
+|---|---:|---:|---:|
+| clean | 57 | 92.6% | 96.3% |
+| photo | 83 | 86.3% | 67.8% |
+| scan | 57 | 94.4% | 98.6% |
+
+Photographed pages remain the main extraction bottleneck. Clean/scanned rows score much higher than photographed rows; further work must use development data and a fresh independent audit. Ambiguous dates and unsupported units/tax structures continue to need review.
+
+| Separate robustness suite | Documents | Core-header recall | Complete-row F1 |
+|---|---:|---:|---:|
+| injection | 24 | 91.7% | 97.1% |
+| regional | 40 | 69.0% | 46.4% |
+
+The English recognizer does not establish Hindi/Kannada support; none of the 40 regional documents has all five core headers correct. Robustness scores stay separate.
+
+Current evidence: [metrics](../ml/results/indian-gst/baseline-v4-ppocr/metrics.json), [all predictions](../ml/results/indian-gst/baseline-v4-ppocr/predictions.jsonl), and [frozen run metadata](../ml/results/indian-gst/baseline-v4-ppocr/run-start.json). The intermediate fixed-gutter result is preserved as `baseline-v3-ppocr`, with an exact pre-fix component snapshot; the current gutter uses glyph height and passes coordinate-scale regression tests.
+
+## Historical Tesseract baseline — 10 November 2026
 
 The complete run processed all **261 images with zero technical failures**. The main 197-invoice result shows that the current field parser does not yet support these GST layouts well enough for automation. Successful processing is not successful extraction.
 
@@ -59,7 +106,7 @@ The [source split audit](../ml/data/indian-gst-v1/split-audit.json) finds no ove
 
 1. Verify every frozen source hash before scoring. Keep original images and publisher metadata outside Git.
 2. Embed each original image in a neutral, image-only PDF at 200 DPI, with no deliberate image resampling, extra text layer or label-bearing filename. The PDF bytes are the reader's sole input.
-3. Call the same bounded PDF child used by the application: native-text detection, Tesseract OCR, geometry parser and source-quality policy. No SQL ledger, expected answers, GPU, external model or fine-tuning is involved.
+3. Call the same bounded PDF child used by the application: native-text detection, the recorded OCR engine, geometry parser and source-quality policy. Baseline-v2 uses Tesseract; the current baseline-v4 uses PP-OCRv5 English mobile and the GST parser. No SQL ledger, expected answers, GPU, external model or fine-tuning is involved.
 4. Join the publisher label only after extraction finishes. Keep missing/ambiguous readings and technical failures; do not repair values from labels or drop failed documents.
 5. Score raw readings and readings that pass the application's source-verification gate separately. Store per-document predictions, runtime versions and source hashes alongside aggregate metrics.
 

@@ -15,7 +15,8 @@ def assess(extraction,pages):
             page=pages[evidence['page']-1]
             x0,y0,x1,y1=evidence['bbox']
             scores.extend(w.confidence for w in page.words if w.confidence is not None and
-                x0<=(w.bbox[0]+w.bbox[2])/2<=x1 and y0<=(w.bbox[1]+w.bbox[3])/2<=y1)
+                x0<=((w.source_bbox or w.bbox)[0]+(w.source_bbox or w.bbox)[2])/2<=x1 and
+                y0<=((w.source_bbox or w.bbox)[1]+(w.source_bbox or w.bbox)[3])/2<=y1)
         if scores:
             reading['minimum_ocr_score']=min(scores)
             if min(scores)<60:

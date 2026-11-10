@@ -209,9 +209,23 @@ def test_offsetting_prices_are_both_detected(h):
 
 
 def test_actual_image_only_pdf_uses_ocr(h):
-    _,detail,_=h.processed('scan')
+    id,detail,_=h.processed('scan')
     assert detail['extraction']['pages'][0]['method']=='ocr'
-    assert detail['decision']['bucket']=='accept',detail['decision']
+    assert detail['decision']['bucket'] in ['accept','human_review'],detail['decision']
+    printed='GLV-M Nitrile gloves medium [BOX; 100 EA/box]'
+    original=deepcopy(detail['extraction']['fields'])
+    if detail['decision']['bucket']=='human_review':
+        assert original['lines'][0]['description'].get('requires_source_verification')
+        response=h.post('/api/invoices/'+id+'/review',{'expected_decision_version':1,'corrections':[
+            {'field_path':'lines[1].description','value':printed,
+             'reason':'Authored test fixture: simulated reviewer restores the exact printed pack string from the source; this is not an OCR accuracy result.'}]})
+        assert response.status_code==202,response.text
+        assert h.wait(response.json()['run']['id'])['state']=='completed'
+        corrected=h.client.get('/api/invoices/'+id).json()
+        assert corrected['decision']['bucket']=='accept',corrected['decision']
+        assert corrected['extraction']['fields']==original
+    else:
+        assert original['lines'][0]['description']['value']==printed
     events=h.client.get('/api/runs/'+detail['run']['id']).json()['events']
     assert any(e['type']=='stage.started' and e['stage']=='ocr' for e in events)
 

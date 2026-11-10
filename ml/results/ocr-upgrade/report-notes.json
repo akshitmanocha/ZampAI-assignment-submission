@@ -1,0 +1,6 @@
+{
+  "scope": "Interpretive clarification; original raw numeric reports and predictions are preserved unchanged.",
+  "inspected_test_reuse": "The 197-image source test had already been inspected in baseline-v2. The v3 re-score exposed the pixel/PDF-point gutter bug. It was repaired using authored scale-invariance tests, then all 261 records were re-scored as v4. This is not a blind test.",
+  "legacy_caption": "The raw harness retained an inherited phrase saying no test-guided fixes. That must not be read as a global claim for this upgrade: the coordinate repair was informed by the earlier re-score. Components were frozen before each individual run; no label values or numeric/text OCR predictions were repaired from gold.",
+  "development_calibration_reuse": "Coordinate-consistent v2 reports re-score the same cached development/model-selection/calibration inputs in the production PDF-point frame. Their earlier pixel-frame reports are preserved; calibration is diagnostic, not an independent final confirmation."
+}

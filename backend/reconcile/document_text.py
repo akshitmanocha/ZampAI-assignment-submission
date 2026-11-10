@@ -6,6 +6,7 @@ subprocess. This utility is not exposed through an upload endpoint yet.
 from reconcile.document_types import Word,PageText
 import io
 import math
+import os
 import pdfplumber
 import pypdfium2
 import pytesseract
@@ -55,6 +56,17 @@ def extract_document(data:bytes,max_pages=10,max_bytes=10*1024*1024,on_progress=
                     bitmap=rp.render(scale=200/72)
                     image=bitmap.to_pil()
                     try:
+                        engine=os.getenv('OCR_ENGINE','tesseract')
+                        if engine=='paddle':
+                            from reconcile.paddle_text import recognize
+                            try:found=recognize(image,float(page.width),float(page.height))
+                            except Exception as error:raise DocumentError('OCR_MODEL_OR_INFERENCE_FAILED') from error
+                            warnings=() if found else ('no_readable_text',)
+                            result.append(PageText(number+1,'ocr',float(page.width),float(page.height),found,warnings,
+                                'ppocr-v5-'+os.getenv('OCR_PROFILE','server')))
+                            if on_progress:on_progress('page.completed',number+1,len(pdf.pages),'ocr')
+                            continue
+                        if engine!='tesseract':raise DocumentError('OCR_ENGINE_UNSUPPORTED')
                         ocr=pytesseract.image_to_data(image,config='--psm 3',output_type=pytesseract.Output.DICT,timeout=30)
                         sx=float(page.width)/image.width;sy=float(page.height)/image.height
                         found=[]
@@ -66,7 +78,7 @@ def extract_document(data:bytes,max_pages=10,max_bytes=10*1024*1024,on_progress=
                             if not all(math.isfinite(v) for v in [x,y,w,h,confidence]):continue
                             found.append(Word(text,(x*sx,y*sy,(x+w)*sx,(y+h)*sy),confidence))
                         warnings=() if found else ('no_readable_text',)
-                        result.append(PageText(number+1,'ocr',float(page.width),float(page.height),tuple(found),warnings))
+                        result.append(PageText(number+1,'ocr',float(page.width),float(page.height),tuple(found),warnings,'tesseract'))
                         if on_progress:on_progress('page.completed',number+1,len(pdf.pages),'ocr')
                     except pytesseract.TesseractNotFoundError:raise DocumentError('OCR_UNAVAILABLE') from None
                     except pytesseract.TesseractError:raise DocumentError('OCR_FAILED') from None

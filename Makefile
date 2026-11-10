@@ -24,6 +24,7 @@ local:
 	python scripts/bootstrap_local.py
 models:
 	UV_CACHE_DIR=$${UV_CACHE_DIR:-/tmp/reconcile-uv-cache} uv run --project backend python -m reconcile.model_setup
+	UV_CACHE_DIR=$${UV_CACHE_DIR:-/tmp/reconcile-uv-cache} uv run --project backend python -m reconcile.ocr_models --directory "$${OCR_MODEL_DIR:-../reconcile-artifacts/ppocr-v5}" --profile mobile
 integration-test:
 	docker compose --profile test build test
 	LOCAL_UID=$$(id -u) LOCAL_GID=$$(id -g) docker compose --profile test run --rm test

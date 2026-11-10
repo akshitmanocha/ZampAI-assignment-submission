@@ -1,0 +1,20 @@
+{
+  "profile": "mobile",
+  "files": {
+    "det": {
+      "file": "ch_PP-OCRv5_det_mobile.onnx",
+      "sha256": "4d97c44a20d30a81aad087d6a396b08f786c4635742afc391f6621f5c6ae78ae",
+      "bytes": 4819576,
+      "initializer_scalars_including_buffers": 1171745
+    },
+    "rec": {
+      "file": "en_PP-OCRv5_rec_mobile.onnx",
+      "sha256": "c3461add59bb4323ecba96a492ab75e06dda42467c9e3d0c18db5d1d21924be8",
+      "bytes": 7872351,
+      "initializer_scalars_including_buffers": 1941669
+    }
+  },
+  "total_initializer_scalars_including_buffers": 3113414,
+  "total_bytes": 12691927,
+  "interpretation": "Approximate network-size description; initializers include non-trainable buffers. Not an accuracy metric."
+}

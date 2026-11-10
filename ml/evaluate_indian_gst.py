@@ -30,16 +30,20 @@ def evaluate(data,manifest_path,out,workers=3):
     if prediction_path.exists() and prediction_path.stat().st_size:
         raise RuntimeError('Refusing to overwrite an existing run; choose a new output directory')
     source_files=['backend/reconcile/invoice_parser.py','backend/reconcile/document_text.py',
+        'backend/reconcile/gst_parser.py','backend/reconcile/paddle_text.py',
+        'backend/reconcile/ocr_models.py','backend/reconcile/document_types.py',
         'backend/reconcile/ingest.py','backend/reconcile/source_quality.py','backend/reconcile/tax_validation.py',
         'backend/reconcile/worker.py','ml/indian_gst_dataset.py','ml/indian_gst_metrics.py','ml/evaluate_indian_gst.py']
     frozen={'started_at':datetime.now(timezone.utc).isoformat(),
         'dataset_manifest_sha256':digest(manifest_path.read_bytes()),'metric_version':VERSION,
         'expected_documents':261,'source_sha256':{p:digest((ROOT/p).read_bytes()) for p in source_files},
-        'execution':{'extraction_workers':workers,'ocr_timeout_seconds':30,
-            'ocr_mode':'--psm 3','ocr_child_omp_thread_limit':1,
+        'execution':{'extraction_workers':workers,'tesseract_timeout_seconds':30,
+            'pdf_child_cpu_seconds':100,'pdf_child_wall_seconds':150,
+            'ocr_engine':os.getenv('OCR_ENGINE','tesseract'),'ocr_profile':os.getenv('OCR_PROFILE'),
+            'ocr_child_omp_thread_limit':1,
             'shared_host':True,'latency_benchmark':False},
         'python':platform.python_version(),'tesseract':subprocess.run(['tesseract','--version'],capture_output=True,text=True,check=True).stdout.splitlines()[0],
-        'packages':{name:version(name) for name in ['pytesseract','pdfplumber','pypdfium2','reportlab','pillow','scipy']},
+        'packages':{name:version(name) for name in ['pytesseract','rapidocr','onnxruntime','opencv-python-headless','pdfplumber','pypdfium2','reportlab','pillow','scipy']},
         'label_policy':'Unmodified publisher JSON. Decimal comparisons exact. No label fitting or test-time training.',
         'pdf_wrapper':'Original image embedded in a neutral PDF at 200 DPI without deliberate resampling or augmentation; actual application OCR renders at 200 DPI.',
         'prediction_input':'PDF bytes only; source IDs, metadata, gold and filenames never passed to extractor',
@@ -85,7 +89,9 @@ def evaluate(data,manifest_path,out,workers=3):
         'additional_target_map':{k:list(v) for k,v in EXTRA.items()},
         'row_core_target_map':ROW_CORE,'row_additional_target_map':ROW_EXTRA,
         'unlabelled_application_fields':['currency','po_reference','scalar tax_total and combined tax_rate'],
-        'known_unimplemented_targets':list(EXTRA)+list(ROW_EXTRA),
+        'additional_targets_without_found_output':{
+            'headers':[k for k in EXTRA if not any(r['prediction'].get('header',{}).get(k,{}).get('status')=='found' for r in records)],
+            'rows':[k for k in ROW_EXTRA if not any(line.get(k,{}).get('status')=='found' for r in records for line in r['prediction'].get('lines',[]))]},
         'unsupported_scope_profile':{'regional_documents':40,
             'main_documents_with_mixed_line_gst_rates':sum(len({str(l['gst_rate']) for l in r['gold']['line_items'] if l.get('gst_rate') is not None})>1 for r in main),
             'main_invoice_unit_counts':dict(Counter(l.get('unit') for r in main for l in r['gold']['line_items']))},
@@ -98,6 +104,12 @@ def evaluate(data,manifest_path,out,workers=3):
             'Raw and source-verified tracks measure the cost of abstention; verified coverage is not automation',
             'Auxiliary injection/regional scores do not mix into primary English synthetic test metrics'],
         'full_invoice_approval_accuracy':None,'retrieval_accuracy':None,'new_training_performed':False}
+    if frozen['execution']['ocr_engine']=='paddle':
+        from reconcile.ocr_models import assets
+        report['ocr_weights']={task:{'file':name,'sha256':sha} for task,(name,sha) in assets(os.getenv('OCR_PROFILE','server')).items()}
+        report['limitations'] += ['Test was already inspected in baseline-v2; this is a disclosed re-score after training-split parser development and validation-only model selection, not a fresh blind test',
+            'PP-OCRv5 English mobile does not establish Hindi/Kannada support; regional suite remains separate',
+            'Deskewed logical coordinates are separate from original-source evidence rectangles']
     (out/'metrics.json').write_text(json.dumps(report,indent=2,default=str,ensure_ascii=False))
     compact=report['primary_official_test']
     print('INDIAN_GST_RESULT '+json.dumps({'documents':len(main),'technical_failures':compact['raw_extracted']['technical_failures'],

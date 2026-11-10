@@ -13,7 +13,10 @@
     "label_source": "Unmodified publisher structured invoice labels",
     "stage": "PDF/OCR/field extraction with source-quality policy",
     "headline": "External Indian GST baseline; no full invoice approval or retrieval truth",
-    "results": "ml/results/indian-gst/baseline-v2/metrics.json"
+    "results": "ml/results/indian-gst/baseline-v4-ppocr/metrics.json",
+    "reader": "PP-OCRv5 English mobile ONNX CPU + printed GST columns",
+    "development_manifest": "ml/data/indian-gst-ocr-v1/manifest.json",
+    "test_status": "Disclosed re-score of previously inspected test; source labels unchanged"
   },
   "archived_invoice_evaluation": {
     "dataset": "alamgirqazi/invoice-ocr-synthetic",

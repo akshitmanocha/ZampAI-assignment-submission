@@ -1,0 +1,19 @@
+{
+  "model": "ibm-granite/granite-docling-258M",
+  "revision": "982fe3b40f2fa73c365bdb1bcacf6c81b7184bfe",
+  "actual_parameters": 257517120,
+  "torch": "2.11.0+cu130",
+  "transformers": "5.20.2",
+  "gpu": "Tesla T4",
+  "dtype": "torch.float32",
+  "prompt": "Convert this page to docling.",
+  "use_cache": true,
+  "processor_image_size": "SizeDict(height=None, width=None, longest_edge=2048, shortest_edge=None, max_height=None, max_width=None, min_pixels=None, max_pixels=None)",
+  "manifest_sha256": "32a8115a15f5d493b72094775a1e890f801d328daaec51b6d51bec8a18de50e6",
+  "max_new_tokens": 4096,
+  "max_time_seconds": 90,
+  "do_sample": false,
+  "resumed_records": 3,
+  "resume_sha256": "ef2d62790520149afa5f3561d4046d6286ecf3675739e1717f006b6760c4fa91",
+  "protocol": "Granite is full-page conversion; Paddle native Spotting task is a qualification only, not the separate official layout pipeline. No gold input."
+}
