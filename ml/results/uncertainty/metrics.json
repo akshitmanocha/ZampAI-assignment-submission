@@ -1,0 +1,54 @@
+{
+  "selection": "maximum auto-match count with zero observed validation errors; frozen before checking remaining splits",
+  "threshold": 3.9096004962921143,
+  "scope": "matching pairs only; not invoice accept/reject accuracy",
+  "split_results": {
+    "validation": {
+      "pairs": 144,
+      "automatically_matched_pairs": 72,
+      "review_pairs": 72,
+      "automatic_coverage": 0.5,
+      "wrong_automatic_matches": 0,
+      "observed_match_precision": 1.0,
+      "accepted_families": 3,
+      "families_with_any_wrong_automatic_match": 0,
+      "family_error_upper_bound_95": 0.6315968501359612,
+      "bound_scope": "probability of any wrong automatic match within a future independent comparable family; NOT invoice error probability",
+      "strict_zero_risk_certified": false
+    },
+    "calibration": {
+      "pairs": 96,
+      "automatically_matched_pairs": 48,
+      "review_pairs": 48,
+      "automatic_coverage": 0.5,
+      "wrong_automatic_matches": 0,
+      "observed_match_precision": 1.0,
+      "accepted_families": 2,
+      "families_with_any_wrong_automatic_match": 0,
+      "family_error_upper_bound_95": 0.776393202250021,
+      "bound_scope": "probability of any wrong automatic match within a future independent comparable family; NOT invoice error probability",
+      "strict_zero_risk_certified": false
+    },
+    "test": {
+      "pairs": 144,
+      "automatically_matched_pairs": 72,
+      "review_pairs": 72,
+      "automatic_coverage": 0.5,
+      "wrong_automatic_matches": 0,
+      "observed_match_precision": 1.0,
+      "accepted_families": 3,
+      "families_with_any_wrong_automatic_match": 0,
+      "family_error_upper_bound_95": 0.6315968501359612,
+      "bound_scope": "probability of any wrong automatic match within a future independent comparable family; NOT invoice error probability",
+      "strict_zero_risk_certified": false
+    }
+  },
+  "limitations": [
+    "Only 2 calibration families; no independent representative invoice evaluation",
+    "Model selected on validation previously; threshold-selection results are development only",
+    "Existing calibration/test sets were already inspected in prior experiments; not new blind evidence",
+    "Family bounds assume independent comparable groups; synthetic catalog does not establish deployment distribution",
+    "Candidate top-two margin and extraction uncertainty not calibrated by this pair dataset"
+  ],
+  "deployment_auto_matching_enabled": false
+}
