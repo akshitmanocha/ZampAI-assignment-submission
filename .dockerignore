@@ -1,0 +1,15 @@
+.git
+.env
+**/.venv
+**/node_modules
+**/__pycache__
+**/.pytest_cache
+web/dist
+backend/tests
+fixtures/expected
+eval
+ml
+docs
+reconcile-design
+*.pdf
+.DS_Store
