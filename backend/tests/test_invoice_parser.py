@@ -127,3 +127,15 @@ def test_missing_invoice_number_does_not_steal_po_reference_below():
     from reconcile.document_types import PageText,Word
     words=(Word('Invoice',(20,10,60,20)),Word('No:',(65,10,80,20)),Word('PO:',(20,40,50,50)),Word('PO-2026-0147',(55,40,180,50)))
     assert parse_invoice([PageText(1,'native',600,800,words)])['header']['invoice_number']['status']=='missing'
+
+
+def test_explicit_from_anchor_outranks_same_size_stacked_title_guess():
+    from reconcile.document_types import PageText, Word
+    words=tuple(Word(text,(40,y,200,y+12)) for y,text in [(10,'INVOICE'),(35,'FROM'),(55,'SafeHands Supplies')])
+    assert parse_invoice([PageText(1,'native',600,800,words)])['header']['vendor_name']['value']=='SafeHands Supplies'
+
+
+def test_tax_prefixed_invoice_number_does_not_become_tax_amount():
+    from reconcile.document_types import PageText, Word
+    words=tuple(Word(text,(40,y,300,y+12)) for y,text in [(10,'Invoice No: TAX-REAL-PDF-1'),(40,'Tax @ 18% INR 540.00')])
+    assert parse_invoice([PageText(1,'native',600,800,words)])['header']['tax_total']['value']=='540.00'

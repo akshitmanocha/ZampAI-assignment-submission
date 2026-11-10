@@ -7,13 +7,13 @@ def test_liveness():
         assert client.get('/health/live').json() == {'status': 'ok'}
 
 
-def test_readiness_never_claims_unimplemented_pipeline_ready(monkeypatch):
+def test_readiness_never_claims_unconfigured_pipeline_ready(monkeypatch):
     monkeypatch.delenv('DATABASE_URL', raising=False)
     with TestClient(create_app()) as client:
         response = client.get('/health/ready')
         assert response.status_code == 503
         assert response.json()['db'] == 'unconfigured'
-        assert response.json()['worker'] == 'not_implemented'
+        assert response.json()['worker'] == 'unavailable'
 
 
 def test_all_api_routes_fail_closed():

@@ -1,3 +1,5 @@
+> Historical milestone. The local application now integrates upload, retrieval, review and approval; see [current implementation](local-application.md). Scores and limitations below describe the original experiment.
+
 # OCR stage: first actual PDF reader
 
 The 90%-coverage matching comparison is documented separately in coverage90.md. OCR work has now started.

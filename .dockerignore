@@ -18,3 +18,9 @@ reconcile-design
 .DS_Store
 
 fixtures/workflows/
+
+!backend/reconcile/demo_samples/*.pdf
+web/test-results/
+web/playwright-report/
+web/tests/
+web/playwright.config.ts

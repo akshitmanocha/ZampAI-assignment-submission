@@ -1,0 +1,26 @@
+{
+  "scope": "Initial real-container probe; an all-accept smoke expectation failed because an uncertain OCR reference correctly went to review. No accuracy claim.",
+  "cases": [
+    {
+      "id": "7d7d05cc-d33a-48de-a50b-1beff224ebb4",
+      "filename": "local-verification-scan.pdf",
+      "document_sha256": "3cf18e587465daaf012356606622f03296c809ac0c2f91f4f037f46fc7a3a628",
+      "bucket": "human_review",
+      "unknown": [
+        "duplicate",
+        "required_fields"
+      ],
+      "source_warnings": [
+        "low_ocr_score:header.invoice_number"
+      ]
+    },
+    {
+      "id": "62a0c0fb-d488-4834-b2a6-5b14a7f9ad0d",
+      "filename": "local-verification-native.pdf",
+      "document_sha256": "77e9b0652527a9f8f388995c45e466442751878af945d3f9d97d58c02163d1c5",
+      "bucket": "accept",
+      "unknown": [],
+      "source_warnings": []
+    }
+  ]
+}

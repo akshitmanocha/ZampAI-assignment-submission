@@ -1,0 +1,44 @@
+{
+  "source": "saved",
+  "experiments": [
+    {
+      "name": "Local application acceptance",
+      "scope": "Actual PDF processing, PostgreSQL, staff review, current-balance approval and the browser UI. Latest full regression run.",
+      "metrics": {
+        "Tests with PostgreSQL": "179 passed",
+        "Browser journey": "Passed",
+        "Axe violations in scanned views": "0"
+      },
+      "limitation": "Functional tests on fictional inputs, not accuracy on representative unseen invoices. Axe scanned the login and mobile workspace; it does not certify every accessibility requirement."
+    },
+    {
+      "name": "Authored edge-case validation",
+      "scope": "25 author-known synthetic scenarios, four PDF representations each. Separate from application integration tests.",
+      "metrics": {
+        "PDF checks": "100 / 100",
+        "Database traces": "3 / 3",
+        "Automatic recommendations": "84%",
+        "Human review": "16%"
+      },
+      "limitation": "Controlled layouts and explicit product codes. The author also wrote the implementation; no independent human label audit or unseen-invoice accuracy guarantee."
+    },
+    {
+      "name": "MiniLM retrieval diagnostic",
+      "scope": "36 simple descriptions against 80 fictional catalog items. Original experiment used GPU; local application uses the pinned ONNX model on CPU.",
+      "metrics": {
+        "Top 1 retrieval": "36 / 36",
+        "Top 5 retrieval": "36 / 36"
+      },
+      "limitation": "Previously inspected categories, matchable queries only. These results do not establish calibrated confidence or approval safety."
+    },
+    {
+      "name": "Harder matching experiment",
+      "scope": "720 fictional product-description pairs. Fine-tuned checkpoint evaluated at a score-ranked 90% pair automation budget.",
+      "metrics": {
+        "Automatic pair accuracy": "94.6%",
+        "Automatic pairs": "648 / 720"
+      },
+      "limitation": "A separate development experiment; that trained cross-encoder is not the live approval policy. Pair coverage is not invoice automation."
+    }
+  ]
+}

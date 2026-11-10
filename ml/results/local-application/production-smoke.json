@@ -1,0 +1,79 @@
+{
+  "scope": "Actual non-root, read-only Compose app/worker; fictional input; no approvals",
+  "cases": [
+    {
+      "variant": "native",
+      "invoice_id": "476ebf44-0003-4a54-99f5-948a9844b0e1",
+      "run_id": "8ab375ab-e5a3-47f6-be7d-234f18056763",
+      "bucket": "accept",
+      "initial_bucket": "accept",
+      "simulated_review_fields": [],
+      "oracle_document": {
+        "vendor_name": "SafeHands Supplies",
+        "invoice_number": "CHECK-597212EC",
+        "invoice_date": "2026-11-06",
+        "po_reference": "PO-2026-0147",
+        "currency": "INR",
+        "subtotal": "5.00",
+        "tax_total": "0.00",
+        "grand_total": "5.00",
+        "lines": [
+          {
+            "description": "GLV-M Nitrile gloves medium [EA]",
+            "qty": "1",
+            "unit_price": "5.00",
+            "amount": "5.00"
+          }
+        ]
+      },
+      "method": "native",
+      "pdf_sha256": "d36a35d08e49020dc3a4038c6940e0f6d21dd4211f420585d575504181b0f58f",
+      "bytes_preserved": true,
+      "preview_available": true,
+      "decision_version": 1
+    },
+    {
+      "variant": "scan",
+      "invoice_id": "925a478e-e629-4ef9-ab71-dcd8e92cfe5b",
+      "run_id": "5473d3a1-b27c-4ca4-9c20-6abf476c4df7",
+      "bucket": "accept",
+      "initial_bucket": "accept",
+      "simulated_review_fields": [],
+      "oracle_document": {
+        "vendor_name": "SafeHands Supplies",
+        "invoice_number": "CHECK-765DE04A",
+        "invoice_date": "2026-11-06",
+        "po_reference": "PO-2026-0147",
+        "currency": "INR",
+        "subtotal": "5.00",
+        "tax_total": "0.00",
+        "grand_total": "5.00",
+        "lines": [
+          {
+            "description": "GLV-M Nitrile gloves medium [EA]",
+            "qty": "1",
+            "unit_price": "5.00",
+            "amount": "5.00"
+          }
+        ]
+      },
+      "method": "ocr",
+      "pdf_sha256": "dc942f08211e5b8a89bed73638b0f008e98849033c3de2e33fad19000d26e562",
+      "bytes_preserved": true,
+      "preview_available": true,
+      "decision_version": 1
+    }
+  ],
+  "readiness": {
+    "db": "ok",
+    "migrations": "at_head",
+    "worker": "ok",
+    "ocr": "ok",
+    "blob_store": "ok",
+    "matcher": "ok",
+    "code_version": "development",
+    "worker_heartbeat_age_s": 0.2
+  },
+  "ledger_unchanged": true,
+  "logout_revoked": true
+}

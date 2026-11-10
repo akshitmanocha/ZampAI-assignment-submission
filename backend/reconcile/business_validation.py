@@ -37,29 +37,36 @@ def attributes(description):
 
 def from_extraction(extracted):
     """Missing/ambiguous/invalid readings stay None. No oracle or PO repair."""
-    def read(value):return value.get('value') if value.get('status')=='found' else None
-    names=['vendor_name','invoice_number','invoice_date','po_reference','currency','subtotal','tax_total','grand_total']
+    def read(value):return value.get('value') if value.get('status')=='found' and not value.get('requires_source_verification') else None
+    names=['vendor_name','invoice_number','invoice_date','po_reference','currency','subtotal','tax_total','grand_total','tax_rate']
     result={name:read(extracted['header'].get(name,{})) for name in names}
     result['lines']=[{name:read(line.get(name,{})) for name in ['description','qty','unit_price','amount']} for line in extracted['lines']]
     result['source_warnings']=extracted.get('warnings',[])
     return result
 
 
-def product(line,po):
+def product(line,po,review=None):
     attrs=attributes(line.get('description'))
-    if not attrs['sku']:return None,'unknown'
-    matches=[p for p in po['lines'] if key(p['sku'])==key(attrs['sku'])]
+    review=review or {}
+    if review.get('none_of_candidates'):return None,'unknown'
+    confirmed=bool(review.get('po_line_id') and review.get('reason'))
+    if not attrs['sku'] and not confirmed:return None,'unknown'
+    matches=[p for p in po['lines'] if p['id']==review['po_line_id']] if confirmed else [p for p in po['lines'] if key(p['sku'])==key(attrs['sku'])]
     if len(matches)!=1:return None,'unknown'
     candidate=matches[0]
     for name in ['material','size']:
-        if not attrs[name] or not candidate.get(name):return None,'unknown'
-        if key(attrs[name])!=key(candidate[name]):return candidate,'conflict'
+        if not attrs[name] or not candidate.get(name):
+            if not confirmed:return None,'unknown'
+        elif key(attrs[name])!=key(candidate[name]):return candidate,'conflict'
+    # A human choice cannot bypass a different, explicitly printed catalog SKU.
+    catalog_codes={key(p['sku']) for p in po['lines']}
+    if confirmed and attrs['sku'] and key(attrs['sku']) in catalog_codes and key(attrs['sku'])!=key(candidate['sku']):return candidate,'conflict'
     return candidate,'matched'
 
 
-def validate(document,company,document_sha256,*,today):
+def validate(document,company,document_sha256,*,today,reviewed_lines=None):
     """Pure recommendation. Caller injects the business date; no fixed production clock. History is input only; never consumes balances."""
-    d=document;results={};details={};values={'normalized_qty':[],'normalized_unit_price':[],'remaining_qty':[],'price_tolerance':[],'excess_qty':[],'requested_by_po_line':{}}
+    d=document;reviewed_lines=reviewed_lines or {};results={};details={};values={'normalized_qty':[],'normalized_unit_price':[],'remaining_qty':[],'price_tolerance':[],'excess_qty':[],'requested_by_po_line':{}}
     def finding(rule,status,reason,**data):
         results[rule]=Finding(rule,status,status!='unknown');details[rule]={'status':status,'reason':reason,**data}
     finding('scope','pass' if d.get('currency')=='INR' else 'unknown','INR_SCOPE' if d.get('currency')=='INR' else 'UNSUPPORTED_OR_UNCLEAR_CURRENCY')
@@ -78,10 +85,11 @@ def validate(document,company,document_sha256,*,today):
             elif vendor:
                 po=proposed;finding('purchase_order','pass' if po['status']=='open' else 'fail','PO_STATUS',actual=po['status'])
     elif vendor and d['lines']:
-        candidates=[p for p in company['purchase_orders'] if p['vendor_id']==vendor['id'] and p['status']=='open' and p['currency']==d.get('currency') and all(product(line,p)[1]=='matched' for line in d['lines'])]
+        candidates=[p for p in company['purchase_orders'] if p['vendor_id']==vendor['id'] and p['status']=='open' and p['currency']==d.get('currency') and all(product(line,p,reviewed_lines.get(str(i+1)))[1]=='matched' for i,line in enumerate(d['lines']))]
         if len(candidates)==1:po=candidates[0];finding('purchase_order','pass','UNIQUE_VENDOR_PO_INFERRED')
         else:finding('purchase_order','unknown','PO_CANDIDATES_UNRESOLVED',candidate_ids=[p['id'] for p in candidates])
     if 'purchase_order' not in results:finding('purchase_order','unknown','PO_UNRESOLVED')
+    if po and po['currency']!=d.get('currency'):finding('purchase_order','unknown','PO_CURRENCY_CONFLICT')
     required=['vendor_name','invoice_number','invoice_date','currency','subtotal','tax_total','grand_total']
     missing=[name for name in required if d.get(name) is None]
     if not d['lines']:missing.append('lines')
@@ -116,21 +124,25 @@ def validate(document,company,document_sha256,*,today):
                 else:revision=True
             elif prior['vendor_id']==vendor['id'] and d.get('invoice_number') and identifier_key(prior['invoice_number'])==identifier_key(d['invoice_number']):
                 revision=True
-    finding('duplicate','fail' if duplicates else 'unknown' if revision or not vendor or not d.get('invoice_number') else 'pass','DUPLICATE_FOUND' if duplicates else 'REVISION_OR_ID_UNRESOLVED' if revision or not d.get('invoice_number') else 'NO_PRIOR_DUPLICATE')
+    finding('duplicate','fail' if duplicates else 'unknown' if revision or not vendor or not d.get('invoice_number') else 'pass','DUPLICATE_FOUND' if duplicates else 'REVISION_OR_ID_UNRESOLVED' if revision or not d.get('invoice_number') else 'NO_PRIOR_DUPLICATE',matches=duplicates)
     def merge_status(a,b):return 'fail' if 'fail' in (a,b) else 'unknown' if 'unknown' in (a,b) else 'pass'
     spec='pass';conversion='pass';price='pass';quantity='pass';normalized=[];matched_ids=[]
     requested=defaultdict(lambda:Decimal('0'));line_lookup={};price_checks=[];quantity_checks=[]
     if po is None or po['status']!='open' or not d['lines']:spec=conversion=price=quantity='unknown'
     else:
         for i,line in enumerate(d['lines']):
-            matched,status=product(line,po)
+            review=reviewed_lines.get(str(i+1),{})
+            matched,status=product(line,po,review)
             if status=='conflict':
                 spec='fail';conversion,price,quantity=[merge_status(x,'unknown') for x in [conversion,price,quantity]];continue
             if status!='matched':
                 if spec!='fail':spec='unknown'
                 conversion,price,quantity=[merge_status(x,'unknown') for x in [conversion,price,quantity]];continue
             matched_ids.append(matched['id']);line_lookup[matched['id']]=matched
-            attrs=attributes(line.get('description'));factor=Decimal('1') if attrs['unit']=='EA' else money(attrs['pack']) if attrs['unit']=='BOX' and attrs['pack'] is not None else None
+            attrs=attributes(line.get('description'))
+            unit=review.get('unit') if review.get('reason') and review.get('unit') else attrs['unit']
+            pack=review.get('pack_factor') if review.get('reason') and review.get('pack_factor') else attrs['pack']
+            factor=Decimal('1') if unit=='EA' else money(pack) if unit=='BOX' and pack is not None else None
             if factor is None or factor<=0 or matched['uom']!='EA':
                 conversion,price,quantity=[merge_status(x,'unknown') for x in [conversion,price,quantity]];continue
             if any(line.get(k) is None for k in ['qty','unit_price','amount']):
@@ -145,7 +157,7 @@ def validate(document,company,document_sha256,*,today):
             if price_bad:price='fail'
             values['normalized_qty'].append(format(qty,'f'));values['normalized_unit_price'].append(format(unit_price,'f'));values['price_tolerance'].append(format(tolerance,'f'))
             requested[matched['id']]+=qty
-            normalized.append({'source_line':i+1,'po_line_id':matched['id'],'qty':format(qty,'f'),'unit_price':format(unit_price,'f'),'printed_amount':line['amount'],'evidence':{'description':line['description'],'qty':line['qty'],'unit_price':line['unit_price'],'pack_factor':format(factor,'f')}})
+            normalized.append({'source_line':i+1,'po_line_id':matched['id'],'qty':format(qty,'f'),'unit_price':format(unit_price,'f'),'printed_amount':line['amount'],'evidence':{'description':line['description'],'qty':line['qty'],'unit_price':line['unit_price'],'pack_factor':format(factor,'f'),'reviewer_attestation':review or None}})
         for line_id,qty in requested.items():
             target=line_lookup[line_id]
             allocated=sum((money(a['qty']) for a in company['allocations'] if a['po_line_id']==line_id),Decimal('0'))

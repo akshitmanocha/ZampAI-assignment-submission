@@ -1,0 +1,64 @@
+{
+  "database": "PostgreSQL",
+  "results": [
+    {
+      "case_id": "W23",
+      "action": "sequential_stale",
+      "postgresql_version": "16.15 (Debian 16.15-1.pgdg13+2)",
+      "post_approval_revalidation": "reject",
+      "passed": true,
+      "initial_pdf_buckets": [
+        "accept",
+        "accept"
+      ],
+      "statuses": [
+        "approved",
+        "APPROVAL_STALE"
+      ],
+      "remaining_qty": "200.0000",
+      "new_approvals": 1,
+      "allocation_count": 2
+    },
+    {
+      "case_id": "W24",
+      "action": "repeat_approval",
+      "postgresql_version": "16.15 (Debian 16.15-1.pgdg13+2)",
+      "passed": true,
+      "initial_pdf_buckets": [
+        "accept"
+      ],
+      "statuses": [
+        "approved",
+        "already_approved"
+      ],
+      "remaining_qty": "0.0000",
+      "new_approvals": 1,
+      "allocation_count": 2
+    },
+    {
+      "case_id": "W25",
+      "action": "concurrent_approval",
+      "postgresql_version": "16.15 (Debian 16.15-1.pgdg13+2)",
+      "post_approval_revalidation": "reject",
+      "passed": true,
+      "initial_pdf_buckets": [
+        "accept",
+        "accept"
+      ],
+      "statuses": [
+        "APPROVAL_STALE",
+        "approved"
+      ],
+      "remaining_qty": "200.0000",
+      "new_approvals": 1,
+      "allocation_count": 2
+    }
+  ],
+  "passed": 3,
+  "total": 3,
+  "source_code_sha256": {
+    "ml/evaluate_workflow_database.py": "ce9718d0eb49b4d5d1e31941c914452e893499e6effe714465b0e071307f8721",
+    "backend/reconcile/history.py": "1c972e1f36bf83dc199aa2a0e2242263952a098987b4f3ac04acd6804ac4852b",
+    "backend/reconcile/company_records.py": "9a8efff865dc9f678fe8afa8267a999bc0f00e0e110d79dba0ab91ac1b5d4e54"
+  }
+}

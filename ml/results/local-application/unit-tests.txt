@@ -1,0 +1,5 @@
+UV_CACHE_DIR=${UV_CACHE_DIR:-/tmp/reconcile-uv-cache} uv run --project backend pytest -q backend/tests
+....ssssssssssssssssssss.................ssssssssssssssss............... [ 40%]
+........................................................................ [ 80%]
+...................................                                      [100%]
+143 passed, 36 skipped in 3.14s

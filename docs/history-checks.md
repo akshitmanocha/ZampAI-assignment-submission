@@ -1,3 +1,5 @@
+> Historical milestone. The local application now integrates upload, retrieval, review and approval; see [current implementation](local-application.md). Scores and limitations below describe the original experiment.
+
 # Checking previous invoices and orders
 
 A purchase order is the buyer's agreement to buy something. An invoice is the seller's bill. An approval records how much of that agreement has been consumed; it does not send payment.

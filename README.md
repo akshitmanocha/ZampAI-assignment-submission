@@ -1,61 +1,52 @@
 # Reconcile
 
-Invoice PDF → evidence-backed accounts-payable recommendation. Built against the contracts in `reconcile-design/03-CONTRACTS.md`.
+A working local invoice-review application: upload a real PDF, watch processing, inspect source evidence, resolve uncertain matches, and approve against the current purchase-order balance. Reconcile records approvals and allocations; it never executes payment.
 
-## Current milestone
+## Start locally
 
-The runnable application foundation is implemented: FastAPI serves the React/TypeScript build, PostgreSQL runs on a private Compose network, Tesseract is installed in the non-root runtime image, and all API paths fail closed. The overview displays actual service checks rather than simulated invoice data.
-
-**New:** PostgreSQL history schema/migration, duplicate checks, remaining-balance queries, historical description ranking, and an internal transaction-safe approval service with a repeatable fictional demo. A real GPU matching pilot and Hugging Face OCR smoke evaluation now have saved results. See [history checks](docs/history-checks.md) and [experiment report](ml/README.md).
-
-**Not implemented yet:** staff sign-in/session persistence, full pipeline schema, live PDF upload-to-decision processing, and approval/review screens. The trained model is not deployed into the application. `/health/ready` deliberately returns 503 until these required components exist. This is not yet a working invoice-reconciliation product.
-
-## Development
-
-Requires Python 3.12, uv, Node 22.12+ (or Node 24), npm, and Docker with Compose.
+Requires Docker with Compose and Python 3.12. The first build downloads the public, pinned MiniLM model; invoice processing then runs locally without an API key.
 
 ```sh
-make install
-make build
-make test
-make dev
+make local
 ```
 
-`make dev` binds the API and built frontend to loopback port 8000. Build the frontend again after editing it. For frontend-only iteration use `npm --prefix web run dev`; API integration uses the built same-origin app.
+Open **http://127.0.0.1:8000**. Generated staff credentials are saved outside Git at `/tmp/reconcile-private/local-accounts.json`. The default stack binds to loopback. `make local` preserves existing documents, approvals and the database volume. Sign in as the approver for the complete workflow; the clerk can review but cannot approve.
 
-## Container workflow
+The workspace includes downloadable fictional PDFs covering packaging, material conflicts, hidden price errors, competing partial invoices, semantic matching and a genuine scanned PDF. Their results depend on the current company ledger. Original PDFs, extracted readings, corrections, runs, versioned decisions and audit records persist in PostgreSQL.
 
-Create `.env` using `.env.example` as a reference and set a unique `POSTGRES_PASSWORD`. Do not commit it. No database port is published.
+## What runs
+
+- Argon2id staff passwords, revocable 12-hour sessions, role checks, CSRF protection and database-backed login/upload limits.
+- Durable processing queue, real stage events, retries, worker heartbeats and fenced recovery after worker death.
+- Native PDF reading or Tesseract OCR in a bounded subprocess; source-page previews and field highlights.
+- Pinned `all-MiniLM-L6-v2` embeddings on CPU retrieve top product candidates after supplier/PO filtering. Similarity alone never confirms a match.
+- Decimal business checks: supplier/order eligibility, duplicates, specifications, explicit packaging conversions, line prices, arithmetic, uniform separated tax and cumulative quantity/value balances.
+- Human corrections and candidate choices preserve original readings and trigger a new validation run.
+- Approval rechecks locked, current records. Repeated approval has one effect; competing invoices cannot consume the same remaining quantity.
+- Searchable invoice history, review filters, order ledger, saved evaluation reports and operational CLI commands.
+
+## Verify
 
 ```sh
-docker compose up --build -d
-curl --fail http://127.0.0.1:8000/health/live
-curl -i http://127.0.0.1:8000/health/ready
-make test
+make install                  # local Python/frontend development dependencies
+make models                   # CPU model for commands outside Docker
+make test                     # unit tests; DB cases skip without explicit test URLs
+make integration-test         # all tests, real PostgreSQL, private disposable schemas
+# Install Chromium once for browser checks:
+web/node_modules/.bin/playwright install chromium
+make browser-test             # isolated company/app on loopback port 18000; cleaned afterward
 ```
 
-Compose binds the application to `127.0.0.1:8000`. For environments with an HTTPS inspection proxy, set `RECONCILE_BUILD_CA` to the supplied combined CA bundle; Compose mounts it as a build secret. TLS verification remains enabled. Stop with `docker compose down`; the Postgres volume is retained.
+Use `PLAYWRIGHT_BROWSERS_PATH` if Chromium is installed in a custom location. Browser tests exercise the actual UI, PDF processing, human correction, MiniLM selection, approval, source evidence, search, ledger, mobile layout and logout, with accessibility checks.
 
-No CI/CD or automatic deployment is configured. Render deployment is pending account setup and completion of the application.
+See [local application and operations](docs/local-application.md), [demo walkthrough](docs/local-demo.md), and [test evidence](ml/results/local-application/). Cloud deployment, public access and hiring submission are intentionally excluded from this milestone. No CI/CD is configured.
 
-## Kaggle heartbeat
+## Evaluation and limits
 
-`scripts/kaggle_heartbeat.py` reads an authenticated proxy URL from a private file outside Git and executes a harmless cell in an **existing idle** Python kernel every five minutes. It never creates a kernel or interrupts running work. Errors log their type only. The process stops after 12 hours; it cannot extend the platform's hard session lifetime, and activity-clock reset is not guaranteed.
+The earlier [25-scenario edge-case suite](docs/workflow-validation.md) passed 100 PDF checks and three database traces. These are author-known synthetic acceptance tests, not 100 independent invoices or guaranteed future accuracy. Its labels were authored before evaluation; no LLM generated the correct answers.
 
-Use the backend development virtualenv to run the script, with `--secret-file` pointing to the private file and `--log` pointing to an external log. `--once` verifies one execution. Live processes do not survive environment shutdown. Keep the proxy credential out of screenshots, commands, logs, and commits.
+The live application now connects matching, review, persistence and approval, with additional source-quality and tax checks. [ML experiments](ml/README.md) remain separate from application tests. The trained cross-encoder experiment is not a live approval policy. The CPU embedding implementation is checked against the saved GPU diagnostic; semantic identity without explicit evidence still requires human confirmation.
 
-The candidate guide PDF is intentionally absent from the current repository tree. The design package remains the implementation reference. No Git history was rewritten.
+This release handles English/INR, one invoice per PO, individual-item orders and evidenced box conversions. Mixed/inclusive tax, credit notes, bundles and extra charges remain manual-review cases. OCR engine scores and embedding similarities are not correctness probabilities. Approximately 90% automation on representative unseen invoices has **not** been established; independent label audit and real-data evaluation remain necessary before production claims.
 
-## OCR and field extraction
-
-The local CLI reads real native/scanned PDFs into source-linked fields and item rows:
-
-```sh
-uv run --project backend python -m reconcile.extract_cli /path/invoice.pdf --output /path/new-output.json
-```
-
-It does not call an external model. [OCR results](docs/ocr-results.md) document the public-data comparison with the optional free Nemotron vision adapter, including failures, ambiguous fields, label visibility, cost and remaining limitations. Provider keys stay outside Git. Full upload-to-decision integration is still pending.
-
-## Edge-case validation dataset
-
-[Workflow validation](docs/workflow-validation.md) documents 25 frozen authored cases, 100 case/PDF assignments, independent expected answers and real PostgreSQL action traces. Run `make workflow-data-check`, `make workflow-test` and `make workflow-db-test` (last requires running Compose services). Results are acceptance checks on controlled synthetic data, not production accuracy or a replacement for ML evaluation. Expected answers are outside the runtime application.
+The candidate guide PDF is intentionally absent from the repository. The optional Nemotron extractor remains available for explicit experiments; the application makes no external document/model calls during processing. Existing Kaggle and OCR reports are retained as historical evidence.

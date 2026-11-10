@@ -1,0 +1,36 @@
+{"description": "cleaning brushes, 25mm, nylon", "correct_id": "F09-M0-S0", "top5": ["F09-M0-S0", "F09-M0-S1", "F19-M0-S0", "F19-M0-S1", "F09-M1-S0"]}
+{"description": "25mm cleaning brushes made of nylon", "correct_id": "F09-M0-S0", "top5": ["F09-M0-S0", "F09-M0-S1", "F19-M0-S0", "F19-M0-S1", "F09-M1-S0"]}
+{"description": "CLEANING BRUSHES / NYLON / 25MM", "correct_id": "F09-M0-S0", "top5": ["F09-M0-S0", "F09-M0-S1", "F19-M0-S0", "F09-M1-S0", "F19-M0-S1"]}
+{"description": "cleaning brushes, 50mm, nylon", "correct_id": "F09-M0-S1", "top5": ["F09-M0-S1", "F09-M0-S0", "F19-M0-S1", "F19-M0-S0", "F09-M1-S1"]}
+{"description": "50mm cleaning brushes made of nylon", "correct_id": "F09-M0-S1", "top5": ["F09-M0-S1", "F09-M0-S0", "F19-M0-S1", "F19-M0-S0", "F09-M1-S1"]}
+{"description": "CLEANING BRUSHES / NYLON / 50MM", "correct_id": "F09-M0-S1", "top5": ["F09-M0-S1", "F09-M0-S0", "F09-M1-S1", "F19-M0-S0", "F19-M0-S1"]}
+{"description": "cleaning brushes, 25mm, brass", "correct_id": "F09-M1-S0", "top5": ["F09-M1-S0", "F09-M1-S1", "F09-M0-S0", "F09-M0-S1", "F19-M1-S0"]}
+{"description": "25mm cleaning brushes made of brass", "correct_id": "F09-M1-S0", "top5": ["F09-M1-S0", "F09-M1-S1", "F09-M0-S0", "F09-M0-S1", "F19-M1-S0"]}
+{"description": "CLEANING BRUSHES / BRASS / 25MM", "correct_id": "F09-M1-S0", "top5": ["F09-M1-S0", "F09-M1-S1", "F09-M0-S0", "F09-M0-S1", "F19-M1-S0"]}
+{"description": "cleaning brushes, 50mm, brass", "correct_id": "F09-M1-S1", "top5": ["F09-M1-S1", "F09-M1-S0", "F09-M0-S1", "F09-M0-S0", "F19-M1-S1"]}
+{"description": "50mm cleaning brushes made of brass", "correct_id": "F09-M1-S1", "top5": ["F09-M1-S1", "F09-M1-S0", "F09-M0-S1", "F09-M0-S0", "F19-M1-S1"]}
+{"description": "CLEANING BRUSHES / BRASS / 50MM", "correct_id": "F09-M1-S1", "top5": ["F09-M1-S1", "F09-M1-S0", "F09-M0-S1", "F09-M0-S0", "F19-M1-S0"]}
+{"description": "machine screws, M4, steel", "correct_id": "F13-M0-S0", "top5": ["F13-M0-S0", "F13-M0-S1", "F13-M1-S0", "F13-M1-S1", "F01-M0-S0"]}
+{"description": "M4 machine screws made of steel", "correct_id": "F13-M0-S0", "top5": ["F13-M0-S0", "F13-M0-S1", "F13-M1-S0", "F13-M1-S1", "F01-M0-S0"]}
+{"description": "MACHINE SCREWS / STEEL / M4", "correct_id": "F13-M0-S0", "top5": ["F13-M0-S0", "F13-M0-S1", "F13-M1-S0", "F13-M1-S1", "F01-M0-S0"]}
+{"description": "machine screws, M6, steel", "correct_id": "F13-M0-S1", "top5": ["F13-M0-S1", "F13-M0-S0", "F13-M1-S1", "F13-M1-S0", "F01-M0-S0"]}
+{"description": "M6 machine screws made of steel", "correct_id": "F13-M0-S1", "top5": ["F13-M0-S1", "F13-M0-S0", "F13-M1-S1", "F13-M1-S0", "F01-M0-S0"]}
+{"description": "MACHINE SCREWS / STEEL / M6", "correct_id": "F13-M0-S1", "top5": ["F13-M0-S1", "F13-M0-S0", "F13-M1-S1", "F13-M1-S0", "F01-M0-S0"]}
+{"description": "machine screws, M4, brass", "correct_id": "F13-M1-S0", "top5": ["F13-M1-S0", "F13-M1-S1", "F13-M0-S0", "F13-M0-S1", "F01-M1-S0"]}
+{"description": "M4 machine screws made of brass", "correct_id": "F13-M1-S0", "top5": ["F13-M1-S0", "F13-M1-S1", "F13-M0-S0", "F13-M0-S1", "F01-M1-S0"]}
+{"description": "MACHINE SCREWS / BRASS / M4", "correct_id": "F13-M1-S0", "top5": ["F13-M1-S0", "F13-M1-S1", "F13-M0-S0", "F13-M0-S1", "F01-M1-S0"]}
+{"description": "machine screws, M6, brass", "correct_id": "F13-M1-S1", "top5": ["F13-M1-S1", "F13-M1-S0", "F13-M0-S1", "F13-M0-S0", "F01-M1-S0"]}
+{"description": "M6 machine screws made of brass", "correct_id": "F13-M1-S1", "top5": ["F13-M1-S1", "F13-M1-S0", "F13-M0-S1", "F13-M0-S0", "F01-M1-S0"]}
+{"description": "MACHINE SCREWS / BRASS / M6", "correct_id": "F13-M1-S1", "top5": ["F13-M1-S1", "F13-M1-S0", "F13-M0-S1", "F13-M0-S0", "F01-M1-S0"]}
+{"description": "tubing, 4mm, silicone", "correct_id": "F16-M0-S0", "top5": ["F16-M0-S0", "F16-M0-S1", "F16-M1-S0", "F16-M1-S1", "F17-M1-S0"]}
+{"description": "4mm tubing made of silicone", "correct_id": "F16-M0-S0", "top5": ["F16-M0-S0", "F16-M0-S1", "F16-M1-S0", "F16-M1-S1", "F17-M1-S0"]}
+{"description": "TUBING / SILICONE / 4MM", "correct_id": "F16-M0-S0", "top5": ["F16-M0-S0", "F16-M0-S1", "F16-M1-S0", "F16-M1-S1", "F17-M1-S0"]}
+{"description": "tubing, 8mm, silicone", "correct_id": "F16-M0-S1", "top5": ["F16-M0-S1", "F16-M0-S0", "F16-M1-S1", "F16-M1-S0", "F17-M1-S0"]}
+{"description": "8mm tubing made of silicone", "correct_id": "F16-M0-S1", "top5": ["F16-M0-S1", "F16-M0-S0", "F16-M1-S1", "F16-M1-S0", "F17-M1-S0"]}
+{"description": "TUBING / SILICONE / 8MM", "correct_id": "F16-M0-S1", "top5": ["F16-M0-S1", "F16-M0-S0", "F16-M1-S1", "F16-M1-S0", "F17-M1-S0"]}
+{"description": "tubing, 4mm, PVC", "correct_id": "F16-M1-S0", "top5": ["F16-M1-S0", "F16-M1-S1", "F16-M0-S0", "F16-M0-S1", "F03-M0-S0"]}
+{"description": "4mm tubing made of PVC", "correct_id": "F16-M1-S0", "top5": ["F16-M1-S0", "F16-M1-S1", "F16-M0-S0", "F16-M0-S1", "F03-M0-S0"]}
+{"description": "TUBING / PVC / 4MM", "correct_id": "F16-M1-S0", "top5": ["F16-M1-S0", "F16-M1-S1", "F16-M0-S0", "F16-M0-S1", "F03-M0-S0"]}
+{"description": "tubing, 8mm, PVC", "correct_id": "F16-M1-S1", "top5": ["F16-M1-S1", "F16-M1-S0", "F16-M0-S1", "F16-M0-S0", "F03-M0-S0"]}
+{"description": "8mm tubing made of PVC", "correct_id": "F16-M1-S1", "top5": ["F16-M1-S1", "F16-M1-S0", "F16-M0-S1", "F16-M0-S0", "F03-M0-S0"]}
+{"description": "TUBING / PVC / 8MM", "correct_id": "F16-M1-S1", "top5": ["F16-M1-S1", "F16-M1-S0", "F16-M0-S1", "F16-M0-S0", "F03-M0-S0"]}

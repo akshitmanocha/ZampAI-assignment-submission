@@ -1,3 +1,5 @@
+> Historical milestone. The local application now integrates upload, retrieval, review and approval; see [current implementation](local-application.md). Scores and limitations below describe the original experiment.
+
 # Matching with human review
 
 The target is correct final outcomes with useful automation. Model scores cannot establish 100% correctness. Assuming a perfectly accurate reviewer, a reviewed case can be correct only when the necessary evidence is available and the reviewer can find the true record or declare no match. Missing evidence must remain unresolved rather than forcing a decision.

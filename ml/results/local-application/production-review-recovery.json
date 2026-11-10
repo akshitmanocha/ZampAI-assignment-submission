@@ -1,0 +1,36 @@
+{
+  "scope": "Actual source audit and review of the initial uncertain scanned reference, using the original rendered PDF page. No independent human audit.",
+  "invoice_id": "7d7d05cc-d33a-48de-a50b-1beff224ebb4",
+  "document_sha256": "3cf18e587465daaf012356606622f03296c809ac0c2f91f4f037f46fc7a3a628",
+  "original_ocr_reading": {
+    "value": "CHECK-B3F",
+    "status": "found",
+    "evidence": [
+      {
+        "page": 1,
+        "bbox": [
+          45.69235792019347,
+          86.39999999999999,
+          427.4214268440145,
+          94.32
+        ],
+        "text": "Invoice No: CHECK-B3F 41714 Date: 2026-11-06",
+        "method": "ocr"
+      }
+    ],
+    "alternatives": [],
+    "minimum_ocr_score": 0.0,
+    "requires_source_verification": true
+  },
+  "visually_read_reference": "CHECK-B3F41714",
+  "initial_bucket": "human_review",
+  "final_bucket": "accept",
+  "decision_versions": [
+    1,
+    2
+  ],
+  "original_extraction_unchanged": true,
+  "ledger_unchanged": true,
+  "actor_type": "implementation_agent_source_inspection",
+  "independent_human_label_audit": false
+}

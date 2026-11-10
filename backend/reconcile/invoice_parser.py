@@ -11,6 +11,8 @@ import statistics
 from typing import Literal
 from reconcile.document_types import PageText,Word
 
+PARSER_VERSION = 'x2-geometry-baseline-0.7'
+
 @dataclass(frozen=True)
 class Evidence:
     page: int
@@ -127,10 +129,14 @@ def monetary_field(rows,labels,exclude=None):
         if exclude and re.search(exclude,row.text,re.I):continue
         m=re.search(labels,row.text,re.I)
         if not m:continue
+        # Identifier values such as TAX-REAL-PDF-1 are not tax labels.
+        if re.search(r'\b(?:invoice|inv)\s*(?:number|no\.?|#)\b',row.text,re.I):continue
+        if re.search(r'\b(?:invoice|inv|date|reference|number|po)\b',row.text[:m.start()],re.I):continue
         # A TOTAL column heading is not a document total.
         if re.search(r'\b(description|qty|quantity|unit price|rate|hours)\b',row.text,re.I):continue
         tail=row.text[m.end():]
-        amounts=re.findall(r'(?:INR|USD|CAD|AUD|EUR|GBP|Rs\.?|[CA]\$|[$£€₹])?\s*[+-]?\d[\d,]*(?:\.\d+)?(?:/-)?',tail,re.I)
+        # A percentage beside an amount is a rate, not a second money reading.
+        amounts=re.findall(r'(?<![\w.])(?:INR|USD|CAD|AUD|EUR|GBP|Rs\.?|[CA]\$|[$£€₹])?\s*[+-]?\d[\d,]*(?:\.\d+)?(?:/-)?(?![\d.%])',tail,re.I)
         values=[decimal_string(v.strip()) for v in amounts]
         values=[v for v in values if v is not None]
         if len(values)==1:candidates.append((values[0],row.evidence()))
@@ -191,7 +197,7 @@ def date_reading(rows):
 
 
 def supplier(rows,pages):
-    candidates=[]
+    candidates=[];anchored=[]
     first=pages[0] if pages else None
     if first is None:return Reading(None,'missing')
     for i,row in enumerate(rows):
@@ -206,7 +212,7 @@ def supplier(rows,pages):
                 words=tuple(w for w in below.words if anchor.bbox[0]-10<=w.bbox[0]<client-10)
                 if words and not any(c.isdigit() for c in ' '.join(w.text for w in words)):
                     name=Row(row.page,row.method,words)
-                    if name.text.lower() not in ['none','null']:candidates.append((name.text,name.evidence()))
+                    if name.text.lower() not in ['none','null']:anchored.append((name.text,name.evidence()))
                     break
         if row.bbox[1]>.35*first.height:continue
         words=tuple(w for w in row.words if w.bbox[0]<first.width*.58)
@@ -226,7 +232,7 @@ def supplier(rows,pages):
         text=' '.join(p.text for p in parts)
         if len(text.split())>=2:
             candidates.append((text,Evidence(row.page,(min(p.bbox[0] for p in parts),min(p.bbox[1] for p in parts),max(p.bbox[2] for p in parts),max(p.bbox[3] for p in parts)),text,row.method)))
-    return resolve(candidates)
+    return resolve(anchored if anchored else candidates)
 
 
 def line_items(rows):
@@ -277,4 +283,4 @@ def parse_invoice(pages):
     rows=text_rows(pages)
     lines,warnings=line_items(rows)
     header={'vendor_name':supplier(rows,pages),'invoice_number':reference(rows,'invoice'),'po_reference':reference(rows,'po'),'invoice_date':date_reading(rows),'currency':currency(rows),'subtotal':monetary_field(rows,r'\b(?:subtotal|sub-total|net total)\b'),'tax_total':monetary_field(rows,r'\b(?:tax total|total tax|tax|gst|vat)\b',r'\b(?:analysis|rate|base)\b'),'grand_total':monetary_field(rows,r'\b(?:grand total|invoice total|amount due|balance due|total due|total)\b',r'\b(?:subtotal|sub-total|tax total|vat total|net total|total tax|total vat|total net)\b')}
-    return {'parser_version':'x2-geometry-baseline-0.6','header':{k:asdict(v) for k,v in header.items()},'lines':[{k:asdict(v) if isinstance(v,Reading) else v for k,v in line.items()} for line in lines],'warnings':sorted(set(warnings+[w for p in pages for w in p.warnings]))}
+    return {'parser_version':PARSER_VERSION,'header':{k:asdict(v) for k,v in header.items()},'lines':[{k:asdict(v) if isinstance(v,Reading) else v for k,v in line.items()} for line in lines],'warnings':sorted(set(warnings+[w for p in pages for w in p.warnings]))}

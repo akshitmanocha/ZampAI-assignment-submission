@@ -12,3 +12,6 @@ ml/artifacts/
 *.pt
 *.pth
 ml/data/external/
+
+web/test-results/
+web/playwright-report/

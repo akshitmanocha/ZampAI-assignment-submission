@@ -1,0 +1,26 @@
+{
+  "scope": "Previously inspected synthetic retrieval diagnostic; CPU/GPU implementation parity only",
+  "runtime_matcher": "minilm-l6-onnx-meanpool-v1:1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "queries": 36,
+  "catalog": 80,
+  "recall": {
+    "1": 1.0,
+    "3": 1.0,
+    "5": 1.0
+  },
+  "same_top1_as_gpu": 36,
+  "max_absolute_reference_cosine_difference": 4.172325134277344e-07,
+  "model_artifact_manifest": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "license": "Apache-2.0",
+    "pooling": "attention masked mean, then L2 normalization",
+    "sha256": {
+      "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+      "model.onnx": "6fd5d72fe4589f189f8ebc006442dbb529bb7ce38f8082112682524616046452"
+    }
+  },
+  "source_sha256": "9a0411ff8ae9fdd0f44e38337b894e08762fadcb578369d24066a61f0726d85a",
+  "automatic_semantic_matching": false,
+  "independent_final_test": false
+}

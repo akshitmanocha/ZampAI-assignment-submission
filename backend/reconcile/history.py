@@ -77,11 +77,18 @@ def approve_invoice(session: Session,invoice_id,expected_decision_version,actor)
         target=po_lines.get(line.po_line_id)
         if target is None or target.po_id!=po.id:raise HistoryConflict('PO_LINE_CONFLICT')
         if not line.evidence:raise HistoryConflict('EVIDENCE_MISSING')
-        # Conservative exact-price initial policy; configurable tolerance comes later.
-        if line.normalized_unit_price!=target.unit_price:raise HistoryConflict('PRICE_CONFLICT')
+        policy=inv.validation_policy or {}
+        tolerance=max(Decimal(policy.get('absolute_unit_price_tolerance','0')),abs(target.unit_price)*Decimal(policy.get('relative_unit_price_tolerance','0')))
+        if abs(line.normalized_unit_price-target.unit_price)>tolerance:raise HistoryConflict('PRICE_CONFLICT')
         requested[target.id]+=line.normalized_qty
     for line_id,qty in requested.items():
         if qty>remaining_balance(session,line_id)['remaining_qty']:raise HistoryConflict('APPROVAL_STALE')
+        target=po_lines[line_id]
+        authorized=target.ordered_qty*target.unit_price
+        amount=sum(((l.normalized_qty*l.normalized_unit_price).quantize(Decimal('.01'),rounding=ROUND_HALF_UP) for l in lines if l.po_line_id==line_id),Decimal('0'))
+        policy=inv.validation_policy or {}
+        tolerance=max(Decimal(policy.get('absolute_po_amount_tolerance','0')),authorized*Decimal(policy.get('relative_po_amount_tolerance','0')))
+        if amount>remaining_balance(session,line_id)['remaining_net_amount']+tolerance:raise HistoryConflict('APPROVAL_STALE')
     approval=Approval(invoice_id=inv.id,actor=actor);session.add(approval);session.flush()
     for line in lines:
         session.add(Allocation(approval_id=approval.id,invoice_line_id=line.id,po_line_id=line.po_line_id,qty=line.normalized_qty,net_amount=(line.normalized_qty*line.normalized_unit_price).quantize(Decimal('.01'),rounding=ROUND_HALF_UP)))

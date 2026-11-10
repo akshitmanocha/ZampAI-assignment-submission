@@ -1,0 +1,56 @@
+[
+  {
+    "name": "happy",
+    "title": "Six boxes with explicit pack size",
+    "file": "happy.pdf",
+    "note": "Fictional sample. Results depend on the current company ledger."
+  },
+  {
+    "name": "missing-pack",
+    "title": "Missing pack size for human review",
+    "file": "missing-pack.pdf",
+    "note": "Fictional sample. Results depend on the current company ledger."
+  },
+  {
+    "name": "wrong-material",
+    "title": "A material mismatch",
+    "file": "wrong-material.pdf",
+    "note": "Fictional sample. Results depend on the current company ledger."
+  },
+  {
+    "name": "partial-a",
+    "title": "First competing partial invoice",
+    "file": "partial-a.pdf",
+    "note": "Fictional sample. Results depend on the current company ledger."
+  },
+  {
+    "name": "partial-b",
+    "title": "Second competing partial invoice",
+    "file": "partial-b.pdf",
+    "note": "Fictional sample. Results depend on the current company ledger."
+  },
+  {
+    "name": "semantic",
+    "title": "Different wording for MiniLM and human confirmation",
+    "file": "semantic.pdf",
+    "note": "Fictional sample. Results depend on the current company ledger."
+  },
+  {
+    "name": "scan",
+    "title": "A real image-only scanned invoice",
+    "file": "scan.pdf",
+    "note": "Fictional sample. Results depend on the current company ledger."
+  },
+  {
+    "name": "ambiguous",
+    "title": "Missing order reference with several possible orders",
+    "file": "ambiguous.pdf",
+    "note": "Fictional sample. Results depend on the current company ledger."
+  },
+  {
+    "name": "offset-prices",
+    "title": "Two price errors hidden by a matching total",
+    "file": "offset-prices.pdf",
+    "note": "Fictional hardware invoice; inspect both line prices."
+  }
+]
