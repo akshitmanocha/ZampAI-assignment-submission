@@ -1,0 +1,15 @@
+{
+  "source": "fictional catalog-derived description pairs",
+  "rows": 720,
+  "positive": 360,
+  "families": 10,
+  "seed": 113,
+  "sha256": "f30ecb512e58bd420309bbed40087faf41fc8186370f0ec19af4700ec6f7e710",
+  "frozen_before_first_scoring": true,
+  "limitations": [
+    "Synthetic explicit descriptions only, no independent full human audit",
+    "No OCR corruption or missing attributes",
+    "Fresh families/templates but shares material tokens and specification patterns with training",
+    "No invoice or no-candidate labels; not invoice automation"
+  ]
+}

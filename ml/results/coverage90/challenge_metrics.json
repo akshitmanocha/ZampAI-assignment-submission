@@ -1,0 +1,11 @@
+{
+  "pairs": 720,
+  "automatic_pairs": 436,
+  "review_pairs": 284,
+  "automation": 0.6055555555555555,
+  "automatic_accuracy": 0.9977064220183486,
+  "same_product_precision": 1.0,
+  "different_product_precision": 0.9963235294117647,
+  "wrong_same_product": 0,
+  "wrong_different_product": 1
+}

@@ -60,3 +60,7 @@ The smoke test does not cover faded/bad scans, native PDFs, row extraction, supp
 ## Top-k retrieval diagnostic
 
 See `results/retrieval/metrics.json` and [matching-review design](../docs/matching-review.md). A separate frozen `sentence-transformers/all-MiniLM-L6-v2` embedding model retrieved candidates; the selected pilot cross-encoder reranked them. All 36 simple queries retrieved their true product in the top five among 80 fictional products (also top one). This reused already-inspected test families, all queries were matchable, and no human review was conducted. It is not a fresh blind test or evidence of 100% real-world accuracy. No automatic-match policy has been enabled.
+
+## Approximately 90% automatic pair coverage
+
+[Coverage report](../docs/coverage90.md) records the changed target, threshold selection and a harder 720-pair synthetic challenge. The best tested checkpoint reached 94.6% accuracy among 648 automatic decisions (90% of 720); 72 pairs abstained. There were 2 wrong same-product and 33 wrong different-product decisions. This is an offline score-ranked batch diagnostic, not 90% invoice automation. The new challenge became development evidence after inspection; later results are not blind confirmation. Operational automation remains disabled. OCR is the next stage.

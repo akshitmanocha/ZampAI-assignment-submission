@@ -1,0 +1,80 @@
+{
+  "selection": "validation auto accuracy at ~90% coverage, tie-break lower validation BCE; no new training",
+  "candidates": [
+    {
+      "checkpoint": "epoch_1",
+      "validation_auto_accuracy": 1.0,
+      "validation_bce": 0.144862562417984
+    },
+    {
+      "checkpoint": "epoch_3",
+      "validation_auto_accuracy": 1.0,
+      "validation_bce": 0.0011384193785488605
+    }
+  ],
+  "selected": "epoch_3",
+  "policy": {
+    "nonmatch_max": -5.165118217468262,
+    "match_min": 7.694619655609131,
+    "target_coverage": 0.9
+  },
+  "reports": {
+    "validation": {
+      "pairs": 144,
+      "automatic_pairs": 130,
+      "review_pairs": 14,
+      "automation": 0.9027777777777778,
+      "automatic_accuracy": 1.0,
+      "same_product_precision": 1.0,
+      "different_product_precision": 1.0,
+      "wrong_same_product": 0,
+      "wrong_different_product": 0,
+      "decision_boundary": 1.2647507190704346,
+      "selection": "highest absolute distance from validation-fixed boundary; no evaluation labels used for selection",
+      "production_quota_enabled": false
+    },
+    "calibration": {
+      "pairs": 96,
+      "automatic_pairs": 87,
+      "review_pairs": 9,
+      "automation": 0.90625,
+      "automatic_accuracy": 1.0,
+      "same_product_precision": 1.0,
+      "different_product_precision": 1.0,
+      "wrong_same_product": 0,
+      "wrong_different_product": 0,
+      "decision_boundary": 1.2647507190704346,
+      "selection": "highest absolute distance from validation-fixed boundary; no evaluation labels used for selection",
+      "production_quota_enabled": false
+    },
+    "test": {
+      "pairs": 144,
+      "automatic_pairs": 130,
+      "review_pairs": 14,
+      "automation": 0.9027777777777778,
+      "automatic_accuracy": 1.0,
+      "same_product_precision": 1.0,
+      "different_product_precision": 1.0,
+      "wrong_same_product": 0,
+      "wrong_different_product": 0,
+      "decision_boundary": 1.2647507190704346,
+      "selection": "highest absolute distance from validation-fixed boundary; no evaluation labels used for selection",
+      "production_quota_enabled": false
+    },
+    "challenge_development": {
+      "pairs": 720,
+      "automatic_pairs": 648,
+      "review_pairs": 72,
+      "automation": 0.9,
+      "automatic_accuracy": 0.9459876543209876,
+      "same_product_precision": 0.9922779922779923,
+      "different_product_precision": 0.9151670951156812,
+      "wrong_same_product": 2,
+      "wrong_different_product": 33,
+      "decision_boundary": 1.2647507190704346,
+      "selection": "highest absolute distance from validation-fixed boundary; no evaluation labels used for selection",
+      "production_quota_enabled": false
+    }
+  },
+  "limitation": "challenge previously inspected; subsequent comparison is development evidence, not fresh blind test; pair classification is not invoice automation"
+}

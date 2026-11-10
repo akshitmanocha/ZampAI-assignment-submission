@@ -70,3 +70,15 @@ User requested accept/human review/reject with minimum review and 100% precision
 Added threshold-selection and uncertainty diagnostics. Selected maximum automatic-match coverage with zero observed validation false matches, then kept the threshold fixed for calibration/existing-test scoring. Observed: validation 72/144 auto-matches, calibration 48/96, test 72/144; zero wrong automatic matches, 50% pair coverage. This is a matching diagnostic on previously inspected synthetic splits, not invoice bucket precision or independent final evidence. Two calibration categories cannot establish production safety. Default model automation remains disabled; zero future error not claimed.
 
 `make test`: 47 passed, 16 PostgreSQL tests skipped locally (separately passed in prior milestone). New tests cover every mandatory-check omission, accept/no-money behavior, confirmed blockers, unverified failures, unknown matches, contradictory aggregate input and risk-bound/threshold behavior. Saved report explains precision separately for accept and reject, abstention, group dependence, and remaining required evaluation. No additional training or invoice-level performance claim.
+
+## 2026-11-10 — Approximately 90% coverage experiment
+
+User changed the target to highest accuracy around 90% automation, then OCR. Implemented validation-selected two-sided pair abstention and a score-only fixed-budget comparison. Negative pair decisions are candidate elimination, never automatic invoice rejection.
+
+Fixed thresholds reached 90.3% validation coverage but 82.6% on the old test and 60.6% on a 720-pair challenge. Preserved those results. Created/froze the challenge before first scoring: 10 new families, 720 balanced fictional description pairs, explicit materials/specifications. No OCR noise or independent human audit.
+
+At 90% score-ranked automatic coverage on challenge, original epoch-1 checkpoint reached 94.0% automatic accuracy. Compared saved epoch-1 and epoch-3 using validation auto accuracy and validation BCE only, selected epoch 3. It reached 94.6% (613 correct/648 automatic), with 72 pairs abstained; 2 false same-product and 33 false different-product. Challenge was already inspected, so later results are development evidence, not blind confirmation. Old easy test reached 100% among 130 automatic pairs; do not substitute that for harder result.
+
+Saved policy, all initial challenge scores, raw reports and reproduction script. Exported selected epoch-3 weights separately outside Git with archive/contained checksum verification. No production policy enabled and no 90% invoice automation claim. `make test`: 51 passed, 16 real-DB tests skipped locally (previous dedicated DB run passed). Boundary/invalid-score/score-only budget selection tests added.
+
+Matching milestone findings documented in docs/coverage90.md. Next: OCR label observability audit and structured extraction/native-vs-scan evaluation. Missing evidence must continue to override any nominal 10% review budget.

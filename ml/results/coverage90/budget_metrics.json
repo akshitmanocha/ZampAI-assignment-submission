@@ -1,0 +1,58 @@
+{
+  "validation": {
+    "pairs": 144,
+    "automatic_pairs": 130,
+    "review_pairs": 14,
+    "automation": 0.9027777777777778,
+    "automatic_accuracy": 1.0,
+    "same_product_precision": 1.0,
+    "different_product_precision": 1.0,
+    "wrong_same_product": 0,
+    "wrong_different_product": 0,
+    "decision_boundary": 2.3297309074550867,
+    "selection": "highest absolute distance from validation-fixed boundary; no evaluation labels used for selection",
+    "production_quota_enabled": false
+  },
+  "calibration": {
+    "pairs": 96,
+    "automatic_pairs": 87,
+    "review_pairs": 9,
+    "automation": 0.90625,
+    "automatic_accuracy": 1.0,
+    "same_product_precision": 1.0,
+    "different_product_precision": 1.0,
+    "wrong_same_product": 0,
+    "wrong_different_product": 0,
+    "decision_boundary": 2.3297309074550867,
+    "selection": "highest absolute distance from validation-fixed boundary; no evaluation labels used for selection",
+    "production_quota_enabled": false
+  },
+  "test": {
+    "pairs": 144,
+    "automatic_pairs": 130,
+    "review_pairs": 14,
+    "automation": 0.9027777777777778,
+    "automatic_accuracy": 1.0,
+    "same_product_precision": 1.0,
+    "different_product_precision": 1.0,
+    "wrong_same_product": 0,
+    "wrong_different_product": 0,
+    "decision_boundary": 2.3297309074550867,
+    "selection": "highest absolute distance from validation-fixed boundary; no evaluation labels used for selection",
+    "production_quota_enabled": false
+  },
+  "challenge": {
+    "pairs": 720,
+    "automatic_pairs": 648,
+    "review_pairs": 72,
+    "automation": 0.9,
+    "automatic_accuracy": 0.9398148148148148,
+    "same_product_precision": 0.9556313993174061,
+    "different_product_precision": 0.9267605633802817,
+    "wrong_same_product": 13,
+    "wrong_different_product": 26,
+    "decision_boundary": 2.3297309074550867,
+    "selection": "highest absolute distance from validation-fixed boundary; no evaluation labels used for selection",
+    "production_quota_enabled": false
+  }
+}
