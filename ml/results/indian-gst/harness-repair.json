@@ -1,0 +1,15 @@
+{
+  "status": "invalid infrastructure run; not OCR baseline",
+  "documents": 261,
+  "technical_errors": {
+    "BrokenPipeError": 253,
+    "PDF_PROCESSING_FAILED": 8
+  },
+  "reason": "Evaluator ran as container PID 1 without init; production child intentionally exits when its parent PID is 1. No image was read. Launcher fixed with --init; reader unchanged. Full rerun required.",
+  "original_file_sha256": {
+    "run-start.json": "e4fe75984a2f77f5479dbc2cf3447b73c6b91befc233f3bd2fe770c12d7dce44",
+    "predictions.jsonl": "8a19a3b93eb5532081377316dac73f3f45683d13e7e1c40ae069b1c29047c9c9",
+    "metrics.json": "7f22fa102bf38947f4aa9e05c664586906a51aa0384ecd11d2c7cfae13a4c7dc"
+  },
+  "original_evidence_directory": "/workspace/reconcile-artifacts/indian-gst-invalid-harness-v1"
+}

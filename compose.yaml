@@ -59,6 +59,7 @@ services:
       worker: {condition: service_started}
   test:
     profiles: [test]
+    init: true
     image: reconcile-local:test
     build:
       context: .

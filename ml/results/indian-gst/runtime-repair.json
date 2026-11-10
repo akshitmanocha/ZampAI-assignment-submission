@@ -1,0 +1,14 @@
+{
+  "status": "partial diagnostic, not a completed primary benchmark",
+  "completed": 62,
+  "expected": 261,
+  "technical_errors": {
+    "OCR_TIMEOUT": 43
+  },
+  "reason": "Stopped after a preselected validation-image check showed pathological Tesseract threading latency. OMP_NUM_THREADS=1 alone did not bound Tesseract threads; OMP_THREAD_LIMIT=1 did. Full baseline restarted after runtime-only fix. No parser/label changes.",
+  "original_file_sha256": {
+    "run-start.json": "932cbde04f438e50dbc37d05159b4aa5ac33fe0d0535d8436d1b48ad5dbd5ea1",
+    "predictions.jsonl": "649513d8196609ee628571ac2b98a8d9a1187d103b16a73ce3ca54d342d63982"
+  },
+  "original_evidence_directory": "/workspace/reconcile-artifacts/indian-gst-slow-runtime-v1"
+}

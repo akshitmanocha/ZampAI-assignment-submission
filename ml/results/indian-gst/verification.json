@@ -1,0 +1,52 @@
+{
+  "scope": "Dataset switch and bounded OCR runtime regression checks; no production accuracy claim.",
+  "regression": {
+    "command": "LOCAL_UID=$(id -u) LOCAL_GID=$(id -g) docker compose --profile test run --rm --no-deps test",
+    "passed": 191,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 84.42,
+    "log_sha256": "5b22e689afed0e0c068be2b13b2881ce9ed3f343f04839c4ec650a457608aca3"
+  },
+  "initial_concurrent_regression": {
+    "passed": 188,
+    "failed": 2,
+    "seconds": 380.83,
+    "failure_type": "Worker wait deadline exceeded while earlier unconstrained-thread evaluation was running.",
+    "failed_tests": [
+      "test_actual_image_only_pdf_uses_ocr",
+      "test_real_worker_kill_recovers_expired_lease_with_one_decision"
+    ],
+    "log_sha256": "9091d143389fa10d6af0e3c475801b8506ae0e57783c8218ead9dbbe57adc820"
+  },
+  "frontend_build": {
+    "command": "npm run build --prefix web",
+    "passed": true
+  },
+  "runtime_change": "OMP_THREAD_LIMIT=1 in the credential-isolated production PDF child. Parser/source-quality/labels unchanged.",
+  "caution": "Regression rerun was isolated from the dataset evaluation. Timings are not a controlled CPU benchmark.",
+  "browser": {
+    "command": "PLAYWRIGHT_BROWSERS_PATH=/tmp/reconcile-browser/browsers npm exec --prefix web -- playwright test --config web/playwright.config.ts",
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "duration_ms": 18128.842,
+    "report_sha256": "da9ea813dd9411770f5725e40f05348d326326105b138de3e9cb2347fbf6bd61",
+    "scope": "Isolated company, actual UI/PDF/approval/review/MiniLM/ledger/mobile/logout plus primary Indian GST report card. Company schema removed after test.",
+    "axe_violations_in_scanned_views": {
+      "login": 0,
+      "workspace": 0
+    },
+    "screenshot": "/tmp/reconcile-browser/indian-gst/05-indian-gst-benchmark.png"
+  },
+  "complete_evaluation": {
+    "documents": 261,
+    "primary_documents": 197,
+    "adversarial": 24,
+    "regional": 40,
+    "technical_failures": 0,
+    "recorded_source_hashes_match": true,
+    "frozen_manifest_sha256": "d538a5fba1e3bfa9b809e0490d433a74196521a9a0da03d818755bb862fc6cc6"
+  }
+}

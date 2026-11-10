@@ -1,0 +1,20 @@
+{
+  "scope": "Implementation-agent visual spot-check of two PRESELECTED validation images, not independent human audit; raw publisher labels unchanged.",
+  "images_checked": [
+    "syn_0_00222",
+    "syn_0_00117"
+  ],
+  "findings": [
+    {
+      "id": "syn_0_00222",
+      "observation": "The classic intra-state page prints CGST and SGST but no IGST total. Publisher totals.igst is zero, not null. Treat strict zero-target coverage as a label-visibility limitation, not proof OCR missed a printed zero."
+    },
+    {
+      "id": "syn_0_00117",
+      "observation": "Minimal layout shows net line Taxable, Rate, Qty, HSN/SAC, GST%, separate CGST/SGST and rounded grand total. The core row amount target must be NET taxable_value, not either tax amount or gross total."
+    }
+  ],
+  "label_changes": false,
+  "reader_changes_before_test": false,
+  "full_visibility_audit_complete": false
+}

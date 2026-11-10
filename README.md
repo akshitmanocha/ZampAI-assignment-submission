@@ -43,6 +43,16 @@ See [local application and operations](docs/local-application.md), [demo walkthr
 
 ## Evaluation and limits
 
+Our primary invoice-reading benchmark is now [Divya52/indian-gst-invoices](https://huggingface.co/datasets/Divya52/indian-gst-invoices), pinned to an immutable source revision. We evaluate every one of its **197 official test invoices**; 24 adversarial and 40 Hindi/Kannada documents form separate robustness suites. Publisher-supplied labels remain unchanged and never enter the reader. This replaces InvoiceOCR-Synth as the primary OCR benchmark; earlier results remain historical evidence.
+
+```sh
+make invoice-data             # original images/metadata outside Git; verify frozen hashes
+docker compose --profile test build test
+make evaluate                 # actual local PDF/OCR reader; no training or model API calls
+```
+
+See [the Indian GST evaluation report](docs/indian-gst-evaluation.md), [frozen source manifest](ml/data/indian-gst-v1/), and [saved predictions and metrics](ml/results/indian-gst/). These labels measure extracted invoice fields. They provide no verified purchase-order ledger, catalog-match identities or approval history, so they cannot establish accept/reject accuracy or invoice automation.
+
 The earlier [25-scenario edge-case suite](docs/workflow-validation.md) passed 100 PDF checks and three database traces. These are author-known synthetic acceptance tests, not 100 independent invoices or guaranteed future accuracy. Its labels were authored before evaluation; no LLM generated the correct answers.
 
 The live application now connects matching, review, persistence and approval, with additional source-quality and tax checks. [ML experiments](ml/README.md) remain separate from application tests. The trained cross-encoder experiment is not a live approval policy. The CPU embedding implementation is checked against the saved GPU diagnostic; semantic identity without explicit evidence still requires human confirmation.

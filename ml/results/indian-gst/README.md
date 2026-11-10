@@ -1,0 +1,11 @@
+# Primary Indian GST extraction baseline
+
+Source and license: [Divya52/indian-gst-invoices](https://huggingface.co/datasets/Divya52/indian-gst-invoices), pinned revision in the [frozen manifest](../../data/indian-gst-v1/manifest.json), CC BY 4.0. Publisher-generated labels are preserved; this project does not claim independent human annotation.
+
+`baseline-v2/metrics.json` is the completed baseline after the two runtime repairs documented below. It contains the 197-invoice official test score, 24 adversarial examples and 40 regional examples as **separate** suites, and quality/layout slices. `predictions.jsonl` preserves each reading, original published target, source hashes, failure and elapsed time. `run-start.json` freezes the evaluated component hashes and runtime versions before extraction begins. Latency is measured on a shared development host and is not a performance guarantee.
+
+`harness-repair.json` records an invalid initial PID-1 launcher run. `runtime-repair.json` records a stopped partial run before Tesseract's thread pool was properly bounded. Original diagnostic outputs remain outside Git at the recorded paths, with their hashes retained here. `validation-runtime-probe.json` documents the preselected validation-image check used for the runtime repair. Neither failed/partial run is passed off as a completed extraction benchmark, and no bad example was removed from the full suite.
+
+The scoring implementation and target mapping are in `ml/indian_gst_metrics.py`; see [methodology and results](../../../docs/indian-gst-evaluation.md). Core field accuracy does not cover every GST field. Source-verification coverage is not invoice automation. This dataset contains no linked, authoritative purchase-order/approval history for measuring accept/reject accuracy, nor product-identity labels for measuring retrieval.
+
+Reproduce from repository root with `make invoice-data`, build the Compose test image, then `make evaluate`. Completed output directories are never overwritten. Refresh the saved local-app benchmark cards from the checked-in report with `python scripts/sync_invoice_benchmarks.py`; it checks dataset counts and recorded reader hashes before writing the local JSON asset.

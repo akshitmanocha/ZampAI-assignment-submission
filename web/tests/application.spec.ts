@@ -75,6 +75,10 @@ test('Local user journey: login, source evidence, approval, human correction, Mi
   await page.getByRole('link',{name:'Purchase orders',exact:true}).click();
   await expect(page.getByRole('heading',{name:'Purchase order ledger.'})).toBeVisible();
   await screenshot(page,'05-current-ledger');
+  await page.getByRole('link',{name:'Evaluation & scope',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Indian GST invoice extraction — primary benchmark',exact:true})).toBeVisible();
+  await expect(page.locator('section.panel').first()).toContainText('197');
+  await screenshot(page,'05-indian-gst-benchmark');
   await page.getByRole('link',{name:'Invoice activity',exact:true}).click();
   await expect(page.getByRole('heading',{name:'Invoice activity',exact:true})).toBeVisible();
   await page.getByLabel('Search invoices').fill('SH-DEMO-HAPPY');

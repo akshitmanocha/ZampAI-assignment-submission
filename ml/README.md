@@ -1,6 +1,12 @@
-# First matching and OCR experiments
+# Evaluation datasets and historical experiments
 
-These are measured development experiments, not evidence that the full invoice application works.
+## Primary invoice benchmark: Indian GST
+
+[Divya52/indian-gst-invoices](https://huggingface.co/datasets/Divya52/indian-gst-invoices) replaces InvoiceOCR-Synth as our primary OCR/field-extraction benchmark. Use `make invoice-data`, build the Compose test image, then `make evaluate`. The frozen selection contains all 197 records marked `test` in the source metadata; Hugging Face's loader labels the whole config `train`, so selecting by its loader split would be incorrect. The 24 adversarial and 40 regional records are scored separately.
+
+See [methodology and results](../docs/indian-gst-evaluation.md), [dataset attribution and manifest](data/indian-gst-v1/), [evaluation registry](evaluation_config.json), and [raw evidence](results/indian-gst/). Labels come from the dataset publisher, remain unchanged, and are joined only after the production PDF reader returns. No model was trained for this baseline. The dataset has no linked company records for measuring approval or retrieval accuracy.
+
+The matching and older OCR experiments below are retained as historical development evidence. Authored business fixtures remain regression tests. Changing the invoice benchmark does not retrain MiniLM or replace product-pair labels with invoice images.
 
 ## Pair matching: real GPU training, fictional data
 

@@ -1,0 +1,31 @@
+{
+  "primary_invoice_evaluation": {
+    "dataset": "Divya52/indian-gst-invoices",
+    "revision": "fece40b9a96ac3949934fc05c714853a5283d730",
+    "manifest": "ml/data/indian-gst-v1/manifest.json",
+    "prepare": "make invoice-data",
+    "evaluate": "make evaluate",
+    "primary_count": 197,
+    "robustness_counts": {
+      "injection": 24,
+      "regional": 40
+    },
+    "label_source": "Unmodified publisher structured invoice labels",
+    "stage": "PDF/OCR/field extraction with source-quality policy",
+    "headline": "External Indian GST baseline; no full invoice approval or retrieval truth",
+    "results": "ml/results/indian-gst/baseline-v2/metrics.json"
+  },
+  "archived_invoice_evaluation": {
+    "dataset": "alamgirqazi/invoice-ocr-synthetic",
+    "results": "ml/results/ocr-structured",
+    "status": "historical comparison; no longer primary"
+  },
+  "business_regressions": {
+    "manifest": "fixtures/workflows/v1/manifest.json",
+    "status": "retained as deterministic engineering tests, not primary accuracy benchmark"
+  },
+  "product_matching_research": {
+    "data": "ml/data/pilot",
+    "status": "historical pair experiment; not replaced by invoice images lacking match labels"
+  }
+}

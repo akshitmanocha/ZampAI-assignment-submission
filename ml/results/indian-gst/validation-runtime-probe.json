@@ -1,0 +1,15 @@
+{
+  "scope": "Preselected validation image syn_0_00222, original image, same Tesseract --psm 3, 30-second limit; no labels or field metrics used; shared host under load, not a portable latency benchmark.",
+  "without_thread_limit": {
+    "OMP_NUM_THREADS": "1",
+    "OMP_THREAD_LIMIT": null,
+    "seconds": 30.75491821600008,
+    "error": "OCR_TIMEOUT"
+  },
+  "with_thread_limit": {
+    "OMP_THREAD_LIMIT": "1",
+    "seconds": 3.5977588090026984,
+    "nonempty_tokens": 139
+  },
+  "decision": "Bound OCR child OpenMP threads to one; retain existing timeout and parser."
+}

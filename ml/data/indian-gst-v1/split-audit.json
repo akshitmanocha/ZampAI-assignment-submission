@@ -1,0 +1,49 @@
+{
+  "dataset": "Divya52/indian-gst-invoices",
+  "revision": "fece40b9a96ac3949934fc05c714853a5283d730",
+  "metadata_sha256": "79fa8f48abd368836dfeeaf68da75387a318c39d830fec1deecb53e6a3b0d912",
+  "split_record_counts": {
+    "test": 197,
+    "train": 1613,
+    "val": 190
+  },
+  "unique_within_split": {
+    "label_bytes": {
+      "test": 197,
+      "train": 1613,
+      "val": 190
+    },
+    "invoice_identity": {
+      "test": 197,
+      "train": 1613,
+      "val": 190
+    },
+    "descriptions": {
+      "test": 25,
+      "train": 25,
+      "val": 25
+    }
+  },
+  "cross_split_overlap_counts": {
+    "train__val": {
+      "record_ids": 0,
+      "label_bytes": 0,
+      "invoice_identity": 0,
+      "descriptions": 25
+    },
+    "train__test": {
+      "record_ids": 0,
+      "label_bytes": 0,
+      "invoice_identity": 0,
+      "descriptions": 25
+    },
+    "val__test": {
+      "record_ids": 0,
+      "label_bytes": 0,
+      "invoice_identity": 0,
+      "descriptions": 25
+    }
+  },
+  "scope": "Source metadata only; no reader predictions, image similarity audit or independent label audit.",
+  "interpretation": "Repeated product descriptions show the intended splits are not held-out product families. Invoice identity includes supplier GSTIN/name, invoice number and date; a matching identity is a warning for future training, not proof of an identical image. The current baseline performs no training. Source splits and labels stay unchanged."
+}

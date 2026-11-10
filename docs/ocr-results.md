@@ -1,5 +1,7 @@
 # OCR and structured invoice extraction: measured first comparison
 
+**Historical report.** The primary invoice benchmark is now [Indian GST invoices](indian-gst-evaluation.md). This document records the earlier InvoiceOCR-Synth experiment and its original scope; it does not describe current application completeness or the new benchmark's results.
+
 Implemented a PDF-to-fields parser and an optional vision proposal adapter. This is not a completed upload-to-approval application. Source locations are retained; a model-proposed box is explicitly unverified.
 
 ## Pipeline

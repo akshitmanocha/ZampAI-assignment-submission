@@ -33,3 +33,11 @@ browser-test:
 	docker compose --profile test build test
 	LOCAL_UID=$$(id -u) LOCAL_GID=$$(id -g) docker compose --profile test up -d --force-recreate browser-test
 	cd web && npm exec -- playwright test; result=$$?; docker compose --profile test stop browser-test; exit $$result
+
+# Primary external invoice evaluation (business-rule fixtures remain regressions).
+.PHONY: invoice-data evaluate
+invoice-data:
+	PYTHONPATH=backend UV_CACHE_DIR=$${UV_CACHE_DIR:-/tmp/reconcile-uv-cache} uv run --project backend python ml/indian_gst_dataset.py
+	python ml/audit_indian_gst_splits.py
+evaluate:
+	python scripts/evaluate_invoices.py
