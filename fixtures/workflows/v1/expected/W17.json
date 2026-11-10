@@ -1,0 +1,11 @@
+{
+  "blocking_rules": [
+    "purchase_order"
+  ],
+  "bucket": "reject",
+  "explanation": "A closed current order cannot authorize a new invoice.",
+  "id": "W17",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {}
+}

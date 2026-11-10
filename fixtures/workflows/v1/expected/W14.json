@@ -1,0 +1,9 @@
+{
+  "blocking_rules": [],
+  "bucket": "accept",
+  "explanation": "A different vendor may legitimately use the same invoice number.",
+  "id": "W14",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {}
+}

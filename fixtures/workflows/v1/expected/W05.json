@@ -1,0 +1,11 @@
+{
+  "blocking_rules": [
+    "unit_price"
+  ],
+  "bucket": "reject",
+  "explanation": "2700+600 still=3300; both line prices violate their individual tolerances.",
+  "id": "W05",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {}
+}

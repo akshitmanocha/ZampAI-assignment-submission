@@ -1,0 +1,21 @@
+{
+  "blocking_rules": [
+    "remaining_quantity"
+  ],
+  "bucket": "reject",
+  "explanation": "700 requested versus 600 remaining; 100 over.",
+  "id": "W07",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {
+    "excess_qty": [
+      "100"
+    ],
+    "normalized_qty": [
+      "700"
+    ],
+    "remaining_qty": [
+      "600"
+    ]
+  }
+}

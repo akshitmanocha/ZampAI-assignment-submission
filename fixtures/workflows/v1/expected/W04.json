@@ -1,0 +1,9 @@
+{
+  "blocking_rules": [],
+  "bucket": "accept",
+  "explanation": "2500+800=3300 and each line price is agreed.",
+  "id": "W04",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {}
+}

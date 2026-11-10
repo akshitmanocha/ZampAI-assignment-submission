@@ -1,0 +1,15 @@
+{
+  "blocking_rules": [
+    "remaining_quantity"
+  ],
+  "bucket": "reject",
+  "explanation": "Two rows request 1200 against 600 remaining; aggregate before checking.",
+  "id": "W22",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {
+    "requested_by_po_line": {
+      "l1": "1200"
+    }
+  }
+}

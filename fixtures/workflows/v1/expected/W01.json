@@ -1,0 +1,16 @@
+{
+  "blocking_rules": [],
+  "bucket": "accept",
+  "explanation": "Six boxes x100=600; 1000-400=600; exact unit price 5.",
+  "id": "W01",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {
+    "normalized_qty": [
+      "600"
+    ],
+    "remaining_qty": [
+      "600"
+    ]
+  }
+}

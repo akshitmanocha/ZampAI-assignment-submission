@@ -1,0 +1,13 @@
+{
+  "blocking_rules": [],
+  "bucket": "accept",
+  "explanation": "Two rows consume the same PO line: 300+300=600, no double counting.",
+  "id": "W21",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {
+    "requested_by_po_line": {
+      "l1": "600"
+    }
+  }
+}

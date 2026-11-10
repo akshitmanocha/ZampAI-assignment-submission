@@ -1,0 +1,12 @@
+{
+  "blocking_rules": [],
+  "bucket": "accept",
+  "explanation": "Initial recommendation passes; real PostgreSQL approval must consume balance once and reject staleness.",
+  "id": "W23",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {
+    "final_remaining_qty": "200",
+    "successful_new_approvals": 1
+  }
+}

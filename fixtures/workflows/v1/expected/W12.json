@@ -1,0 +1,11 @@
+{
+  "blocking_rules": [
+    "duplicate"
+  ],
+  "bucket": "reject",
+  "explanation": "Same file/business invoice already in prior history.",
+  "id": "W12",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {}
+}

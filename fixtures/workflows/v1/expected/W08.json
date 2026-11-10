@@ -1,0 +1,9 @@
+{
+  "blocking_rules": [],
+  "bucket": "accept",
+  "explanation": "Only one eligible vendor order has the printed product; unique inference is allowed.",
+  "id": "W08",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {}
+}

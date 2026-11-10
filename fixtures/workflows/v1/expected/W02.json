@@ -1,0 +1,11 @@
+{
+  "blocking_rules": [
+    "product_specification"
+  ],
+  "bucket": "reject",
+  "explanation": "Printed latex conflicts with nitrile even though SKU and totals agree.",
+  "id": "W02",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {}
+}

@@ -1,0 +1,11 @@
+{
+  "blocking_rules": [
+    "arithmetic"
+  ],
+  "bucket": "reject",
+  "explanation": "Printed total is 10 above subtotal+tax; no repair allowed.",
+  "id": "W16",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {}
+}

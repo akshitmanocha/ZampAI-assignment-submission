@@ -1,0 +1,11 @@
+{
+  "blocking_rules": [
+    "vendor_identity"
+  ],
+  "bucket": "reject",
+  "explanation": "Explicit PO belongs to another vendor; do not silently pick the glove PO.",
+  "id": "W11",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {}
+}

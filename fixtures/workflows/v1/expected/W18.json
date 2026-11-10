@@ -1,0 +1,11 @@
+{
+  "blocking_rules": [
+    "vendor_status"
+  ],
+  "bucket": "reject",
+  "explanation": "Blocked vendor is a confirmed blocker.",
+  "id": "W18",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {}
+}

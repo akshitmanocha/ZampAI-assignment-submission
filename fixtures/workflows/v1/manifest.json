@@ -1,0 +1,196 @@
+{
+  "audit": [
+    {
+      "expected_bucket": "accept",
+      "header_arithmetic_consistent": true,
+      "id": "W01"
+    },
+    {
+      "expected_bucket": "reject",
+      "header_arithmetic_consistent": true,
+      "id": "W02"
+    },
+    {
+      "expected_bucket": "human_review",
+      "header_arithmetic_consistent": true,
+      "id": "W03"
+    },
+    {
+      "expected_bucket": "accept",
+      "header_arithmetic_consistent": true,
+      "id": "W04"
+    },
+    {
+      "expected_bucket": "reject",
+      "header_arithmetic_consistent": true,
+      "id": "W05"
+    },
+    {
+      "expected_bucket": "accept",
+      "header_arithmetic_consistent": true,
+      "id": "W06"
+    },
+    {
+      "expected_bucket": "reject",
+      "header_arithmetic_consistent": true,
+      "id": "W07"
+    },
+    {
+      "expected_bucket": "accept",
+      "header_arithmetic_consistent": true,
+      "id": "W08"
+    },
+    {
+      "expected_bucket": "human_review",
+      "header_arithmetic_consistent": true,
+      "id": "W09"
+    },
+    {
+      "expected_bucket": "human_review",
+      "header_arithmetic_consistent": true,
+      "id": "W10"
+    },
+    {
+      "expected_bucket": "reject",
+      "header_arithmetic_consistent": true,
+      "id": "W11"
+    },
+    {
+      "expected_bucket": "reject",
+      "header_arithmetic_consistent": true,
+      "id": "W12"
+    },
+    {
+      "expected_bucket": "human_review",
+      "header_arithmetic_consistent": true,
+      "id": "W13"
+    },
+    {
+      "expected_bucket": "accept",
+      "header_arithmetic_consistent": true,
+      "id": "W14"
+    },
+    {
+      "expected_bucket": "accept",
+      "header_arithmetic_consistent": true,
+      "id": "W15"
+    },
+    {
+      "expected_bucket": "reject",
+      "header_arithmetic_consistent": false,
+      "id": "W16"
+    },
+    {
+      "expected_bucket": "reject",
+      "header_arithmetic_consistent": true,
+      "id": "W17"
+    },
+    {
+      "expected_bucket": "reject",
+      "header_arithmetic_consistent": true,
+      "id": "W18"
+    },
+    {
+      "expected_bucket": "accept",
+      "header_arithmetic_consistent": true,
+      "id": "W19"
+    },
+    {
+      "expected_bucket": "reject",
+      "header_arithmetic_consistent": true,
+      "id": "W20"
+    },
+    {
+      "expected_bucket": "accept",
+      "header_arithmetic_consistent": true,
+      "id": "W21"
+    },
+    {
+      "expected_bucket": "reject",
+      "header_arithmetic_consistent": true,
+      "id": "W22"
+    },
+    {
+      "expected_bucket": "accept",
+      "header_arithmetic_consistent": true,
+      "id": "W23"
+    },
+    {
+      "expected_bucket": "accept",
+      "header_arithmetic_consistent": true,
+      "id": "W24"
+    },
+    {
+      "expected_bucket": "accept",
+      "header_arithmetic_consistent": true,
+      "id": "W25"
+    }
+  ],
+  "case_groups": 15,
+  "cases": 25,
+  "files": {
+    "expected/W01.json": "10a03debd8c1da7e45ad93bdd0bcea93080b6548e4bad5cca53bba310ed10997",
+    "expected/W02.json": "61324a389c6850e095eda5cf75b370da31133e7dbf9906559d0c97e5aa60ebb3",
+    "expected/W03.json": "bd9e44dfe72f5880dcf31d9a4a85472997e631220d4d7cf77c98a5e0e5c287aa",
+    "expected/W04.json": "a152d06a35d26a354a18692200d8052fd18f90f0c86e87668322ad80f678fba2",
+    "expected/W05.json": "25ab2bde796e7b3231ed217ab62831ea92de0dad85e37758890fc9d8ccf8c7c8",
+    "expected/W06.json": "c357e99eee077d4e4c3d8d9820582bd20c80bac24f49465804975412bea71620",
+    "expected/W07.json": "8f3fa1e975b45ce6c855e4eb0595ab1063bff6a08e3f3c7b0e635434282f6317",
+    "expected/W08.json": "b127e0d3d7e06da26d47cf78c362553d6dc0e9c75efffae76ce94ae9ccc6f31e",
+    "expected/W09.json": "e46d84349267eef6d946b25f9ae86fe49b1a2ed26e53502836f29393f5944f70",
+    "expected/W10.json": "8cc521b4e4071cb8b794d407d01d9d7e54b9bb9550e6eb69706c6a6c4e90987e",
+    "expected/W11.json": "11c292f437007dba749e9c34bd337c22fd14da6cd028704b4548941e66b38fd3",
+    "expected/W12.json": "f90f7ea843cd475ca2fab19264f0544097c49532de27854f54c95bfa6c2678cf",
+    "expected/W13.json": "ed52bb7e42f93f55d8e31f34741e2b1de4a38afde11123f2f76cd71e0fddea5f",
+    "expected/W14.json": "efefb189112df5f6bd57d663006255085e7d6077d8a11a2efc00d31be8f06bdb",
+    "expected/W15.json": "0d6a73c493ebb16ced92a424895f1f18f040ddb3c2bcf4b5def6c994a265769f",
+    "expected/W16.json": "19460b2a6c0f244484151a82443327fc7e96b670dc771748028d9d51343f8468",
+    "expected/W17.json": "bc77f0b521ec90714ad72b51810d72b359e73b4643533c3de9ed977e12ef649f",
+    "expected/W18.json": "10831bc3a4266d6489cb093e87709f70e0b4d7ff584ae734babf59121eb714ec",
+    "expected/W19.json": "8ac954d84e242ae1b1dd0787a1e67a1280220358e5a91bf815aa9013dd2feabf",
+    "expected/W20.json": "7eb96267d6eb6d4e16c509e9dc312a649fb453348bf01932e3a10f082e97d457",
+    "expected/W21.json": "71cab722ecaeb64640d0384eeba92ec06c8bb446cd84f2a4685342d5edb7c1a4",
+    "expected/W22.json": "b9a9aac1d8a1993b46e9dcdfe2e21da42e79a5d3410a9e5f4a3ff64b882708b0",
+    "expected/W23.json": "a79ed18fab9df0b094e8c26f62f5d37368bb7908cc06961013b67741957a3585",
+    "expected/W24.json": "dfe4b4595eee40d551278452b2ff40b8ce931700441a4697a18eaa6f5dba2c06",
+    "expected/W25.json": "27208ffacd2b216af65cd454f2d39a0896124caf024329c081dbf12f4ee3bdf8",
+    "inputs/W01.json": "df58b5ba436e043ef3bfa38757e192a85b14d99a355e0fcf265a868e3af357c2",
+    "inputs/W02.json": "a14175286967f1d663988cc188c6e64f092e1a53633c27ec4448846b623955ac",
+    "inputs/W03.json": "0359fddb11c7a9a7cf7f5b0000b32c69bb6d7b454b621710cdae3ba3b7f88b55",
+    "inputs/W04.json": "f6abc6fbc0dd3ea2d0e2a4348bd92575afb5aefd541bd42b73a59da71ae12a1b",
+    "inputs/W05.json": "cc3aa43dfa14b61b9d7b1df6b6c7335d6122fdf896a8f59e06ba4bd1f72a5310",
+    "inputs/W06.json": "922b7cecd2ced34272b112156dcfc1b6b6bcfef34788d1e44a3f85aa0eb4fdc3",
+    "inputs/W07.json": "1c1ed3cf9463f38748e11e62dd0a894195c7edafb61fa2c8aeb1dc4fe5040708",
+    "inputs/W08.json": "24976191cd6c73efe9f820e398ebee301ed3f4295088c01c84d4188ffd4069d2",
+    "inputs/W09.json": "04d5186ec3c76772ed60f27c0f24efc671de4bae35e166e2a632452e28dc5a59",
+    "inputs/W10.json": "a9e2e3e91f7dc5594b056a5a3553a9de7f626bdbd4f13a2b9c1735ab7e3ba0a7",
+    "inputs/W11.json": "21e5a5b167cef5c129a9525bf07382d80f4c3415f7652e28e0752a372d808ee0",
+    "inputs/W12.json": "f1f5c1167d0907095e0ed63bf3cf14474d58c7d9097e355d40f210af69898807",
+    "inputs/W13.json": "7d6c5c5f193df954ea43d08df6fb5f6c028914f39ad8623f8de8920166c1dec7",
+    "inputs/W14.json": "bf4cc1b06b4718372d3b40771bdf43cf1b74d637cfcae5504ed69c15150feb36",
+    "inputs/W15.json": "415cc6a3b43e824bcca923a8cbdb92799e2d0f1589d659d991aa091f966dd877",
+    "inputs/W16.json": "a1bf5c046b1dca12ae22a8dfe33b7b93d4408881f120f47eb9c3f7f8e3fb39e4",
+    "inputs/W17.json": "673ecbaee13a0899059c9f3668618d83ad81da664568ed64eadf8e4a6179da4e",
+    "inputs/W18.json": "6554c935d6c4aeb0172aad84b9d8ffec34ac697b3603fcaa74f762a70af41d37",
+    "inputs/W19.json": "df0f817def08c5f4476de423534394d804300b1ebf8cd3bb711047cd2a2c4aa7",
+    "inputs/W20.json": "9db1b52c90fe41e6331f847784fc0dc85fb245512d22e5301330b00e57b1f7a5",
+    "inputs/W21.json": "28fb357ea03df667904b789d2390172af4a292fd96f6522acfc439c2c1fbb245",
+    "inputs/W22.json": "a1199f2b67c3d05d723521c772cf4f3909ab2e131a52ad105d5a825f08870e53",
+    "inputs/W23.json": "8490ca7f098c05e7de315ac9190f86d1df1c20692f623205adb038732bc42a25",
+    "inputs/W24.json": "8ace4fe236c5236eef713ba41165cf00c19fce3a343f58439c8daebecfab049c",
+    "inputs/W25.json": "dcc6e9027e67e18594f8bbb5ab821b07975a825381a16e52360d7ac9a5d30bdb"
+  },
+  "gold_method": "explicit authored business expectations with separate Fraction arithmetic audit; no production engine imports or LLM-generated answers",
+  "independent_human_audit": false,
+  "limitations": [
+    "Small hand-designed challenge set; not representative invoice traffic",
+    "Author also implements pipeline, so not externally blind",
+    "Known catalog/SKUs overlap cases; not unseen-product ML evaluation",
+    "All layout/scan variants of each group belong to validation; no train/test variant leakage"
+  ],
+  "purpose": "author-defined validation/acceptance cases, not model training or a blind final test",
+  "split": "validation",
+  "stateful_cases": 3,
+  "stateless_cases": 22,
+  "version": "workflow-v1"
+}

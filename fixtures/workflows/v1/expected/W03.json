@@ -1,0 +1,11 @@
+{
+  "blocking_rules": [],
+  "bucket": "human_review",
+  "explanation": "The box size is not printed; never copy pack size from master data.",
+  "id": "W03",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [
+    "unit_conversion"
+  ],
+  "values": {}
+}

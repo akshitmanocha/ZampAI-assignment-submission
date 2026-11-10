@@ -1,0 +1,16 @@
+{
+  "blocking_rules": [],
+  "bucket": "accept",
+  "explanation": "abs(5.05-5)=max(.05,5*.01)=.05, inclusive boundary.",
+  "id": "W19",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {
+    "normalized_unit_price": [
+      "5.05"
+    ],
+    "price_tolerance": [
+      "0.05"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "blocking_rules": [],
+  "bucket": "accept",
+  "explanation": "A pending recommendation must not consume balance.",
+  "id": "W06",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {
+    "normalized_qty": [
+      "600"
+    ],
+    "remaining_qty": [
+      "600"
+    ]
+  }
+}

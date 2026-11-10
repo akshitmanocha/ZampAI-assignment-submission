@@ -1,0 +1,103 @@
+{
+  "actions": [],
+  "company": {
+    "allocations": [
+      {
+        "amount": "2000.00",
+        "po_line_id": "l1",
+        "qty": "400"
+      }
+    ],
+    "invoice_history": [],
+    "policy": {
+      "absolute_unit_price_tolerance": "0.05",
+      "amount_rounding": "ROUND_HALF_UP",
+      "quantity_tolerance": "0",
+      "relative_unit_price_tolerance": "0.01"
+    },
+    "purchase_orders": [
+      {
+        "currency": "INR",
+        "id": "p1",
+        "lines": [
+          {
+            "description": "Nitrile gloves medium",
+            "id": "l1",
+            "material": "nitrile",
+            "ordered_qty": "1000",
+            "size": "medium",
+            "sku": "GLV-M",
+            "unit_price": "5.00",
+            "uom": "EA"
+          }
+        ],
+        "number": "PO-2026-0147",
+        "status": "open",
+        "vendor_id": "v1"
+      },
+      {
+        "currency": "INR",
+        "id": "p2",
+        "lines": [
+          {
+            "description": "Steel bolt M10",
+            "id": "l2",
+            "material": "steel",
+            "ordered_qty": "1000",
+            "size": "M10",
+            "sku": "BOLT10",
+            "unit_price": "12.50",
+            "uom": "EA"
+          },
+          {
+            "description": "Steel nut M10",
+            "id": "l3",
+            "material": "steel",
+            "ordered_qty": "1000",
+            "size": "M10",
+            "sku": "NUT10",
+            "unit_price": "4.00",
+            "uom": "EA"
+          }
+        ],
+        "number": "PO-2026-0200",
+        "status": "open",
+        "vendor_id": "v2"
+      }
+    ],
+    "vendors": [
+      {
+        "id": "v1",
+        "legal_name": "SafeHands Supplies",
+        "status": "approved"
+      },
+      {
+        "id": "v2",
+        "legal_name": "Brightline Hardware",
+        "status": "approved"
+      }
+    ]
+  },
+  "document": {
+    "currency": "INR",
+    "grand_total": "5.05",
+    "invoice_date": "2026-11-06",
+    "invoice_number": "SH-000123",
+    "lines": [
+      {
+        "amount": "5.05",
+        "description": "GLV-M Nitrile gloves medium [EA]",
+        "qty": "1",
+        "unit_price": "5.051"
+      }
+    ],
+    "po_reference": "PO-2026-0147",
+    "subtotal": "5.05",
+    "tax_total": "0.00",
+    "vendor_name": "SafeHands Supplies"
+  },
+  "family": "regressions",
+  "group_id": "price_boundary",
+  "id": "W20",
+  "split": "validation"
+}

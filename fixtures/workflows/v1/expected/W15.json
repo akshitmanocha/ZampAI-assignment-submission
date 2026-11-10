@@ -1,0 +1,9 @@
+{
+  "blocking_rules": [],
+  "bucket": "accept",
+  "explanation": "3000+540=3540; arithmetic only, not tax-law compliance.",
+  "id": "W15",
+  "ledger_unchanged_by_recommendation": true,
+  "required_unknown_rules": [],
+  "values": {}
+}
