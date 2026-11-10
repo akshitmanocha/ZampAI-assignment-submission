@@ -1,0 +1,86 @@
+"""Native/scanned PDF text with page coordinates, before field parsing.
+
+Run on untrusted uploads only inside the planned resource-limited worker
+subprocess. This utility is not exposed through an upload endpoint yet.
+"""
+from dataclasses import dataclass,asdict
+import io
+import math
+import pdfplumber
+import pypdfium2
+import pytesseract
+from pdfminer.pdfdocument import PDFPasswordIncorrect
+
+
+class DocumentError(Exception):
+    def __init__(self,code):self.code=code;super().__init__(code)
+
+@dataclass(frozen=True)
+class Word:
+    text: str
+    bbox: tuple[float,float,float,float]
+    # OCR confidence is engine-reported, not a correctness probability.
+    confidence: float | None = None
+
+@dataclass(frozen=True)
+class PageText:
+    page: int
+    method: str
+    width: float
+    height: float
+    words: tuple[Word,...]
+    warnings: tuple[str,...] = ()
+
+    def to_dict(self):return asdict(self)
+
+
+def extract_document(data:bytes,max_pages=10,max_bytes=10*1024*1024):
+    if not 1<=max_pages<=100:raise ValueError('Invalid page limit')
+    if len(data)>max_bytes:raise DocumentError('PDF_TOO_LARGE')
+    if not data.startswith(b'%PDF-'):raise DocumentError('PDF_INVALID')
+    try:pdf=pdfplumber.open(io.BytesIO(data))
+    except PDFPasswordIncorrect:raise DocumentError('PDF_ENCRYPTED') from None
+    except Exception:raise DocumentError('PDF_INVALID') from None
+    with pdf:
+        if not pdf.pages:raise DocumentError('PDF_EMPTY')
+        if len(pdf.pages)>max_pages:raise DocumentError('PDF_TOO_MANY_PAGES')
+        result=[];rendered=None
+        try:
+            for number,page in enumerate(pdf.pages):
+                words=page.extract_words()
+                # Image-bearing pages use whole-page OCR: native headers alone
+                # must not hide a scanned line-item table. Very sparse native
+                # pages also get OCR; both routes keep source coordinates.
+                use_native=len(words)>=5 and not page.images
+                if use_native:
+                    result.append(PageText(number+1,'native',float(page.width),float(page.height),tuple(Word(w['text'],(float(w['x0']),float(w['top']),float(w['x1']),float(w['bottom']))) for w in words)))
+                    continue
+                if rendered is None:rendered=pypdfium2.PdfDocument(data)
+                rp=rendered[number]
+                bitmap=None
+                try:
+                    bitmap=rp.render(scale=200/72)
+                    image=bitmap.to_pil()
+                    try:
+                        ocr=pytesseract.image_to_data(image,config='--psm 3',output_type=pytesseract.Output.DICT,timeout=30)
+                        sx=float(page.width)/image.width;sy=float(page.height)/image.height
+                        found=[]
+                        for i,text in enumerate(ocr['text']):
+                            text=text.strip()
+                            if not text:continue
+                            x,y,w,h=(float(ocr[k][i]) for k in ['left','top','width','height'])
+                            confidence=float(ocr['conf'][i])
+                            if not all(math.isfinite(v) for v in [x,y,w,h,confidence]):continue
+                            found.append(Word(text,(x*sx,y*sy,(x+w)*sx,(y+h)*sy),confidence))
+                        warnings=() if found else ('no_readable_text',)
+                        result.append(PageText(number+1,'ocr',float(page.width),float(page.height),tuple(found),warnings))
+                    except pytesseract.TesseractNotFoundError:raise DocumentError('OCR_UNAVAILABLE') from None
+                    except pytesseract.TesseractError:raise DocumentError('OCR_FAILED') from None
+                    except RuntimeError:raise DocumentError('OCR_TIMEOUT') from None
+                    finally:image.close()
+                finally:
+                    if bitmap is not None:bitmap.close()
+                    rp.close()
+        finally:
+            if rendered is not None:rendered.close()
+        return result

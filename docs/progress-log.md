@@ -82,3 +82,9 @@ At 90% score-ranked automatic coverage on challenge, original epoch-1 checkpoint
 Saved policy, all initial challenge scores, raw reports and reproduction script. Exported selected epoch-3 weights separately outside Git with archive/contained checksum verification. No production policy enabled and no 90% invoice automation claim. `make test`: 51 passed, 16 real-DB tests skipped locally (previous dedicated DB run passed). Boundary/invalid-score/score-only budget selection tests added.
 
 Matching milestone findings documented in docs/coverage90.md. Next: OCR label observability audit and structured extraction/native-vs-scan evaluation. Missing evidence must continue to override any nominal 10% review budget.
+
+## 2026-11-10 — OCR stage started after matching comparison
+
+Implemented actual native/scanned PDF text reader with page-word bounding boxes, file/page limits, explicit OCR errors, and unreadable-page warnings. It uses native extraction on text-only populated pages, renders sparse/image-bearing pages for Tesseract, and preserves engine confidence without presenting it as correctness probability. Not yet a structured invoice parser, worker-isolated upload path or end-to-end application.
+
+Four new functional tests passed, including actual Tesseract on an image-only PDF. `make test`: 55 passed, 16 database tests skipped locally; native/scanned paths genuinely executed. Next OCR work: public-dataset label observability audit, noisy/mixed-page benchmark, structured fields/rows, and source-grounded accuracy metrics. See docs/ocr-progress.md for limitations.
