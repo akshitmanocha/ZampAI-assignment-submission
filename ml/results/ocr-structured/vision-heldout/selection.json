@@ -1,0 +1,71 @@
+{
+  "split": "heldout",
+  "images": [
+    {
+      "file_name": "synth_0115_83dbfc01.png",
+      "quality": "clean"
+    },
+    {
+      "file_name": "synth_0115_83dbfc01.png",
+      "quality": "faded"
+    },
+    {
+      "file_name": "synth_0115_83dbfc01.png",
+      "quality": "bad_scan"
+    },
+    {
+      "file_name": "synth_0117_8d300476.png",
+      "quality": "clean"
+    },
+    {
+      "file_name": "synth_0117_8d300476.png",
+      "quality": "faded"
+    },
+    {
+      "file_name": "synth_0117_8d300476.png",
+      "quality": "bad_scan"
+    },
+    {
+      "file_name": "synth_0118_5801858c.png",
+      "quality": "clean"
+    },
+    {
+      "file_name": "synth_0119_e2b4b633.png",
+      "quality": "clean"
+    },
+    {
+      "file_name": "synth_0120_8d46afd8.png",
+      "quality": "clean"
+    },
+    {
+      "file_name": "synth_0123_80ced5ab.png",
+      "quality": "clean"
+    },
+    {
+      "file_name": "synth_0125_fa836236.png",
+      "quality": "clean"
+    },
+    {
+      "file_name": "synth_0126_ac884375.png",
+      "quality": "clean"
+    },
+    {
+      "file_name": "synth_0127_0a126642.png",
+      "quality": "clean"
+    },
+    {
+      "file_name": "synth_0139_84a73924.png",
+      "quality": "clean"
+    },
+    {
+      "file_name": "synth_0141_bb9ed353.png",
+      "quality": "clean"
+    },
+    {
+      "file_name": "synth_0142_b5328c89.png",
+      "quality": "clean"
+    }
+  ],
+  "max_requests": 16,
+  "selection": "all clean images plus faded/bad_scan for first two documents in fixed manifest order"
+}

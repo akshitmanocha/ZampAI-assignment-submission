@@ -1,0 +1,132 @@
+{
+  "$defs": {
+    "Header": {
+      "additionalProperties": false,
+      "properties": {
+        "vendor_name": {
+          "$ref": "#/$defs/PrintedField"
+        },
+        "invoice_number": {
+          "$ref": "#/$defs/PrintedField"
+        },
+        "po_reference": {
+          "$ref": "#/$defs/PrintedField"
+        },
+        "invoice_date": {
+          "$ref": "#/$defs/PrintedField"
+        },
+        "currency": {
+          "$ref": "#/$defs/PrintedField"
+        },
+        "subtotal": {
+          "$ref": "#/$defs/PrintedField"
+        },
+        "grand_total": {
+          "$ref": "#/$defs/PrintedField"
+        },
+        "tax_total": {
+          "$ref": "#/$defs/PrintedField"
+        }
+      },
+      "required": [
+        "vendor_name",
+        "invoice_number",
+        "po_reference",
+        "invoice_date",
+        "currency",
+        "subtotal",
+        "grand_total",
+        "tax_total"
+      ],
+      "title": "Header",
+      "type": "object"
+    },
+    "Item": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "$ref": "#/$defs/PrintedField"
+        },
+        "qty": {
+          "$ref": "#/$defs/PrintedField"
+        },
+        "unit": {
+          "$ref": "#/$defs/PrintedField"
+        },
+        "unit_price": {
+          "$ref": "#/$defs/PrintedField"
+        },
+        "amount": {
+          "$ref": "#/$defs/PrintedField"
+        }
+      },
+      "required": [
+        "description",
+        "qty",
+        "unit",
+        "unit_price",
+        "amount"
+      ],
+      "title": "Item",
+      "type": "object"
+    },
+    "PrintedField": {
+      "additionalProperties": false,
+      "properties": {
+        "raw_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Raw Text"
+        },
+        "bbox": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "maxItems": 4,
+              "minItems": 4,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Bbox"
+        }
+      },
+      "required": [
+        "raw_text",
+        "bbox"
+      ],
+      "title": "PrintedField",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "header": {
+      "$ref": "#/$defs/Header"
+    },
+    "lines": {
+      "items": {
+        "$ref": "#/$defs/Item"
+      },
+      "maxItems": 30,
+      "title": "Lines",
+      "type": "array"
+    }
+  },
+  "required": [
+    "header",
+    "lines"
+  ],
+  "title": "VisionDocument",
+  "type": "object"
+}

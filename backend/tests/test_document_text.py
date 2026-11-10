@@ -42,3 +42,9 @@ def test_page_limit_is_enforced():
     for _ in range(2):c.drawString(40,700,'a page');c.showPage()
     c.save()
     with pytest.raises(DocumentError,match='PDF_TOO_MANY_PAGES'):extract_document(out.getvalue(),max_pages=1)
+
+def test_encrypted_pdf_requires_password_instead_of_guessing():
+    from reportlab.lib.pdfencrypt import StandardEncryption
+    out=io.BytesIO();c=canvas.Canvas(out,encrypt=StandardEncryption('test-only-password'))
+    c.drawString(40,700,'Invoice confidential');c.save()
+    with pytest.raises(DocumentError,match='PDF_ENCRYPTED'):extract_document(out.getvalue())

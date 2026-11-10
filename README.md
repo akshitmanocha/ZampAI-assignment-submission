@@ -45,3 +45,13 @@ No CI/CD or automatic deployment is configured. Render deployment is pending acc
 Use the backend development virtualenv to run the script, with `--secret-file` pointing to the private file and `--log` pointing to an external log. `--once` verifies one execution. Live processes do not survive environment shutdown. Keep the proxy credential out of screenshots, commands, logs, and commits.
 
 The candidate guide PDF is intentionally absent from the current repository tree. The design package remains the implementation reference. No Git history was rewritten.
+
+## OCR and field extraction
+
+The local CLI reads real native/scanned PDFs into source-linked fields and item rows:
+
+```sh
+uv run --project backend python -m reconcile.extract_cli /path/invoice.pdf --output /path/new-output.json
+```
+
+It does not call an external model. [OCR results](docs/ocr-results.md) document the public-data comparison with the optional free Nemotron vision adapter, including failures, ambiguous fields, label visibility, cost and remaining limitations. Provider keys stay outside Git. Full upload-to-decision integration is still pending.

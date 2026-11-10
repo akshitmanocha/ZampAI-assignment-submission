@@ -1,0 +1,12 @@
+{
+  "model": "nvidia/nemotron-3.5-super-vl:free",
+  "public_synthetic_documents_only": true,
+  "requests": 33,
+  "valid_evaluated_responses": 32,
+  "initial_schema_failure_requests": 1,
+  "reported_cost_usd": 0,
+  "cost_evidence": "all 32 successful response usage.cost values and initial failure-response usage.cost are zero; model catalog prompt/completion prices zero",
+  "heldout_prompt_sha256": "2e43865fdd25480c6ab2a0cf0307be236cd97a4846bcee72049bd902fcc6a7f9",
+  "billing_access_errors": [],
+  "api_key_saved_in_repository": false
+}

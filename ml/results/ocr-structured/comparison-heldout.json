@@ -1,0 +1,1078 @@
+{
+  "comparison": "same public images and unchanged publisher labels",
+  "images": 16,
+  "independent_documents": 12,
+  "local": {
+    "overall": {
+      "images": 16,
+      "independent_documents": 12,
+      "fields": {
+        "vendor_name": {
+          "labelled_non_null": 16,
+          "predicted_found": 5,
+          "correct": 2,
+          "accuracy_on_non_null_labels": 0.125,
+          "precision_of_found_values": 0.4,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "ambiguous": 8,
+            "found": 5,
+            "missing": 3
+          }
+        },
+        "invoice_number": {
+          "labelled_non_null": 9,
+          "predicted_found": 10,
+          "correct": 7,
+          "accuracy_on_non_null_labels": 0.7777777777777778,
+          "precision_of_found_values": 0.7,
+          "predicted_when_label_null": 2,
+          "status_counts": {
+            "missing": 6,
+            "found": 10
+          }
+        },
+        "po_reference": {
+          "labelled_non_null": 1,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": 0.0,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "missing": 16
+          }
+        },
+        "invoice_date": {
+          "labelled_non_null": 16,
+          "predicted_found": 8,
+          "correct": 8,
+          "accuracy_on_non_null_labels": 0.5,
+          "precision_of_found_values": 1.0,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "found": 8,
+            "missing": 7,
+            "ambiguous": 1
+          }
+        },
+        "currency": {
+          "labelled_non_null": 16,
+          "predicted_found": 12,
+          "correct": 12,
+          "accuracy_on_non_null_labels": 0.75,
+          "precision_of_found_values": 1.0,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "found": 12,
+            "ambiguous": 4
+          }
+        },
+        "grand_total": {
+          "labelled_non_null": 16,
+          "predicted_found": 10,
+          "correct": 10,
+          "accuracy_on_non_null_labels": 0.625,
+          "precision_of_found_values": 1.0,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "found": 10,
+            "missing": 6
+          }
+        }
+      },
+      "complete_rows": {
+        "true_positive": 17,
+        "predicted": 17,
+        "labelled": 28,
+        "precision": 1.0,
+        "recall": 0.6071428571428571,
+        "f1": 0.7555555555555554
+      },
+      "rows_description_quantity_amount": {
+        "true_positive": 17,
+        "predicted": 17,
+        "labelled": 28,
+        "precision": 1.0,
+        "recall": 0.6071428571428571,
+        "f1": 0.7555555555555554
+      },
+      "all_four_critical_fields": {
+        "eligible_images": 9,
+        "correct": 3,
+        "accuracy": 0.3333333333333333
+      },
+      "all_five_critical_fields": {
+        "eligible_images": 9,
+        "correct": 1,
+        "accuracy": 0.1111111111111111
+      },
+      "latency_s": {
+        "p50": 1.4565639339998597,
+        "p95": 3.162958711000556
+      }
+    },
+    "invoice_templates_only": {
+      "images": 10,
+      "independent_documents": 6,
+      "fields": {
+        "vendor_name": {
+          "labelled_non_null": 10,
+          "predicted_found": 2,
+          "correct": 2,
+          "accuracy_on_non_null_labels": 0.2,
+          "precision_of_found_values": 1.0,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "ambiguous": 6,
+            "found": 2,
+            "missing": 2
+          }
+        },
+        "invoice_number": {
+          "labelled_non_null": 7,
+          "predicted_found": 7,
+          "correct": 6,
+          "accuracy_on_non_null_labels": 0.8571428571428571,
+          "precision_of_found_values": 0.8571428571428571,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "missing": 3,
+            "found": 7
+          }
+        },
+        "po_reference": {
+          "labelled_non_null": 1,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": 0.0,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "missing": 10
+          }
+        },
+        "invoice_date": {
+          "labelled_non_null": 10,
+          "predicted_found": 5,
+          "correct": 5,
+          "accuracy_on_non_null_labels": 0.5,
+          "precision_of_found_values": 1.0,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "found": 5,
+            "missing": 5
+          }
+        },
+        "currency": {
+          "labelled_non_null": 10,
+          "predicted_found": 8,
+          "correct": 8,
+          "accuracy_on_non_null_labels": 0.8,
+          "precision_of_found_values": 1.0,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "found": 8,
+            "ambiguous": 2
+          }
+        },
+        "grand_total": {
+          "labelled_non_null": 10,
+          "predicted_found": 8,
+          "correct": 8,
+          "accuracy_on_non_null_labels": 0.8,
+          "precision_of_found_values": 1.0,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "found": 8,
+            "missing": 2
+          }
+        }
+      },
+      "complete_rows": {
+        "true_positive": 13,
+        "predicted": 13,
+        "labelled": 16,
+        "precision": 1.0,
+        "recall": 0.8125,
+        "f1": 0.896551724137931
+      },
+      "rows_description_quantity_amount": {
+        "true_positive": 13,
+        "predicted": 13,
+        "labelled": 16,
+        "precision": 1.0,
+        "recall": 0.8125,
+        "f1": 0.896551724137931
+      },
+      "all_four_critical_fields": {
+        "eligible_images": 7,
+        "correct": 3,
+        "accuracy": 0.42857142857142855
+      },
+      "all_five_critical_fields": {
+        "eligible_images": 7,
+        "correct": 1,
+        "accuracy": 0.14285714285714285
+      },
+      "latency_s": {
+        "p50": 1.6076921330004552,
+        "p95": 3.215496867400634
+      }
+    },
+    "by_quality": {
+      "clean": {
+        "images": 12,
+        "independent_documents": 12,
+        "fields": {
+          "vendor_name": {
+            "labelled_non_null": 12,
+            "predicted_found": 4,
+            "correct": 1,
+            "accuracy_on_non_null_labels": 0.08333333333333333,
+            "precision_of_found_values": 0.25,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "ambiguous": 6,
+              "missing": 2,
+              "found": 4
+            }
+          },
+          "invoice_number": {
+            "labelled_non_null": 7,
+            "predicted_found": 8,
+            "correct": 6,
+            "accuracy_on_non_null_labels": 0.8571428571428571,
+            "precision_of_found_values": 0.75,
+            "predicted_when_label_null": 2,
+            "status_counts": {
+              "missing": 4,
+              "found": 8
+            }
+          },
+          "po_reference": {
+            "labelled_non_null": 1,
+            "predicted_found": 0,
+            "correct": 0,
+            "accuracy_on_non_null_labels": 0.0,
+            "precision_of_found_values": null,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "missing": 12
+            }
+          },
+          "invoice_date": {
+            "labelled_non_null": 12,
+            "predicted_found": 6,
+            "correct": 6,
+            "accuracy_on_non_null_labels": 0.5,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 6,
+              "missing": 5,
+              "ambiguous": 1
+            }
+          },
+          "currency": {
+            "labelled_non_null": 12,
+            "predicted_found": 8,
+            "correct": 8,
+            "accuracy_on_non_null_labels": 0.6666666666666666,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 8,
+              "ambiguous": 4
+            }
+          },
+          "grand_total": {
+            "labelled_non_null": 12,
+            "predicted_found": 8,
+            "correct": 8,
+            "accuracy_on_non_null_labels": 0.6666666666666666,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 8,
+              "missing": 4
+            }
+          }
+        },
+        "complete_rows": {
+          "true_positive": 14,
+          "predicted": 14,
+          "labelled": 22,
+          "precision": 1.0,
+          "recall": 0.6363636363636364,
+          "f1": 0.7777777777777778
+        },
+        "rows_description_quantity_amount": {
+          "true_positive": 14,
+          "predicted": 14,
+          "labelled": 22,
+          "precision": 1.0,
+          "recall": 0.6363636363636364,
+          "f1": 0.7777777777777778
+        },
+        "all_four_critical_fields": {
+          "eligible_images": 7,
+          "correct": 2,
+          "accuracy": 0.2857142857142857
+        },
+        "all_five_critical_fields": {
+          "eligible_images": 7,
+          "correct": 1,
+          "accuracy": 0.14285714285714285
+        },
+        "latency_s": {
+          "p50": 1.41570332900028,
+          "p95": 1.6040967920498588
+        }
+      },
+      "faded": {
+        "images": 2,
+        "independent_documents": 2,
+        "fields": {
+          "vendor_name": {
+            "labelled_non_null": 2,
+            "predicted_found": 0,
+            "correct": 0,
+            "accuracy_on_non_null_labels": 0.0,
+            "precision_of_found_values": null,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "ambiguous": 2
+            }
+          },
+          "invoice_number": {
+            "labelled_non_null": 1,
+            "predicted_found": 1,
+            "correct": 1,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "missing": 1,
+              "found": 1
+            }
+          },
+          "po_reference": {
+            "labelled_non_null": 0,
+            "predicted_found": 0,
+            "correct": 0,
+            "accuracy_on_non_null_labels": null,
+            "precision_of_found_values": null,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "missing": 2
+            }
+          },
+          "invoice_date": {
+            "labelled_non_null": 2,
+            "predicted_found": 1,
+            "correct": 1,
+            "accuracy_on_non_null_labels": 0.5,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "missing": 1,
+              "found": 1
+            }
+          },
+          "currency": {
+            "labelled_non_null": 2,
+            "predicted_found": 2,
+            "correct": 2,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 2
+            }
+          },
+          "grand_total": {
+            "labelled_non_null": 2,
+            "predicted_found": 2,
+            "correct": 2,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 2
+            }
+          }
+        },
+        "complete_rows": {
+          "true_positive": 3,
+          "predicted": 3,
+          "labelled": 3,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "rows_description_quantity_amount": {
+          "true_positive": 3,
+          "predicted": 3,
+          "labelled": 3,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "all_four_critical_fields": {
+          "eligible_images": 1,
+          "correct": 1,
+          "accuracy": 1.0
+        },
+        "all_five_critical_fields": {
+          "eligible_images": 1,
+          "correct": 0,
+          "accuracy": 0.0
+        },
+        "latency_s": {
+          "p50": 2.028924139999617,
+          "p95": 2.097323501899427
+        }
+      },
+      "bad_scan": {
+        "images": 2,
+        "independent_documents": 2,
+        "fields": {
+          "vendor_name": {
+            "labelled_non_null": 2,
+            "predicted_found": 1,
+            "correct": 1,
+            "accuracy_on_non_null_labels": 0.5,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 1,
+              "missing": 1
+            }
+          },
+          "invoice_number": {
+            "labelled_non_null": 1,
+            "predicted_found": 1,
+            "correct": 0,
+            "accuracy_on_non_null_labels": 0.0,
+            "precision_of_found_values": 0.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "missing": 1,
+              "found": 1
+            }
+          },
+          "po_reference": {
+            "labelled_non_null": 0,
+            "predicted_found": 0,
+            "correct": 0,
+            "accuracy_on_non_null_labels": null,
+            "precision_of_found_values": null,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "missing": 2
+            }
+          },
+          "invoice_date": {
+            "labelled_non_null": 2,
+            "predicted_found": 1,
+            "correct": 1,
+            "accuracy_on_non_null_labels": 0.5,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "missing": 1,
+              "found": 1
+            }
+          },
+          "currency": {
+            "labelled_non_null": 2,
+            "predicted_found": 2,
+            "correct": 2,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 2
+            }
+          },
+          "grand_total": {
+            "labelled_non_null": 2,
+            "predicted_found": 0,
+            "correct": 0,
+            "accuracy_on_non_null_labels": 0.0,
+            "precision_of_found_values": null,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "missing": 2
+            }
+          }
+        },
+        "complete_rows": {
+          "true_positive": 0,
+          "predicted": 0,
+          "labelled": 3,
+          "precision": 0,
+          "recall": 0.0,
+          "f1": 0
+        },
+        "rows_description_quantity_amount": {
+          "true_positive": 0,
+          "predicted": 0,
+          "labelled": 3,
+          "precision": 0,
+          "recall": 0.0,
+          "f1": 0
+        },
+        "all_four_critical_fields": {
+          "eligible_images": 1,
+          "correct": 0,
+          "accuracy": 0.0
+        },
+        "all_five_critical_fields": {
+          "eligible_images": 1,
+          "correct": 0,
+          "accuracy": 0.0
+        },
+        "latency_s": {
+          "p50": 3.206740508000621,
+          "p95": 3.2855477426007385
+        }
+      }
+    }
+  },
+  "vision": {
+    "overall": {
+      "images": 16,
+      "independent_documents": 12,
+      "fields": {
+        "vendor_name": {
+          "labelled_non_null": 16,
+          "predicted_found": 16,
+          "correct": 16,
+          "accuracy_on_non_null_labels": 1.0,
+          "precision_of_found_values": 1.0,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "found": 16
+          }
+        },
+        "invoice_number": {
+          "labelled_non_null": 9,
+          "predicted_found": 12,
+          "correct": 9,
+          "accuracy_on_non_null_labels": 1.0,
+          "precision_of_found_values": 0.75,
+          "predicted_when_label_null": 3,
+          "status_counts": {
+            "missing": 4,
+            "found": 12
+          }
+        },
+        "po_reference": {
+          "labelled_non_null": 1,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": 0.0,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "missing": 16
+          }
+        },
+        "invoice_date": {
+          "labelled_non_null": 16,
+          "predicted_found": 15,
+          "correct": 15,
+          "accuracy_on_non_null_labels": 0.9375,
+          "precision_of_found_values": 1.0,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "found": 15,
+            "ambiguous": 1
+          }
+        },
+        "currency": {
+          "labelled_non_null": 16,
+          "predicted_found": 12,
+          "correct": 12,
+          "accuracy_on_non_null_labels": 0.75,
+          "precision_of_found_values": 1.0,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "found": 12,
+            "ambiguous": 4
+          }
+        },
+        "grand_total": {
+          "labelled_non_null": 16,
+          "predicted_found": 16,
+          "correct": 16,
+          "accuracy_on_non_null_labels": 1.0,
+          "precision_of_found_values": 1.0,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "found": 16
+          }
+        }
+      },
+      "complete_rows": {
+        "true_positive": 20,
+        "predicted": 28,
+        "labelled": 28,
+        "precision": 0.7142857142857143,
+        "recall": 0.7142857142857143,
+        "f1": 0.7142857142857143
+      },
+      "rows_description_quantity_amount": {
+        "true_positive": 27,
+        "predicted": 28,
+        "labelled": 28,
+        "precision": 0.9642857142857143,
+        "recall": 0.9642857142857143,
+        "f1": 0.9642857142857143
+      },
+      "all_four_critical_fields": {
+        "eligible_images": 9,
+        "correct": 7,
+        "accuracy": 0.7777777777777778
+      },
+      "all_five_critical_fields": {
+        "eligible_images": 9,
+        "correct": 7,
+        "accuracy": 0.7777777777777778
+      },
+      "latency_s": {
+        "p50": 6.476486098499663,
+        "p95": 15.843647577498814
+      }
+    },
+    "invoice_templates_only": {
+      "images": 10,
+      "independent_documents": 6,
+      "fields": {
+        "vendor_name": {
+          "labelled_non_null": 10,
+          "predicted_found": 10,
+          "correct": 10,
+          "accuracy_on_non_null_labels": 1.0,
+          "precision_of_found_values": 1.0,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "found": 10
+          }
+        },
+        "invoice_number": {
+          "labelled_non_null": 7,
+          "predicted_found": 7,
+          "correct": 7,
+          "accuracy_on_non_null_labels": 1.0,
+          "precision_of_found_values": 1.0,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "missing": 3,
+            "found": 7
+          }
+        },
+        "po_reference": {
+          "labelled_non_null": 1,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": 0.0,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "missing": 10
+          }
+        },
+        "invoice_date": {
+          "labelled_non_null": 10,
+          "predicted_found": 10,
+          "correct": 10,
+          "accuracy_on_non_null_labels": 1.0,
+          "precision_of_found_values": 1.0,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "found": 10
+          }
+        },
+        "currency": {
+          "labelled_non_null": 10,
+          "predicted_found": 8,
+          "correct": 8,
+          "accuracy_on_non_null_labels": 0.8,
+          "precision_of_found_values": 1.0,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "found": 8,
+            "ambiguous": 2
+          }
+        },
+        "grand_total": {
+          "labelled_non_null": 10,
+          "predicted_found": 10,
+          "correct": 10,
+          "accuracy_on_non_null_labels": 1.0,
+          "precision_of_found_values": 1.0,
+          "predicted_when_label_null": 0,
+          "status_counts": {
+            "found": 10
+          }
+        }
+      },
+      "complete_rows": {
+        "true_positive": 16,
+        "predicted": 16,
+        "labelled": 16,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "rows_description_quantity_amount": {
+        "true_positive": 16,
+        "predicted": 16,
+        "labelled": 16,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "all_four_critical_fields": {
+        "eligible_images": 7,
+        "correct": 5,
+        "accuracy": 0.7142857142857143
+      },
+      "all_five_critical_fields": {
+        "eligible_images": 7,
+        "correct": 5,
+        "accuracy": 0.7142857142857143
+      },
+      "latency_s": {
+        "p50": 6.476486098499663,
+        "p95": 20.784386914399306
+      }
+    },
+    "by_quality": {
+      "clean": {
+        "images": 12,
+        "independent_documents": 12,
+        "fields": {
+          "vendor_name": {
+            "labelled_non_null": 12,
+            "predicted_found": 12,
+            "correct": 12,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 12
+            }
+          },
+          "invoice_number": {
+            "labelled_non_null": 7,
+            "predicted_found": 10,
+            "correct": 7,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 0.7,
+            "predicted_when_label_null": 3,
+            "status_counts": {
+              "missing": 2,
+              "found": 10
+            }
+          },
+          "po_reference": {
+            "labelled_non_null": 1,
+            "predicted_found": 0,
+            "correct": 0,
+            "accuracy_on_non_null_labels": 0.0,
+            "precision_of_found_values": null,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "missing": 12
+            }
+          },
+          "invoice_date": {
+            "labelled_non_null": 12,
+            "predicted_found": 11,
+            "correct": 11,
+            "accuracy_on_non_null_labels": 0.9166666666666666,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 11,
+              "ambiguous": 1
+            }
+          },
+          "currency": {
+            "labelled_non_null": 12,
+            "predicted_found": 8,
+            "correct": 8,
+            "accuracy_on_non_null_labels": 0.6666666666666666,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 8,
+              "ambiguous": 4
+            }
+          },
+          "grand_total": {
+            "labelled_non_null": 12,
+            "predicted_found": 12,
+            "correct": 12,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 12
+            }
+          }
+        },
+        "complete_rows": {
+          "true_positive": 14,
+          "predicted": 22,
+          "labelled": 22,
+          "precision": 0.6363636363636364,
+          "recall": 0.6363636363636364,
+          "f1": 0.6363636363636364
+        },
+        "rows_description_quantity_amount": {
+          "true_positive": 21,
+          "predicted": 22,
+          "labelled": 22,
+          "precision": 0.9545454545454546,
+          "recall": 0.9545454545454546,
+          "f1": 0.9545454545454546
+        },
+        "all_four_critical_fields": {
+          "eligible_images": 7,
+          "correct": 5,
+          "accuracy": 0.7142857142857143
+        },
+        "all_five_critical_fields": {
+          "eligible_images": 7,
+          "correct": 5,
+          "accuracy": 0.7142857142857143
+        },
+        "latency_s": {
+          "p50": 6.6001362625002,
+          "p95": 19.68099565629908
+        }
+      },
+      "faded": {
+        "images": 2,
+        "independent_documents": 2,
+        "fields": {
+          "vendor_name": {
+            "labelled_non_null": 2,
+            "predicted_found": 2,
+            "correct": 2,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 2
+            }
+          },
+          "invoice_number": {
+            "labelled_non_null": 1,
+            "predicted_found": 1,
+            "correct": 1,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "missing": 1,
+              "found": 1
+            }
+          },
+          "po_reference": {
+            "labelled_non_null": 0,
+            "predicted_found": 0,
+            "correct": 0,
+            "accuracy_on_non_null_labels": null,
+            "precision_of_found_values": null,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "missing": 2
+            }
+          },
+          "invoice_date": {
+            "labelled_non_null": 2,
+            "predicted_found": 2,
+            "correct": 2,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 2
+            }
+          },
+          "currency": {
+            "labelled_non_null": 2,
+            "predicted_found": 2,
+            "correct": 2,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 2
+            }
+          },
+          "grand_total": {
+            "labelled_non_null": 2,
+            "predicted_found": 2,
+            "correct": 2,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 2
+            }
+          }
+        },
+        "complete_rows": {
+          "true_positive": 3,
+          "predicted": 3,
+          "labelled": 3,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "rows_description_quantity_amount": {
+          "true_positive": 3,
+          "predicted": 3,
+          "labelled": 3,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "all_four_critical_fields": {
+          "eligible_images": 1,
+          "correct": 1,
+          "accuracy": 1.0
+        },
+        "all_five_critical_fields": {
+          "eligible_images": 1,
+          "correct": 1,
+          "accuracy": 1.0
+        },
+        "latency_s": {
+          "p50": 5.489595953000389,
+          "p95": 6.300387654199585
+        }
+      },
+      "bad_scan": {
+        "images": 2,
+        "independent_documents": 2,
+        "fields": {
+          "vendor_name": {
+            "labelled_non_null": 2,
+            "predicted_found": 2,
+            "correct": 2,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 2
+            }
+          },
+          "invoice_number": {
+            "labelled_non_null": 1,
+            "predicted_found": 1,
+            "correct": 1,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "missing": 1,
+              "found": 1
+            }
+          },
+          "po_reference": {
+            "labelled_non_null": 0,
+            "predicted_found": 0,
+            "correct": 0,
+            "accuracy_on_non_null_labels": null,
+            "precision_of_found_values": null,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "missing": 2
+            }
+          },
+          "invoice_date": {
+            "labelled_non_null": 2,
+            "predicted_found": 2,
+            "correct": 2,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 2
+            }
+          },
+          "currency": {
+            "labelled_non_null": 2,
+            "predicted_found": 2,
+            "correct": 2,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 2
+            }
+          },
+          "grand_total": {
+            "labelled_non_null": 2,
+            "predicted_found": 2,
+            "correct": 2,
+            "accuracy_on_non_null_labels": 1.0,
+            "precision_of_found_values": 1.0,
+            "predicted_when_label_null": 0,
+            "status_counts": {
+              "found": 2
+            }
+          }
+        },
+        "complete_rows": {
+          "true_positive": 3,
+          "predicted": 3,
+          "labelled": 3,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "rows_description_quantity_amount": {
+          "true_positive": 3,
+          "predicted": 3,
+          "labelled": 3,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "all_four_critical_fields": {
+          "eligible_images": 1,
+          "correct": 1,
+          "accuracy": 1.0
+        },
+        "all_five_critical_fields": {
+          "eligible_images": 1,
+          "correct": 1,
+          "accuracy": 1.0
+        },
+        "latency_s": {
+          "p50": 5.8995504909999,
+          "p95": 7.150828581100723
+        }
+      }
+    }
+  },
+  "vision_reported_cost": 0.0,
+  "metric_version": "v2: identifiers preserve punctuation/zeros; exact normalized descriptions required for row TP; source-label observability not assumed",
+  "metric_source_sha256": "c50fb6556ecc6e3b66d6cab7bd1146ff4afdb196160a7519dc0467c279d1eb22",
+  "limitations": [
+    "Small stratified synthetic sample, quality variants correlated",
+    "Gold fields may not be printed: strict full rows and core rows reported separately, no labels edited",
+    "Predictions on null-labelled fields remain visible as disagreements until source audited",
+    "Model boxes/values remain proposals, not automatically verified",
+    "No invoice matching, approval precision or automation rate measured"
+  ]
+}

@@ -1,0 +1,357 @@
+{
+  "model": "nvidia/nemotron-3.5-super-vl:free",
+  "requests_used": 1,
+  "selected_images": 16,
+  "completed_images": 0,
+  "failures": [
+    {
+      "file_name": "synth_0104_3e058c57.png",
+      "quality": "clean",
+      "error": "schema_validation_failed",
+      "response_content": "{\"header\": {\"vendor_name\": {\"raw_text\": \"Sunrise Inn\", \"bbox\": [96, 118, 287, 145]}, \"invoice_number\": {\"raw_text\": \"None\", \"bbox\": [96, 222, 161, 240]}, \"po_reference\": {\"raw_text\": null, \"bbox\": null}, \"invoice_date\": {\"raw_text\": \"15/08/2023\", \"bbox\": [376, 222, 470, 235]}, \"currency\": {\"raw_text\": \"C$\", \"bbox\": [658, 220, 687, 237]}, \"subtotal\": {\"raw_text\": \"C$405.00\", \"bbox\": [827, 507, 904, 520]}, \"grand_total\": {\"raw_text\": \"C$425.25\", \"bbox\": [782, 574, 904, 592]}, \"tax_total\": {\"raw_text\": \"C$20.25\", \"bbox\": [834, 535, 904, 548]}}, \"lines\": [{\"description\": {\"raw_text\": \"Room stay - 3 nights\", \"bbox\": [144, 412, 308, 424]}, \"qty\": {\"raw_text\": \"3.0\", \"bbox\": [463, 412, 491, 423]}, \"unit\": {\"raw_text\": null, \"bbox\": null}, \"unit_price\": {\"raw_text\": \"C$120.00\", \"bbox\": [586, 411, 662, 424]}, \"amount\": {\"raw_text\": \"C$360.00\", \"bbox\": [827, 411, 904, 424]}}, {\"description\": {\"raw_text\": \"Breakfast - 3 meals\", \"bbox\": [144, 453, 298, 465]}, \"qty\": {\"raw_text\": \"3.0\", \"bbox\": [463, 453, 491, 464]}, \"unit\": {\"raw_text\": null, \"bbox\": null}, \"unit_price\": {\"raw_text\": \"C$15.00\", \"bbox\": [593, 452, 662, 465]}, \"amount\": {\"raw_text\": \"C$45.00\", \"bbox\": [834, 452, 904, 465]}}]}",
+      "usage": {
+        "prompt_tokens": 3157,
+        "completion_tokens": 628,
+        "total_tokens": 3785,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "split": "development",
+  "overall": {
+    "images": 0,
+    "independent_documents": 0,
+    "fields": {
+      "vendor_name": {
+        "labelled_non_null": 0,
+        "predicted_found": 0,
+        "correct": 0,
+        "accuracy_on_non_null_labels": null,
+        "precision_of_found_values": null,
+        "predicted_when_label_null": 0,
+        "status_counts": {}
+      },
+      "invoice_number": {
+        "labelled_non_null": 0,
+        "predicted_found": 0,
+        "correct": 0,
+        "accuracy_on_non_null_labels": null,
+        "precision_of_found_values": null,
+        "predicted_when_label_null": 0,
+        "status_counts": {}
+      },
+      "po_reference": {
+        "labelled_non_null": 0,
+        "predicted_found": 0,
+        "correct": 0,
+        "accuracy_on_non_null_labels": null,
+        "precision_of_found_values": null,
+        "predicted_when_label_null": 0,
+        "status_counts": {}
+      },
+      "invoice_date": {
+        "labelled_non_null": 0,
+        "predicted_found": 0,
+        "correct": 0,
+        "accuracy_on_non_null_labels": null,
+        "precision_of_found_values": null,
+        "predicted_when_label_null": 0,
+        "status_counts": {}
+      },
+      "currency": {
+        "labelled_non_null": 0,
+        "predicted_found": 0,
+        "correct": 0,
+        "accuracy_on_non_null_labels": null,
+        "precision_of_found_values": null,
+        "predicted_when_label_null": 0,
+        "status_counts": {}
+      },
+      "grand_total": {
+        "labelled_non_null": 0,
+        "predicted_found": 0,
+        "correct": 0,
+        "accuracy_on_non_null_labels": null,
+        "precision_of_found_values": null,
+        "predicted_when_label_null": 0,
+        "status_counts": {}
+      }
+    },
+    "complete_rows": {
+      "true_positive": 0,
+      "predicted": 0,
+      "labelled": 0,
+      "precision": 0,
+      "recall": 0,
+      "f1": 0
+    },
+    "all_four_critical_fields": {
+      "eligible_images": 0,
+      "correct": 0,
+      "accuracy": null
+    },
+    "latency_s": {
+      "p50": null,
+      "p95": null
+    }
+  },
+  "by_quality": {
+    "clean": {
+      "images": 0,
+      "independent_documents": 0,
+      "fields": {
+        "vendor_name": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        },
+        "invoice_number": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        },
+        "po_reference": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        },
+        "invoice_date": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        },
+        "currency": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        },
+        "grand_total": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        }
+      },
+      "complete_rows": {
+        "true_positive": 0,
+        "predicted": 0,
+        "labelled": 0,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      "all_four_critical_fields": {
+        "eligible_images": 0,
+        "correct": 0,
+        "accuracy": null
+      },
+      "latency_s": {
+        "p50": null,
+        "p95": null
+      }
+    },
+    "faded": {
+      "images": 0,
+      "independent_documents": 0,
+      "fields": {
+        "vendor_name": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        },
+        "invoice_number": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        },
+        "po_reference": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        },
+        "invoice_date": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        },
+        "currency": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        },
+        "grand_total": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        }
+      },
+      "complete_rows": {
+        "true_positive": 0,
+        "predicted": 0,
+        "labelled": 0,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      "all_four_critical_fields": {
+        "eligible_images": 0,
+        "correct": 0,
+        "accuracy": null
+      },
+      "latency_s": {
+        "p50": null,
+        "p95": null
+      }
+    },
+    "bad_scan": {
+      "images": 0,
+      "independent_documents": 0,
+      "fields": {
+        "vendor_name": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        },
+        "invoice_number": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        },
+        "po_reference": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        },
+        "invoice_date": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        },
+        "currency": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        },
+        "grand_total": {
+          "labelled_non_null": 0,
+          "predicted_found": 0,
+          "correct": 0,
+          "accuracy_on_non_null_labels": null,
+          "precision_of_found_values": null,
+          "predicted_when_label_null": 0,
+          "status_counts": {}
+        }
+      },
+      "complete_rows": {
+        "true_positive": 0,
+        "predicted": 0,
+        "labelled": 0,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      "all_four_critical_fields": {
+        "eligible_images": 0,
+        "correct": 0,
+        "accuracy": null
+      },
+      "latency_s": {
+        "p50": null,
+        "p95": null
+      }
+    }
+  },
+  "limitations": [
+    "Free public-data experiment only; no private invoices",
+    "Provider model can change; ID/usage/model metadata saved",
+    "Model-proposed values/boxes not automatically verified",
+    "Only completed requests summarized; coverage/failure counts reported separately",
+    "Publisher labels may not be visibly printed; label audit incomplete",
+    "No LLM judge used; independent saved labels determine scores",
+    "Image resizing differs from local PDF OCR route"
+  ]
+}

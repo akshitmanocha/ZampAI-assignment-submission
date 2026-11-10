@@ -1,0 +1,27 @@
+{
+  "scope": "Manual observations on development examples; not a complete corpus audit",
+  "source": "alamgirqazi/invoice-ocr-synthetic",
+  "revision": "673ff85be462eb7f3715ec188a295dd17ca11115",
+  "findings": [
+    {
+      "file_name": "synth_0105_ef9e5119.png",
+      "quality_inspected": "clean",
+      "observation": "The rendered receipt has Item, Qty and Amount columns. It has no separate Unit Price column. Labels nevertheless provide unit_price for every row. Nemotron retained missing unit_price rather than computing it from quantity and amount.",
+      "action": "Preserve strict full-row scores. Also report description/quantity/amount accuracy separately; never count inferred unit prices as printed extraction."
+    },
+    {
+      "file_name": "synth_0108_3342ba8c.png",
+      "quality_inspected": "clean",
+      "observation": "Company name is stacked across three title lines. Table uses Value for line amount. Net Total, VAT Total and EUR Total are distinct.",
+      "action": "Development parser fixes join title lines, recognize Value and keep tax/net totals separate."
+    },
+    {
+      "file_name": "synth_0104_3e058c57.png",
+      "quality_inspected": "clean",
+      "observation": "Invoice Number literally displays None, while issue date and amount due are separate nearby columns. The labelled invoice_number is null.",
+      "action": "Do not invent an invoice ID. Read the date from its own column."
+    }
+  ],
+  "gold_labels_modified": false,
+  "heldout_images_manually_inspected": false
+}

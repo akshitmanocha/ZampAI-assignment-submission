@@ -1,0 +1,143 @@
+{
+  "dataset": "alamgirqazi/invoice-ocr-synthetic",
+  "revision": "673ff85be462eb7f3715ec188a295dd17ca11115",
+  "license": "CC BY 4.0; Alamgir Qazi",
+  "selection": "first four records per template after skipping first 100 source records; first two per template development, next two heldout; all quality variants grouped",
+  "base_documents": 24,
+  "expected_images": 72,
+  "source_template_counts": {
+    "modern_minimal": 4,
+    "pos_thermal": 4,
+    "freelancer_invoice": 4,
+    "formal_corporate": 4,
+    "event_ticket": 4,
+    "utility_bill": 4
+  },
+  "documents": {
+    "synth_0104_3e058c57.png": {
+      "split": "development",
+      "template": "modern_minimal",
+      "gold_sha256": "dbd1757430a887267ea0ad521394a941735c2972233230d40f157a0ccdeaac8d"
+    },
+    "synth_0105_ef9e5119.png": {
+      "split": "development",
+      "template": "pos_thermal",
+      "gold_sha256": "9c55f717b53590fab9dea9474eb154f4b61f94e8ce38eb3ee3edbdafe83a1fc2"
+    },
+    "synth_0106_d37317df.png": {
+      "split": "development",
+      "template": "pos_thermal",
+      "gold_sha256": "856f3fd5cc8773da51ea5c19a8271fcfe7e15d503c6881df17b2951c4e4847e4"
+    },
+    "synth_0107_861a52a9.png": {
+      "split": "development",
+      "template": "freelancer_invoice",
+      "gold_sha256": "0bd5e785f058a29d44a511349ce7cb7fdbae14c8013f0e15d2270d91b3668e79"
+    },
+    "synth_0108_3342ba8c.png": {
+      "split": "development",
+      "template": "formal_corporate",
+      "gold_sha256": "73864e11867dcd70de02b4a9b3b9f51d1ec5acf375cfb7993b9598e585f5535e"
+    },
+    "synth_0109_374d98f1.png": {
+      "split": "development",
+      "template": "freelancer_invoice",
+      "gold_sha256": "00d0a7b092f4a9104c19e439391ec946ecb0b8cd60429e58231448d10253bbe2"
+    },
+    "synth_0110_9398db5b.png": {
+      "split": "development",
+      "template": "modern_minimal",
+      "gold_sha256": "f2dfe49960ce11640c6cc4fcef40334fe3121ae3f428ff3ac15dee726a6823bb"
+    },
+    "synth_0111_220337e0.png": {
+      "split": "development",
+      "template": "event_ticket",
+      "gold_sha256": "d2f76ce0d844d3dee485098249050c2827289141f35f31c1b36bbaa560b2222c"
+    },
+    "synth_0112_cad33dd2.png": {
+      "split": "development",
+      "template": "formal_corporate",
+      "gold_sha256": "76f31d22312ec3f5cb86f20a5d8b1e63398fe27931054ec2e47324288fb104a3"
+    },
+    "synth_0115_83dbfc01.png": {
+      "split": "heldout",
+      "template": "modern_minimal",
+      "gold_sha256": "3ba7e29fc6115dc542d8ff2d8c359350f6514473c7188c54b9b0ec9a7bb19d3b"
+    },
+    "synth_0116_397b46c3.png": {
+      "split": "development",
+      "template": "event_ticket",
+      "gold_sha256": "f75d9ec17e5f4550c34fa1a44c97a33e592bc254c41f6d61003ebd9183e1312e"
+    },
+    "synth_0117_8d300476.png": {
+      "split": "heldout",
+      "template": "formal_corporate",
+      "gold_sha256": "a289ea2ed68b6ae89191d6a8dc8f6a123dc124de74b2fd253886b137d276c8ec"
+    },
+    "synth_0118_5801858c.png": {
+      "split": "heldout",
+      "template": "freelancer_invoice",
+      "gold_sha256": "088bc21b9684c7275f2fa33bbb3e42bad486783dbff948b31ca91588218c74b0"
+    },
+    "synth_0119_e2b4b633.png": {
+      "split": "heldout",
+      "template": "event_ticket",
+      "gold_sha256": "82f5be90beffb49f5be3345ee6d54d031e8d5087b2b1131e33376befec536a96"
+    },
+    "synth_0120_8d46afd8.png": {
+      "split": "heldout",
+      "template": "modern_minimal",
+      "gold_sha256": "fbdb03d6d3b8baf26e6ae2bffe71fbced001ea5a770d18b6dd0672fb6faee0af"
+    },
+    "synth_0123_80ced5ab.png": {
+      "split": "heldout",
+      "template": "freelancer_invoice",
+      "gold_sha256": "da4fc95b6f41658be06d2061944b2dc0fc8bda3daa3a7c79ddad945fbf634d09"
+    },
+    "synth_0125_fa836236.png": {
+      "split": "heldout",
+      "template": "formal_corporate",
+      "gold_sha256": "12795f8e013f2da82afa7447c1a93a245ed2de35fc2833878aba551fbebdd8ee"
+    },
+    "synth_0126_ac884375.png": {
+      "split": "heldout",
+      "template": "event_ticket",
+      "gold_sha256": "dc3e52fdd9c2e2ccec85d850df96c11220e4b9583859decab939e8dbf0373cf9"
+    },
+    "synth_0127_0a126642.png": {
+      "split": "heldout",
+      "template": "pos_thermal",
+      "gold_sha256": "1983c4823809a5990cbe12eb0bae6612847e5df4aeb0e4aebacf279912bdea64"
+    },
+    "synth_0128_73325b13.png": {
+      "split": "development",
+      "template": "utility_bill",
+      "gold_sha256": "e4bb173a2a8034c74cd029f8f7b2645da60a09d882de97bf4cdde0a77f6d5542"
+    },
+    "synth_0137_6bbd647e.png": {
+      "split": "development",
+      "template": "utility_bill",
+      "gold_sha256": "03ea04458fdcc38eb7982788eba0bc2f65a11adcf3140c65aeaf0d1d84f438e1"
+    },
+    "synth_0139_84a73924.png": {
+      "split": "heldout",
+      "template": "pos_thermal",
+      "gold_sha256": "bb26f35de290d4a7d1a740a57d5e38f897a0fb849c7c9ff80c0354fe4aeebd13"
+    },
+    "synth_0141_bb9ed353.png": {
+      "split": "heldout",
+      "template": "utility_bill",
+      "gold_sha256": "9340f74656cf4bc3c8df8cba3ae1b0725c08048d5637e6de8c40012d9b54d801"
+    },
+    "synth_0142_b5328c89.png": {
+      "split": "heldout",
+      "template": "utility_bill",
+      "gold_sha256": "5ca75b269a2edc69b95df16cc77d6c266278912908477c7f56c77736fd5656d3"
+    }
+  },
+  "limitations": [
+    "Synthetic English documents; no INR or procurement history",
+    "Publisher labels can include fields not visibly printed; full image audit not complete",
+    "Only four documents per template; sample is stratified convenience, not population-representative"
+  ]
+}

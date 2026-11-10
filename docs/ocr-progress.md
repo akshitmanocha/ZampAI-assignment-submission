@@ -9,3 +9,7 @@ Four initial tests passed: real native PDF reading, real OCR of a generated scan
 The image-bearing-page rule is intentionally conservative: it OCRs even pages containing only a logo plus native text. Improve the layout/image-area policy only after measuring correctness and latency on mixed pages. Extraction/field parsing is still a separate task; raw word recovery does not prove correct invoice-field attribution or line-item reconstruction.
 
 Next: audit image-to-label observability for the public dataset, expand clean/faded/bad-scan cases, implement structured fields/rows with source evidence, and report critical-field accuracy and row precision/recall. The original 12-image public OCR smoke scores remain a diagnostic, not the new parser's benchmark.
+
+## Structured extraction and free-model comparison added
+
+See [measured OCR results](ocr-results.md). The parser/CLI now extracts source-linked headers and table rows; an optional OpenRouter Nemotron vision proposal adapter was evaluated on public synthetic data. Baseline, improved development, independent holdout, same-image model comparisons and label-audit findings are saved. This remains a standalone extraction capability, not a completed upload/worker/review workflow.

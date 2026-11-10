@@ -3,7 +3,7 @@
 Run on untrusted uploads only inside the planned resource-limited worker
 subprocess. This utility is not exposed through an upload endpoint yet.
 """
-from dataclasses import dataclass,asdict
+from reconcile.document_types import Word,PageText
 import io
 import math
 import pdfplumber
@@ -15,24 +15,6 @@ from pdfminer.pdfdocument import PDFPasswordIncorrect
 class DocumentError(Exception):
     def __init__(self,code):self.code=code;super().__init__(code)
 
-@dataclass(frozen=True)
-class Word:
-    text: str
-    bbox: tuple[float,float,float,float]
-    # OCR confidence is engine-reported, not a correctness probability.
-    confidence: float | None = None
-
-@dataclass(frozen=True)
-class PageText:
-    page: int
-    method: str
-    width: float
-    height: float
-    words: tuple[Word,...]
-    warnings: tuple[str,...] = ()
-
-    def to_dict(self):return asdict(self)
-
 
 def extract_document(data:bytes,max_pages=10,max_bytes=10*1024*1024):
     if not 1<=max_pages<=100:raise ValueError('Invalid page limit')
@@ -40,7 +22,14 @@ def extract_document(data:bytes,max_pages=10,max_bytes=10*1024*1024):
     if not data.startswith(b'%PDF-'):raise DocumentError('PDF_INVALID')
     try:pdf=pdfplumber.open(io.BytesIO(data))
     except PDFPasswordIncorrect:raise DocumentError('PDF_ENCRYPTED') from None
-    except Exception:raise DocumentError('PDF_INVALID') from None
+    except Exception as error:
+        # pdfplumber can wrap the original pdfminer password exception.
+        current=error;seen=set()
+        while current is not None and id(current) not in seen:
+            seen.add(id(current))
+            if isinstance(current,PDFPasswordIncorrect):raise DocumentError('PDF_ENCRYPTED') from None
+            current=current.__cause__ or current.__context__
+        raise DocumentError('PDF_INVALID') from None
     with pdf:
         if not pdf.pages:raise DocumentError('PDF_EMPTY')
         if len(pdf.pages)>max_pages:raise DocumentError('PDF_TOO_MANY_PAGES')
