@@ -1,0 +1,8 @@
+{
+  "n": 144,
+  "cpu_total_scoring_s": 0.5170348249998824,
+  "cpu_threads": 2,
+  "max_abs_logit_difference": 4.291534423828125e-06,
+  "same_binary_predictions": true,
+  "scope": "warm CPU scoring only; model load, OCR, API and DB excluded"
+}

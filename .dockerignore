@@ -8,7 +8,10 @@ web/dist
 backend/tests
 fixtures/expected
 eval
-ml
+ml/**
+!ml/results/
+!ml/results/pilot/
+!ml/results/pilot/metrics.json
 docs
 reconcile-design
 *.pdf

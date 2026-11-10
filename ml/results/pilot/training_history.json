@@ -1,0 +1,20 @@
+[
+  {
+    "epoch": 1,
+    "training_loss": 0.4113427483373218,
+    "validation_f1": 1.0,
+    "duration_s": 2.4020132969999395
+  },
+  {
+    "epoch": 2,
+    "training_loss": 0.08253729605995533,
+    "validation_f1": 1.0,
+    "duration_s": 1.853040037000028
+  },
+  {
+    "epoch": 3,
+    "training_loss": 0.04286335772808848,
+    "validation_f1": 1.0,
+    "duration_s": 1.7905146040002364
+  }
+]

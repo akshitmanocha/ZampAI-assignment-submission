@@ -1,0 +1,8 @@
+{
+  "file_name": "synth_0002_8f01361b.png",
+  "po_number_label": "PO-5678",
+  "template": "freelancer_invoice",
+  "manual_visual_observation": "Inspected full rendered image: PO-5678 is not visible. Do not treat the populated PO label as evidence that this value can be extracted from this image.",
+  "coverage": "one of three failed PO-number cases inspected; remaining two not manually inspected",
+  "action": "Keep original smoke results; exclude from claims of structured extraction accuracy; expand image-label audit before benchmark use"
+}

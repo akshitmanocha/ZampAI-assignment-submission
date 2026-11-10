@@ -1,0 +1,49 @@
+{
+  "dataset": "alamgirqazi/invoice-ocr-synthetic",
+  "revision": "673ff85be462eb7f3715ec188a295dd17ca11115",
+  "license_card": "CC BY 4.0; credit dataset author Alamgir Qazi",
+  "rows": 12,
+  "independent_documents": 12,
+  "selection": "first N rows of streaming train split; convenience smoke sample, not a representative held-out test",
+  "quality_counts": {
+    "clean": 12
+  },
+  "template_counts": {
+    "event_ticket": 3,
+    "freelancer_invoice": 3,
+    "formal_corporate": 2,
+    "modern_minimal": 1,
+    "utility_bill": 2,
+    "pos_thermal": 1
+  },
+  "metrics": {
+    "invoice_number": {
+      "eligible": 8,
+      "recovered": 8,
+      "recovery_rate": 1.0
+    },
+    "po_number": {
+      "eligible": 3,
+      "recovered": 0,
+      "recovery_rate": 0.0
+    },
+    "supplier_name": {
+      "eligible": 12,
+      "recovered": 12,
+      "recovery_rate": 1.0
+    },
+    "total_amount_anywhere": {
+      "eligible": 12,
+      "recovered": 12,
+      "recovery_rate": 1.0
+    }
+  },
+  "metric_definition": "Label-text/number recovery anywhere in raw OCR; not structured extraction accuracy",
+  "limitations": [
+    "No manual image-label audit yet",
+    "No row-level or decision evaluation",
+    "Publisher synthetic labels; not INR or linked PO histories",
+    "Repeated variants can be correlated"
+  ],
+  "tesseract": "5.3.4"
+}

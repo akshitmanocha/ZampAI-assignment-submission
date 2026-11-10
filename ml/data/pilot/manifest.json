@@ -1,0 +1,62 @@
+{
+  "source": "locally generated fictional catalog; no Hugging Face or real-invoice data",
+  "seed": 17,
+  "generator": "ml/curate.py",
+  "label_method": "exact catalog identity; material/size conflicts label negative",
+  "audit": "structural label checks automated; no independent human audit yet",
+  "limitations": [
+    "Only 20 families and four simple description templates",
+    "No OCR noise, missing attributes, packing conversions or real invoices",
+    "Family-disjoint pilot, not production performance"
+  ],
+  "splits": {
+    "train": {
+      "rows": 576,
+      "positive": 288,
+      "families": [
+        "cable ties",
+        "cleaning cloths",
+        "cutting boards",
+        "exam gloves",
+        "hex bolts",
+        "hose clamps",
+        "laboratory beakers",
+        "mesh filters",
+        "office folders",
+        "packing tape",
+        "rope",
+        "water pipes"
+      ],
+      "sha256": "e16ed13becd4045096598f3d119438397261b983f1b2dcf1e30e3409f93c2d00"
+    },
+    "validation": {
+      "rows": 144,
+      "positive": 72,
+      "families": [
+        "flat washers",
+        "paint brushes",
+        "storage bins"
+      ],
+      "sha256": "e420393d7c856467437325b6da15540a976a270491d6623ac8ca32b8dc99c7f2"
+    },
+    "calibration": {
+      "rows": 96,
+      "positive": 48,
+      "families": [
+        "rubber seals",
+        "safety boots"
+      ],
+      "sha256": "563639ac2a13e8bd62531060847e0edeb6b80a45504b81c11810a85dfaf578e8"
+    },
+    "test": {
+      "rows": 144,
+      "positive": 72,
+      "families": [
+        "cleaning brushes",
+        "machine screws",
+        "tubing"
+      ],
+      "sha256": "6c7cb17dddc9d6c40aeb6f01f8eed2f2e38df3111bbabf92f01203ad47c124cd"
+    }
+  }
+}

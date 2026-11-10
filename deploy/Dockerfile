@@ -5,6 +5,7 @@ COPY web/package*.json ./
 RUN --mount=type=secret,id=proxy_ca \
     if [ -s /run/secrets/proxy_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/proxy_ca; fi; npm ci
 COPY web/ ./
+COPY ml/results/pilot/metrics.json /build/ml/results/pilot/metrics.json
 RUN npm run build
 
 FROM python:3.12-slim-trixie
@@ -14,6 +15,8 @@ RUN --mount=type=secret,id=proxy_ca \
 WORKDIR /app
 COPY backend/pyproject.toml backend/uv.lock /app/backend/
 COPY backend/reconcile /app/backend/reconcile
+COPY backend/alembic.ini /app/backend/alembic.ini
+COPY backend/migrations /app/backend/migrations
 RUN --mount=type=secret,id=proxy_ca \
     if [ -s /run/secrets/proxy_ca ]; then export PIP_CERT=/run/secrets/proxy_ca; fi; \
     pip install --no-cache-dir uv==0.9.9 && \

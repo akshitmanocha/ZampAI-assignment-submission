@@ -1,0 +1,8 @@
+{
+  "sha256": "e008d8a14aa2e9bf730637d0bd7e2a75f8f507b14c1cbdc5f3785028d7cbefe3",
+  "bytes": 83440366,
+  "files": 8,
+  "local_path": "/workspace/reconcile-artifacts/selected-model.tar.gz",
+  "contained_files_verified": 8,
+  "optimizer_checkpoint_exported": false
+}

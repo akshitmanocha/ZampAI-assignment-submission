@@ -6,7 +6,9 @@ Invoice PDF → evidence-backed accounts-payable recommendation. Built against t
 
 The runnable application foundation is implemented: FastAPI serves the React/TypeScript build, PostgreSQL runs on a private Compose network, Tesseract is installed in the non-root runtime image, and all API paths fail closed. The overview displays actual service checks rather than simulated invoice data.
 
-**Not implemented yet:** sign-in/session persistence, schema/migrations, upload and extraction pipeline, purchase-order matching, decisions, approval ledger, and fixtures. `/health/ready` deliberately returns 503 until these required components exist. This is not yet a working invoice-reconciliation product.
+**New:** PostgreSQL history schema/migration, duplicate checks, remaining-balance queries, historical description ranking, and an internal transaction-safe approval service with a repeatable fictional demo. A real GPU matching pilot and Hugging Face OCR smoke evaluation now have saved results. See [history checks](docs/history-checks.md) and [experiment report](ml/README.md).
+
+**Not implemented yet:** staff sign-in/session persistence, full pipeline schema, live PDF upload-to-decision processing, and approval/review screens. The trained model is not deployed into the application. `/health/ready` deliberately returns 503 until these required components exist. This is not yet a working invoice-reconciliation product.
 
 ## Development
 

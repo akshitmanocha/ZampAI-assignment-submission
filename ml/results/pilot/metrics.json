@@ -1,0 +1,244 @@
+{
+  "dataset_manifest": {
+    "source": "locally generated fictional catalog; no Hugging Face or real-invoice data",
+    "seed": 17,
+    "generator": "ml/curate.py",
+    "label_method": "exact catalog identity; material/size conflicts label negative",
+    "audit": "structural label checks automated; no independent human audit yet",
+    "limitations": [
+      "Only 20 families and four simple description templates",
+      "No OCR noise, missing attributes, packing conversions or real invoices",
+      "Family-disjoint pilot, not production performance"
+    ],
+    "splits": {
+      "train": {
+        "rows": 576,
+        "positive": 288,
+        "families": [
+          "cable ties",
+          "cleaning cloths",
+          "cutting boards",
+          "exam gloves",
+          "hex bolts",
+          "hose clamps",
+          "laboratory beakers",
+          "mesh filters",
+          "office folders",
+          "packing tape",
+          "rope",
+          "water pipes"
+        ],
+        "sha256": "e16ed13becd4045096598f3d119438397261b983f1b2dcf1e30e3409f93c2d00"
+      },
+      "validation": {
+        "rows": 144,
+        "positive": 72,
+        "families": [
+          "flat washers",
+          "paint brushes",
+          "storage bins"
+        ],
+        "sha256": "e420393d7c856467437325b6da15540a976a270491d6623ac8ca32b8dc99c7f2"
+      },
+      "calibration": {
+        "rows": 96,
+        "positive": 48,
+        "families": [
+          "rubber seals",
+          "safety boots"
+        ],
+        "sha256": "563639ac2a13e8bd62531060847e0edeb6b80a45504b81c11810a85dfaf578e8"
+      },
+      "test": {
+        "rows": 144,
+        "positive": 72,
+        "families": [
+          "cleaning brushes",
+          "machine screws",
+          "tubing"
+        ],
+        "sha256": "6c7cb17dddc9d6c40aeb6f01f8eed2f2e38df3111bbabf92f01203ad47c124cd"
+      }
+    }
+  },
+  "seed": 17,
+  "scope": "pair classification only, NOT PDF extraction, retrieval, invoice decisions or approval safety",
+  "experiments": {
+    "B0": {
+      "validation": {
+        "n": 144,
+        "threshold": 0.459324049209941,
+        "accuracy": 0.7847222222222222,
+        "precision": 0.6990291262135923,
+        "recall": 1.0,
+        "f1": 0.8228571428571428,
+        "confusion_matrix_tn_fp_fn_tp": [
+          41,
+          31,
+          0,
+          72
+        ]
+      },
+      "calibration": {
+        "n": 96,
+        "threshold": 0.459324049209941,
+        "accuracy": 0.8020833333333334,
+        "precision": 0.7230769230769231,
+        "recall": 0.9791666666666666,
+        "f1": 0.831858407079646,
+        "confusion_matrix_tn_fp_fn_tp": [
+          30,
+          18,
+          1,
+          47
+        ]
+      },
+      "test": {
+        "n": 144,
+        "threshold": 0.459324049209941,
+        "accuracy": 0.6944444444444444,
+        "precision": 0.6346153846153846,
+        "recall": 0.9166666666666666,
+        "f1": 0.75,
+        "confusion_matrix_tn_fp_fn_tp": [
+          34,
+          38,
+          6,
+          66
+        ]
+      }
+    },
+    "B1": {
+      "validation": {
+        "n": 144,
+        "threshold": 7.1419854164123535,
+        "accuracy": 0.9027777777777778,
+        "precision": 1.0,
+        "recall": 0.8055555555555556,
+        "f1": 0.8923076923076924,
+        "confusion_matrix_tn_fp_fn_tp": [
+          72,
+          0,
+          14,
+          58
+        ]
+      },
+      "calibration": {
+        "n": 96,
+        "threshold": 7.1419854164123535,
+        "accuracy": 0.9791666666666666,
+        "precision": 0.9791666666666666,
+        "recall": 0.9791666666666666,
+        "f1": 0.9791666666666666,
+        "confusion_matrix_tn_fp_fn_tp": [
+          47,
+          1,
+          1,
+          47
+        ]
+      },
+      "test": {
+        "n": 144,
+        "threshold": 7.1419854164123535,
+        "accuracy": 0.8819444444444444,
+        "precision": 0.9230769230769231,
+        "recall": 0.8333333333333334,
+        "f1": 0.8759124087591241,
+        "confusion_matrix_tn_fp_fn_tp": [
+          67,
+          5,
+          12,
+          60
+        ]
+      }
+    },
+    "E1": {
+      "validation": {
+        "n": 144,
+        "threshold": 4.3927083015441895,
+        "accuracy": 0.9583333333333334,
+        "precision": 1.0,
+        "recall": 0.9166666666666666,
+        "f1": 0.9565217391304348,
+        "confusion_matrix_tn_fp_fn_tp": [
+          72,
+          0,
+          6,
+          66
+        ],
+        "total_scoring_s": 0.04166818299972874
+      },
+      "calibration": {
+        "n": 96,
+        "threshold": 4.3927083015441895,
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "confusion_matrix_tn_fp_fn_tp": [
+          48,
+          0,
+          0,
+          48
+        ],
+        "total_scoring_s": 0.024095884999951522
+      },
+      "test": {
+        "n": 144,
+        "threshold": 4.3927083015441895,
+        "accuracy": 0.9583333333333334,
+        "precision": 1.0,
+        "recall": 0.9166666666666666,
+        "f1": 0.9565217391304348,
+        "confusion_matrix_tn_fp_fn_tp": [
+          72,
+          0,
+          6,
+          66
+        ],
+        "total_scoring_s": 0.03858070800015412
+      }
+    }
+  },
+  "torch": "2.11.0+cu130",
+  "gpu": "Tesla T4",
+  "model": {
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a"
+  },
+  "best_epoch": 1,
+  "training": {
+    "epochs": 3,
+    "batch_size": 16,
+    "lr": 2e-05,
+    "max_length": 128,
+    "loss": "BCEWithLogits",
+    "selection": "validation F1; thresholds calibrated separately",
+    "history": [
+      {
+        "epoch": 1,
+        "training_loss": 0.4113427483373218,
+        "validation_f1": 1.0,
+        "duration_s": 2.4020132969999395
+      },
+      {
+        "epoch": 2,
+        "training_loss": 0.08253729605995533,
+        "validation_f1": 1.0,
+        "duration_s": 1.853040037000028
+      },
+      {
+        "epoch": 3,
+        "training_loss": 0.04286335772808848,
+        "validation_f1": 1.0,
+        "duration_s": 1.7905146040002364
+      }
+    ]
+  },
+  "limitations": [
+    "Synthetic easy templated pairs; no independent human label audit",
+    "Small test contains only three held-out product families",
+    "MS MARCO pretrained relevance model; verify license/data restrictions before distribution",
+    "No claim of invoice-level safety or extraction accuracy"
+  ]
+}

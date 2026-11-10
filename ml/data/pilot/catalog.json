@@ -1,0 +1,1042 @@
+[
+  {
+    "product_id": "F00-M0-S0",
+    "family": "exam gloves",
+    "material": "nitrile",
+    "size": "medium",
+    "descriptions": [
+      "nitrile exam gloves medium",
+      "exam gloves, medium, nitrile",
+      "medium exam gloves made of nitrile",
+      "EXAM GLOVES / NITRILE / MEDIUM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F00-M0-S1",
+    "family": "exam gloves",
+    "material": "nitrile",
+    "size": "large",
+    "descriptions": [
+      "nitrile exam gloves large",
+      "exam gloves, large, nitrile",
+      "large exam gloves made of nitrile",
+      "EXAM GLOVES / NITRILE / LARGE"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F00-M1-S0",
+    "family": "exam gloves",
+    "material": "latex",
+    "size": "medium",
+    "descriptions": [
+      "latex exam gloves medium",
+      "exam gloves, medium, latex",
+      "medium exam gloves made of latex",
+      "EXAM GLOVES / LATEX / MEDIUM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F00-M1-S1",
+    "family": "exam gloves",
+    "material": "latex",
+    "size": "large",
+    "descriptions": [
+      "latex exam gloves large",
+      "exam gloves, large, latex",
+      "large exam gloves made of latex",
+      "EXAM GLOVES / LATEX / LARGE"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F01-M0-S0",
+    "family": "hex bolts",
+    "material": "steel",
+    "size": "M6",
+    "descriptions": [
+      "steel hex bolts M6",
+      "hex bolts, M6, steel",
+      "M6 hex bolts made of steel",
+      "HEX BOLTS / STEEL / M6"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F01-M0-S1",
+    "family": "hex bolts",
+    "material": "steel",
+    "size": "M8",
+    "descriptions": [
+      "steel hex bolts M8",
+      "hex bolts, M8, steel",
+      "M8 hex bolts made of steel",
+      "HEX BOLTS / STEEL / M8"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F01-M1-S0",
+    "family": "hex bolts",
+    "material": "brass",
+    "size": "M6",
+    "descriptions": [
+      "brass hex bolts M6",
+      "hex bolts, M6, brass",
+      "M6 hex bolts made of brass",
+      "HEX BOLTS / BRASS / M6"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F01-M1-S1",
+    "family": "hex bolts",
+    "material": "brass",
+    "size": "M8",
+    "descriptions": [
+      "brass hex bolts M8",
+      "hex bolts, M8, brass",
+      "M8 hex bolts made of brass",
+      "HEX BOLTS / BRASS / M8"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F02-M0-S0",
+    "family": "flat washers",
+    "material": "steel",
+    "size": "M6",
+    "descriptions": [
+      "steel flat washers M6",
+      "flat washers, M6, steel",
+      "M6 flat washers made of steel",
+      "FLAT WASHERS / STEEL / M6"
+    ],
+    "split": "validation"
+  },
+  {
+    "product_id": "F02-M0-S1",
+    "family": "flat washers",
+    "material": "steel",
+    "size": "M10",
+    "descriptions": [
+      "steel flat washers M10",
+      "flat washers, M10, steel",
+      "M10 flat washers made of steel",
+      "FLAT WASHERS / STEEL / M10"
+    ],
+    "split": "validation"
+  },
+  {
+    "product_id": "F02-M1-S0",
+    "family": "flat washers",
+    "material": "nylon",
+    "size": "M6",
+    "descriptions": [
+      "nylon flat washers M6",
+      "flat washers, M6, nylon",
+      "M6 flat washers made of nylon",
+      "FLAT WASHERS / NYLON / M6"
+    ],
+    "split": "validation"
+  },
+  {
+    "product_id": "F02-M1-S1",
+    "family": "flat washers",
+    "material": "nylon",
+    "size": "M10",
+    "descriptions": [
+      "nylon flat washers M10",
+      "flat washers, M10, nylon",
+      "M10 flat washers made of nylon",
+      "FLAT WASHERS / NYLON / M10"
+    ],
+    "split": "validation"
+  },
+  {
+    "product_id": "F03-M0-S0",
+    "family": "water pipes",
+    "material": "PVC",
+    "size": "15mm",
+    "descriptions": [
+      "PVC water pipes 15mm",
+      "water pipes, 15mm, PVC",
+      "15mm water pipes made of PVC",
+      "WATER PIPES / PVC / 15MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F03-M0-S1",
+    "family": "water pipes",
+    "material": "PVC",
+    "size": "22mm",
+    "descriptions": [
+      "PVC water pipes 22mm",
+      "water pipes, 22mm, PVC",
+      "22mm water pipes made of PVC",
+      "WATER PIPES / PVC / 22MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F03-M1-S0",
+    "family": "water pipes",
+    "material": "copper",
+    "size": "15mm",
+    "descriptions": [
+      "copper water pipes 15mm",
+      "water pipes, 15mm, copper",
+      "15mm water pipes made of copper",
+      "WATER PIPES / COPPER / 15MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F03-M1-S1",
+    "family": "water pipes",
+    "material": "copper",
+    "size": "22mm",
+    "descriptions": [
+      "copper water pipes 22mm",
+      "water pipes, 22mm, copper",
+      "22mm water pipes made of copper",
+      "WATER PIPES / COPPER / 22MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F04-M0-S0",
+    "family": "packing tape",
+    "material": "paper",
+    "size": "24mm",
+    "descriptions": [
+      "paper packing tape 24mm",
+      "packing tape, 24mm, paper",
+      "24mm packing tape made of paper",
+      "PACKING TAPE / PAPER / 24MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F04-M0-S1",
+    "family": "packing tape",
+    "material": "paper",
+    "size": "48mm",
+    "descriptions": [
+      "paper packing tape 48mm",
+      "packing tape, 48mm, paper",
+      "48mm packing tape made of paper",
+      "PACKING TAPE / PAPER / 48MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F04-M1-S0",
+    "family": "packing tape",
+    "material": "polypropylene",
+    "size": "24mm",
+    "descriptions": [
+      "polypropylene packing tape 24mm",
+      "packing tape, 24mm, polypropylene",
+      "24mm packing tape made of polypropylene",
+      "PACKING TAPE / POLYPROPYLENE / 24MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F04-M1-S1",
+    "family": "packing tape",
+    "material": "polypropylene",
+    "size": "48mm",
+    "descriptions": [
+      "polypropylene packing tape 48mm",
+      "packing tape, 48mm, polypropylene",
+      "48mm packing tape made of polypropylene",
+      "PACKING TAPE / POLYPROPYLENE / 48MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F05-M0-S0",
+    "family": "laboratory beakers",
+    "material": "glass",
+    "size": "250ml",
+    "descriptions": [
+      "glass laboratory beakers 250ml",
+      "laboratory beakers, 250ml, glass",
+      "250ml laboratory beakers made of glass",
+      "LABORATORY BEAKERS / GLASS / 250ML"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F05-M0-S1",
+    "family": "laboratory beakers",
+    "material": "glass",
+    "size": "500ml",
+    "descriptions": [
+      "glass laboratory beakers 500ml",
+      "laboratory beakers, 500ml, glass",
+      "500ml laboratory beakers made of glass",
+      "LABORATORY BEAKERS / GLASS / 500ML"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F05-M1-S0",
+    "family": "laboratory beakers",
+    "material": "polypropylene",
+    "size": "250ml",
+    "descriptions": [
+      "polypropylene laboratory beakers 250ml",
+      "laboratory beakers, 250ml, polypropylene",
+      "250ml laboratory beakers made of polypropylene",
+      "LABORATORY BEAKERS / POLYPROPYLENE / 250ML"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F05-M1-S1",
+    "family": "laboratory beakers",
+    "material": "polypropylene",
+    "size": "500ml",
+    "descriptions": [
+      "polypropylene laboratory beakers 500ml",
+      "laboratory beakers, 500ml, polypropylene",
+      "500ml laboratory beakers made of polypropylene",
+      "LABORATORY BEAKERS / POLYPROPYLENE / 500ML"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F06-M0-S0",
+    "family": "cable ties",
+    "material": "nylon",
+    "size": "100mm",
+    "descriptions": [
+      "nylon cable ties 100mm",
+      "cable ties, 100mm, nylon",
+      "100mm cable ties made of nylon",
+      "CABLE TIES / NYLON / 100MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F06-M0-S1",
+    "family": "cable ties",
+    "material": "nylon",
+    "size": "200mm",
+    "descriptions": [
+      "nylon cable ties 200mm",
+      "cable ties, 200mm, nylon",
+      "200mm cable ties made of nylon",
+      "CABLE TIES / NYLON / 200MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F06-M1-S0",
+    "family": "cable ties",
+    "material": "steel",
+    "size": "100mm",
+    "descriptions": [
+      "steel cable ties 100mm",
+      "cable ties, 100mm, steel",
+      "100mm cable ties made of steel",
+      "CABLE TIES / STEEL / 100MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F06-M1-S1",
+    "family": "cable ties",
+    "material": "steel",
+    "size": "200mm",
+    "descriptions": [
+      "steel cable ties 200mm",
+      "cable ties, 200mm, steel",
+      "200mm cable ties made of steel",
+      "CABLE TIES / STEEL / 200MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F07-M0-S0",
+    "family": "office folders",
+    "material": "paper",
+    "size": "A4",
+    "descriptions": [
+      "paper office folders A4",
+      "office folders, A4, paper",
+      "A4 office folders made of paper",
+      "OFFICE FOLDERS / PAPER / A4"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F07-M0-S1",
+    "family": "office folders",
+    "material": "paper",
+    "size": "A5",
+    "descriptions": [
+      "paper office folders A5",
+      "office folders, A5, paper",
+      "A5 office folders made of paper",
+      "OFFICE FOLDERS / PAPER / A5"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F07-M1-S0",
+    "family": "office folders",
+    "material": "plastic",
+    "size": "A4",
+    "descriptions": [
+      "plastic office folders A4",
+      "office folders, A4, plastic",
+      "A4 office folders made of plastic",
+      "OFFICE FOLDERS / PLASTIC / A4"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F07-M1-S1",
+    "family": "office folders",
+    "material": "plastic",
+    "size": "A5",
+    "descriptions": [
+      "plastic office folders A5",
+      "office folders, A5, plastic",
+      "A5 office folders made of plastic",
+      "OFFICE FOLDERS / PLASTIC / A5"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F08-M0-S0",
+    "family": "hose clamps",
+    "material": "steel",
+    "size": "20mm",
+    "descriptions": [
+      "steel hose clamps 20mm",
+      "hose clamps, 20mm, steel",
+      "20mm hose clamps made of steel",
+      "HOSE CLAMPS / STEEL / 20MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F08-M0-S1",
+    "family": "hose clamps",
+    "material": "steel",
+    "size": "40mm",
+    "descriptions": [
+      "steel hose clamps 40mm",
+      "hose clamps, 40mm, steel",
+      "40mm hose clamps made of steel",
+      "HOSE CLAMPS / STEEL / 40MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F08-M1-S0",
+    "family": "hose clamps",
+    "material": "plastic",
+    "size": "20mm",
+    "descriptions": [
+      "plastic hose clamps 20mm",
+      "hose clamps, 20mm, plastic",
+      "20mm hose clamps made of plastic",
+      "HOSE CLAMPS / PLASTIC / 20MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F08-M1-S1",
+    "family": "hose clamps",
+    "material": "plastic",
+    "size": "40mm",
+    "descriptions": [
+      "plastic hose clamps 40mm",
+      "hose clamps, 40mm, plastic",
+      "40mm hose clamps made of plastic",
+      "HOSE CLAMPS / PLASTIC / 40MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F09-M0-S0",
+    "family": "cleaning brushes",
+    "material": "nylon",
+    "size": "25mm",
+    "descriptions": [
+      "nylon cleaning brushes 25mm",
+      "cleaning brushes, 25mm, nylon",
+      "25mm cleaning brushes made of nylon",
+      "CLEANING BRUSHES / NYLON / 25MM"
+    ],
+    "split": "test"
+  },
+  {
+    "product_id": "F09-M0-S1",
+    "family": "cleaning brushes",
+    "material": "nylon",
+    "size": "50mm",
+    "descriptions": [
+      "nylon cleaning brushes 50mm",
+      "cleaning brushes, 50mm, nylon",
+      "50mm cleaning brushes made of nylon",
+      "CLEANING BRUSHES / NYLON / 50MM"
+    ],
+    "split": "test"
+  },
+  {
+    "product_id": "F09-M1-S0",
+    "family": "cleaning brushes",
+    "material": "brass",
+    "size": "25mm",
+    "descriptions": [
+      "brass cleaning brushes 25mm",
+      "cleaning brushes, 25mm, brass",
+      "25mm cleaning brushes made of brass",
+      "CLEANING BRUSHES / BRASS / 25MM"
+    ],
+    "split": "test"
+  },
+  {
+    "product_id": "F09-M1-S1",
+    "family": "cleaning brushes",
+    "material": "brass",
+    "size": "50mm",
+    "descriptions": [
+      "brass cleaning brushes 50mm",
+      "cleaning brushes, 50mm, brass",
+      "50mm cleaning brushes made of brass",
+      "CLEANING BRUSHES / BRASS / 50MM"
+    ],
+    "split": "test"
+  },
+  {
+    "product_id": "F10-M0-S0",
+    "family": "rope",
+    "material": "cotton",
+    "size": "6mm",
+    "descriptions": [
+      "cotton rope 6mm",
+      "rope, 6mm, cotton",
+      "6mm rope made of cotton",
+      "ROPE / COTTON / 6MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F10-M0-S1",
+    "family": "rope",
+    "material": "cotton",
+    "size": "12mm",
+    "descriptions": [
+      "cotton rope 12mm",
+      "rope, 12mm, cotton",
+      "12mm rope made of cotton",
+      "ROPE / COTTON / 12MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F10-M1-S0",
+    "family": "rope",
+    "material": "nylon",
+    "size": "6mm",
+    "descriptions": [
+      "nylon rope 6mm",
+      "rope, 6mm, nylon",
+      "6mm rope made of nylon",
+      "ROPE / NYLON / 6MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F10-M1-S1",
+    "family": "rope",
+    "material": "nylon",
+    "size": "12mm",
+    "descriptions": [
+      "nylon rope 12mm",
+      "rope, 12mm, nylon",
+      "12mm rope made of nylon",
+      "ROPE / NYLON / 12MM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F11-M0-S0",
+    "family": "safety boots",
+    "material": "PVC",
+    "size": "size 8",
+    "descriptions": [
+      "PVC safety boots size 8",
+      "safety boots, size 8, PVC",
+      "size 8 safety boots made of PVC",
+      "SAFETY BOOTS / PVC / SIZE 8"
+    ],
+    "split": "calibration"
+  },
+  {
+    "product_id": "F11-M0-S1",
+    "family": "safety boots",
+    "material": "PVC",
+    "size": "size 10",
+    "descriptions": [
+      "PVC safety boots size 10",
+      "safety boots, size 10, PVC",
+      "size 10 safety boots made of PVC",
+      "SAFETY BOOTS / PVC / SIZE 10"
+    ],
+    "split": "calibration"
+  },
+  {
+    "product_id": "F11-M1-S0",
+    "family": "safety boots",
+    "material": "rubber",
+    "size": "size 8",
+    "descriptions": [
+      "rubber safety boots size 8",
+      "safety boots, size 8, rubber",
+      "size 8 safety boots made of rubber",
+      "SAFETY BOOTS / RUBBER / SIZE 8"
+    ],
+    "split": "calibration"
+  },
+  {
+    "product_id": "F11-M1-S1",
+    "family": "safety boots",
+    "material": "rubber",
+    "size": "size 10",
+    "descriptions": [
+      "rubber safety boots size 10",
+      "safety boots, size 10, rubber",
+      "size 10 safety boots made of rubber",
+      "SAFETY BOOTS / RUBBER / SIZE 10"
+    ],
+    "split": "calibration"
+  },
+  {
+    "product_id": "F12-M0-S0",
+    "family": "storage bins",
+    "material": "steel",
+    "size": "10L",
+    "descriptions": [
+      "steel storage bins 10L",
+      "storage bins, 10L, steel",
+      "10L storage bins made of steel",
+      "STORAGE BINS / STEEL / 10L"
+    ],
+    "split": "validation"
+  },
+  {
+    "product_id": "F12-M0-S1",
+    "family": "storage bins",
+    "material": "steel",
+    "size": "20L",
+    "descriptions": [
+      "steel storage bins 20L",
+      "storage bins, 20L, steel",
+      "20L storage bins made of steel",
+      "STORAGE BINS / STEEL / 20L"
+    ],
+    "split": "validation"
+  },
+  {
+    "product_id": "F12-M1-S0",
+    "family": "storage bins",
+    "material": "plastic",
+    "size": "10L",
+    "descriptions": [
+      "plastic storage bins 10L",
+      "storage bins, 10L, plastic",
+      "10L storage bins made of plastic",
+      "STORAGE BINS / PLASTIC / 10L"
+    ],
+    "split": "validation"
+  },
+  {
+    "product_id": "F12-M1-S1",
+    "family": "storage bins",
+    "material": "plastic",
+    "size": "20L",
+    "descriptions": [
+      "plastic storage bins 20L",
+      "storage bins, 20L, plastic",
+      "20L storage bins made of plastic",
+      "STORAGE BINS / PLASTIC / 20L"
+    ],
+    "split": "validation"
+  },
+  {
+    "product_id": "F13-M0-S0",
+    "family": "machine screws",
+    "material": "steel",
+    "size": "M4",
+    "descriptions": [
+      "steel machine screws M4",
+      "machine screws, M4, steel",
+      "M4 machine screws made of steel",
+      "MACHINE SCREWS / STEEL / M4"
+    ],
+    "split": "test"
+  },
+  {
+    "product_id": "F13-M0-S1",
+    "family": "machine screws",
+    "material": "steel",
+    "size": "M6",
+    "descriptions": [
+      "steel machine screws M6",
+      "machine screws, M6, steel",
+      "M6 machine screws made of steel",
+      "MACHINE SCREWS / STEEL / M6"
+    ],
+    "split": "test"
+  },
+  {
+    "product_id": "F13-M1-S0",
+    "family": "machine screws",
+    "material": "brass",
+    "size": "M4",
+    "descriptions": [
+      "brass machine screws M4",
+      "machine screws, M4, brass",
+      "M4 machine screws made of brass",
+      "MACHINE SCREWS / BRASS / M4"
+    ],
+    "split": "test"
+  },
+  {
+    "product_id": "F13-M1-S1",
+    "family": "machine screws",
+    "material": "brass",
+    "size": "M6",
+    "descriptions": [
+      "brass machine screws M6",
+      "machine screws, M6, brass",
+      "M6 machine screws made of brass",
+      "MACHINE SCREWS / BRASS / M6"
+    ],
+    "split": "test"
+  },
+  {
+    "product_id": "F14-M0-S0",
+    "family": "mesh filters",
+    "material": "steel",
+    "size": "100 micron",
+    "descriptions": [
+      "steel mesh filters 100 micron",
+      "mesh filters, 100 micron, steel",
+      "100 micron mesh filters made of steel",
+      "MESH FILTERS / STEEL / 100 MICRON"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F14-M0-S1",
+    "family": "mesh filters",
+    "material": "steel",
+    "size": "200 micron",
+    "descriptions": [
+      "steel mesh filters 200 micron",
+      "mesh filters, 200 micron, steel",
+      "200 micron mesh filters made of steel",
+      "MESH FILTERS / STEEL / 200 MICRON"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F14-M1-S0",
+    "family": "mesh filters",
+    "material": "nylon",
+    "size": "100 micron",
+    "descriptions": [
+      "nylon mesh filters 100 micron",
+      "mesh filters, 100 micron, nylon",
+      "100 micron mesh filters made of nylon",
+      "MESH FILTERS / NYLON / 100 MICRON"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F14-M1-S1",
+    "family": "mesh filters",
+    "material": "nylon",
+    "size": "200 micron",
+    "descriptions": [
+      "nylon mesh filters 200 micron",
+      "mesh filters, 200 micron, nylon",
+      "200 micron mesh filters made of nylon",
+      "MESH FILTERS / NYLON / 200 MICRON"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F15-M0-S0",
+    "family": "cutting boards",
+    "material": "wood",
+    "size": "30cm",
+    "descriptions": [
+      "wood cutting boards 30cm",
+      "cutting boards, 30cm, wood",
+      "30cm cutting boards made of wood",
+      "CUTTING BOARDS / WOOD / 30CM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F15-M0-S1",
+    "family": "cutting boards",
+    "material": "wood",
+    "size": "45cm",
+    "descriptions": [
+      "wood cutting boards 45cm",
+      "cutting boards, 45cm, wood",
+      "45cm cutting boards made of wood",
+      "CUTTING BOARDS / WOOD / 45CM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F15-M1-S0",
+    "family": "cutting boards",
+    "material": "plastic",
+    "size": "30cm",
+    "descriptions": [
+      "plastic cutting boards 30cm",
+      "cutting boards, 30cm, plastic",
+      "30cm cutting boards made of plastic",
+      "CUTTING BOARDS / PLASTIC / 30CM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F15-M1-S1",
+    "family": "cutting boards",
+    "material": "plastic",
+    "size": "45cm",
+    "descriptions": [
+      "plastic cutting boards 45cm",
+      "cutting boards, 45cm, plastic",
+      "45cm cutting boards made of plastic",
+      "CUTTING BOARDS / PLASTIC / 45CM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F16-M0-S0",
+    "family": "tubing",
+    "material": "silicone",
+    "size": "4mm",
+    "descriptions": [
+      "silicone tubing 4mm",
+      "tubing, 4mm, silicone",
+      "4mm tubing made of silicone",
+      "TUBING / SILICONE / 4MM"
+    ],
+    "split": "test"
+  },
+  {
+    "product_id": "F16-M0-S1",
+    "family": "tubing",
+    "material": "silicone",
+    "size": "8mm",
+    "descriptions": [
+      "silicone tubing 8mm",
+      "tubing, 8mm, silicone",
+      "8mm tubing made of silicone",
+      "TUBING / SILICONE / 8MM"
+    ],
+    "split": "test"
+  },
+  {
+    "product_id": "F16-M1-S0",
+    "family": "tubing",
+    "material": "PVC",
+    "size": "4mm",
+    "descriptions": [
+      "PVC tubing 4mm",
+      "tubing, 4mm, PVC",
+      "4mm tubing made of PVC",
+      "TUBING / PVC / 4MM"
+    ],
+    "split": "test"
+  },
+  {
+    "product_id": "F16-M1-S1",
+    "family": "tubing",
+    "material": "PVC",
+    "size": "8mm",
+    "descriptions": [
+      "PVC tubing 8mm",
+      "tubing, 8mm, PVC",
+      "8mm tubing made of PVC",
+      "TUBING / PVC / 8MM"
+    ],
+    "split": "test"
+  },
+  {
+    "product_id": "F17-M0-S0",
+    "family": "rubber seals",
+    "material": "EPDM",
+    "size": "20mm",
+    "descriptions": [
+      "EPDM rubber seals 20mm",
+      "rubber seals, 20mm, EPDM",
+      "20mm rubber seals made of EPDM",
+      "RUBBER SEALS / EPDM / 20MM"
+    ],
+    "split": "calibration"
+  },
+  {
+    "product_id": "F17-M0-S1",
+    "family": "rubber seals",
+    "material": "EPDM",
+    "size": "30mm",
+    "descriptions": [
+      "EPDM rubber seals 30mm",
+      "rubber seals, 30mm, EPDM",
+      "30mm rubber seals made of EPDM",
+      "RUBBER SEALS / EPDM / 30MM"
+    ],
+    "split": "calibration"
+  },
+  {
+    "product_id": "F17-M1-S0",
+    "family": "rubber seals",
+    "material": "silicone",
+    "size": "20mm",
+    "descriptions": [
+      "silicone rubber seals 20mm",
+      "rubber seals, 20mm, silicone",
+      "20mm rubber seals made of silicone",
+      "RUBBER SEALS / SILICONE / 20MM"
+    ],
+    "split": "calibration"
+  },
+  {
+    "product_id": "F17-M1-S1",
+    "family": "rubber seals",
+    "material": "silicone",
+    "size": "30mm",
+    "descriptions": [
+      "silicone rubber seals 30mm",
+      "rubber seals, 30mm, silicone",
+      "30mm rubber seals made of silicone",
+      "RUBBER SEALS / SILICONE / 30MM"
+    ],
+    "split": "calibration"
+  },
+  {
+    "product_id": "F18-M0-S0",
+    "family": "cleaning cloths",
+    "material": "cotton",
+    "size": "20cm",
+    "descriptions": [
+      "cotton cleaning cloths 20cm",
+      "cleaning cloths, 20cm, cotton",
+      "20cm cleaning cloths made of cotton",
+      "CLEANING CLOTHS / COTTON / 20CM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F18-M0-S1",
+    "family": "cleaning cloths",
+    "material": "cotton",
+    "size": "40cm",
+    "descriptions": [
+      "cotton cleaning cloths 40cm",
+      "cleaning cloths, 40cm, cotton",
+      "40cm cleaning cloths made of cotton",
+      "CLEANING CLOTHS / COTTON / 40CM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F18-M1-S0",
+    "family": "cleaning cloths",
+    "material": "microfiber",
+    "size": "20cm",
+    "descriptions": [
+      "microfiber cleaning cloths 20cm",
+      "cleaning cloths, 20cm, microfiber",
+      "20cm cleaning cloths made of microfiber",
+      "CLEANING CLOTHS / MICROFIBER / 20CM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F18-M1-S1",
+    "family": "cleaning cloths",
+    "material": "microfiber",
+    "size": "40cm",
+    "descriptions": [
+      "microfiber cleaning cloths 40cm",
+      "cleaning cloths, 40cm, microfiber",
+      "40cm cleaning cloths made of microfiber",
+      "CLEANING CLOTHS / MICROFIBER / 40CM"
+    ],
+    "split": "train"
+  },
+  {
+    "product_id": "F19-M0-S0",
+    "family": "paint brushes",
+    "material": "nylon",
+    "size": "25mm",
+    "descriptions": [
+      "nylon paint brushes 25mm",
+      "paint brushes, 25mm, nylon",
+      "25mm paint brushes made of nylon",
+      "PAINT BRUSHES / NYLON / 25MM"
+    ],
+    "split": "validation"
+  },
+  {
+    "product_id": "F19-M0-S1",
+    "family": "paint brushes",
+    "material": "nylon",
+    "size": "75mm",
+    "descriptions": [
+      "nylon paint brushes 75mm",
+      "paint brushes, 75mm, nylon",
+      "75mm paint brushes made of nylon",
+      "PAINT BRUSHES / NYLON / 75MM"
+    ],
+    "split": "validation"
+  },
+  {
+    "product_id": "F19-M1-S0",
+    "family": "paint brushes",
+    "material": "natural bristle",
+    "size": "25mm",
+    "descriptions": [
+      "natural bristle paint brushes 25mm",
+      "paint brushes, 25mm, natural bristle",
+      "25mm paint brushes made of natural bristle",
+      "PAINT BRUSHES / NATURAL BRISTLE / 25MM"
+    ],
+    "split": "validation"
+  },
+  {
+    "product_id": "F19-M1-S1",
+    "family": "paint brushes",
+    "material": "natural bristle",
+    "size": "75mm",
+    "descriptions": [
+      "natural bristle paint brushes 75mm",
+      "paint brushes, 75mm, natural bristle",
+      "75mm paint brushes made of natural bristle",
+      "PAINT BRUSHES / NATURAL BRISTLE / 75MM"
+    ],
+    "split": "validation"
+  }
+]

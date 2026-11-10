@@ -7,3 +7,8 @@ node_modules/
 dist/
 .DS_Store
 ml/kaggle/*.log
+ml/artifacts/
+*.safetensors
+*.pt
+*.pth
+ml/data/external/

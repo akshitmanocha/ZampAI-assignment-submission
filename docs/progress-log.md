@@ -20,3 +20,37 @@
 - Container UID is 10001; application published only at 127.0.0.1:8000; DB has no published host port.
 - Playwright Chromium verified desktop and 390px mobile views, live DB/OCR checks, no JavaScript page errors, and no horizontal mobile overflow. Screenshots retained outside Git at `/tmp/reconcile-browser/overview-{desktop,mobile}.png`.
 - Live HTTP checks: `/health/live` 200; `/health/ready` 503 (intentionally incomplete application); `/api/invoices` 401 with session challenge.
+
+## 2026-11-10 — SQL history and first measured ML experiments
+
+User authorized implementation and requested plain-language updates. Existing branch was clean before changes.
+
+### Database history
+
+- Added initial Alembic migration and SQLAlchemy procurement/history models. This is a subset of the design schema, not completion of T-03.
+- Added vendor-scoped duplicate candidate checks, exact-file detection, revision/normalized-identifier distinctions, approved balance aggregation, bounded historical candidate retrieval and TF-IDF ranking. Historical similarity is explicitly not authorization.
+- Added internal approval transaction with locks, current vendor/PO/state checks, exact-price initial policy, aggregated line quantities, and once-only allocations. It trusts a validated recommendation; complete decision validation/auth/audit remains outstanding. No public API access was opened.
+- `make test`: 6 passed; 16 PostgreSQL tests skipped locally without explicit connection configuration.
+- `docker compose exec -T app python < backend/tests/test_history_postgres.py`: **16 actual PostgreSQL tests passed**, including migration repeatability/schema agreement, concurrent competing approvals, repeated approval, duplicates, pending/rejected history, aggregate overage and historical suggestions.
+- Built Docker image and ran fictional isolated-schema demo: before remaining 600; approval left 0; repeat returned already_approved and left 0. Data survives container restarts; demo seed is non-destructive and repeatable.
+
+### Kaggle/ML
+
+- Verified two Tesla T4 GPUs, CUDA available, 20.9 GB free disk at probe. Used one GPU.
+- Generated 960 labelled synthetic description pairs for 80 products in 20 categories; split by category/product: 576 train, 144 validation, 96 calibration, 144 test. Catalog identity supplies labels; no independent full human label audit yet. Hashes and split integrity tests saved.
+- Ran lexical TF-IDF, frozen MiniLM, and actual three-epoch BCE fine-tuning. Selected earliest best validation checkpoint; calibrated threshold separately. Model revision and observed package versions saved.
+- Test correct: B0 100/144; frozen MiniLM 127/144; fine-tuned 138/144. Fine-tuned confusion counts: TN72 FP0 FN6 TP66. This is pair classification on a small simple synthetic set, not invoice accuracy or approval safety. Test data was not used to tune after results.
+- Exported selected weights/tokenizer/reports as an 83,440,366-byte bundle to `/workspace/reconcile-artifacts/selected-model.tar.gz`, outside Git. Bundle SHA-256 and all eight contained file digests verified. Last optimizer checkpoint remains remote and is not exported/verified for resume.
+- Rechecked selected model on Kaggle CPU: identical binary outputs for all 144 pairs; max GPU/CPU logit difference 0.0000043. Warm scoring batch 0.517 s with two CPU threads; excludes loading, OCR/API/DB and is not deployment-host latency.
+- Weights are **not adopted into application serving**. Tougher independent audits/evaluation and deployment-host checks remain required.
+
+### Public dataset OCR diagnostic
+
+- Streamed first 12 clean InvoiceOCR-Synth images from pinned Hugging Face revision and ran Tesseract 5.3.4 in Kaggle. This is raw OCR label-text recovery, not structured extraction or PDF-to-decision acceptance.
+- Recovered supplier names 12/12, invoice numbers 8/8 eligible, total number somewhere in text 12/12, PO number 0/3.
+- Visually inspected one failed PO example: labelled PO-5678 is not visible in the rendered freelancer invoice. Saved audit finding; preserve original scores and do not claim this is an OCR failure. Other two PO failures not manually audited. Publisher label observability needs further audit.
+- Raw predictions, metadata, metrics and readable limitations saved under ml/results and ml/README.md. Dashboard shows the saved matching experiment with explicit synthetic/non-approval scope.
+
+Next: complete persistent staff authentication and full run/job/evidence schema, then real PDF-to-saved-decision flow; expand independent image-label audits and tougher matching scenarios before promoting any model. Deployment still awaits Render account setup.
+
+Final checks: rebuilt app image after dependency/UI changes; desktop/mobile browser smoke passed and saved 95.8% synthetic pair result is visible. API remains fail-closed and readiness intentionally 503 for the incomplete pipeline. Added observed ML environment versions and a thin, unexecuted handoff notebook; the actual experiment ran through the checked-in Python training script. No connection secret in candidate commit content; no weights committed.
