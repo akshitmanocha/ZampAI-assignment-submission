@@ -7,3 +7,4 @@ datasets==4.8.5
 huggingface-hub==1.33.0
 pytesseract==0.3.13
 Pillow==13.0.0
+sentence-transformers==5.7.0

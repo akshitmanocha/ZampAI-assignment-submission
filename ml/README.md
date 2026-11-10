@@ -56,3 +56,7 @@ Source: [InvoiceOCR-Synth](https://huggingface.co/datasets/alamgirqazi/invoice-o
 Manual inspection of one failed PO case (`synth_0002_8f01361b.png`) found that the supplied `PO-5678` label is not visible in the rendered freelancer invoice. This is a label-to-image observability issue, not established evidence of an OCR mistake. The other two failures are not yet visually audited. Preserve original scores and label this limitation; do not manufacture the missing number or silently change labels to boost metrics.
 
 The smoke test does not cover faded/bad scans, native PDFs, row extraction, supported INR workflows, or saved PDF-to-decision behavior. Expand image-label audits and define observable field targets before a full extraction benchmark. `results/ocr-smoke/predictions.jsonl` retains raw OCR for this synthetic sample.
+
+## Top-k retrieval diagnostic
+
+See `results/retrieval/metrics.json` and [matching-review design](../docs/matching-review.md). A separate frozen `sentence-transformers/all-MiniLM-L6-v2` embedding model retrieved candidates; the selected pilot cross-encoder reranked them. All 36 simple queries retrieved their true product in the top five among 80 fictional products (also top one). This reused already-inspected test families, all queries were matchable, and no human review was conducted. It is not a fresh blind test or evidence of 100% real-world accuracy. No automatic-match policy has been enabled.

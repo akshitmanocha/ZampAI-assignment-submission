@@ -1,0 +1,31 @@
+{
+  "query_count": 36,
+  "candidate_products": 80,
+  "test_families": [
+    "cleaning brushes",
+    "machine screws",
+    "tubing"
+  ],
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "embedding_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "cross_encoder": "selected pilot E1 checkpoint",
+  "embedding_recall": {
+    "1": 1.0,
+    "3": 1.0,
+    "5": 1.0
+  },
+  "reranked_recall": {
+    "1": 1.0,
+    "3": 1.0,
+    "5": 1.0
+  },
+  "embedding_query_batch_s": 0.0395860470007392,
+  "limitations": [
+    "36 simple queries, only three families, 80 fictional catalog items",
+    "Reuses already-inspected pilot test families; diagnostic, not a fresh blind test",
+    "Only matchable queries; no no-match or incomplete-catalog accuracy measured",
+    "No human review performed and no end-to-end invoice accuracy measured",
+    "Cosines/logits are not calibrated confidence probabilities",
+    "Vendor/current-PO filtering is required in the real app before retrieval"
+  ]
+}

@@ -54,3 +54,11 @@ User authorized implementation and requested plain-language updates. Existing br
 Next: complete persistent staff authentication and full run/job/evidence schema, then real PDF-to-saved-decision flow; expand independent image-label audits and tougher matching scenarios before promoting any model. Deployment still awaits Render account setup.
 
 Final checks: rebuilt app image after dependency/UI changes; desktop/mobile browser smoke passed and saved 95.8% synthetic pair result is visible. API remains fail-closed and readiness intentionally 503 for the incomplete pipeline. Added observed ML environment versions and a thin, unexecuted handoff notebook; the actual experiment ran through the checked-in Python training script. No connection secret in candidate commit content; no weights committed.
+
+## 2026-11-10 — Top-k review fallback
+
+User requested top-k retrieval and human review when model reliability is insufficient. Added standalone conservative match/review policy, defaulting all model matches to review. Human choice validates eligibility/evidence/conflicts/version and returns an attestation requiring later rule revalidation; it does not itself persist a review or approve an invoice. None-correct remains unresolved. Public API remains closed; review screen/persistence are not implemented.
+
+Ran actual frozen `sentence-transformers/all-MiniLM-L6-v2` embedding retrieval and selected cross-encoder reranking on Kaggle: correct item found at top1/top3/top5 for 36/36 simple descriptions against 80 catalog products. This reused previously inspected pilot test families and includes only matchable queries. It is a diagnostic, not a new blind benchmark or a guarantee of 100% final correctness. No human review performed. Model revision, counts, raw predictions, and limitations saved under ml/results/retrieval.
+
+`make test`: 23 passed including 17 new match/review checks, 16 database tests skipped without explicit local connection configuration (the database suite passed separately in the previous milestone). Tests cover ambiguous scores, missing evidence, explicit conflicts, invalid values, ineligible choices, stale review, second-choice selection and none-correct. No further weights trained or test-guided threshold tuning in this step.
