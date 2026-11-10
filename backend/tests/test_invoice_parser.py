@@ -117,3 +117,13 @@ def test_po_box_address_does_not_become_purchase_order():
     from reconcile.document_types import PageText,Word
     words=(Word('PO',(20,10,40,20)),Word('BOX',(45,10,70,20)),Word('5678',(75,10,110,20)))
     assert parse_invoice([PageText(1,'native',600,800,words)])['header']['po_reference']['status']=='missing'
+
+def test_alphabetic_invoice_identifier_is_read_only_with_explicit_label():
+    from reconcile.document_types import PageText,Word
+    words=(Word('Invoice',(20,10,60,20)),Word('No:',(65,10,80,20)),Word('SH-STATE-A',(85,10,180,20)))
+    assert parse_invoice([PageText(1,'native',600,800,words)])['header']['invoice_number']['value']=='SH-STATE-A'
+
+def test_missing_invoice_number_does_not_steal_po_reference_below():
+    from reconcile.document_types import PageText,Word
+    words=(Word('Invoice',(20,10,60,20)),Word('No:',(65,10,80,20)),Word('PO:',(20,40,50,50)),Word('PO-2026-0147',(55,40,180,50)))
+    assert parse_invoice([PageText(1,'native',600,800,words)])['header']['invoice_number']['status']=='missing'

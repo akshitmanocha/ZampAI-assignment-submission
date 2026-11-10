@@ -45,7 +45,7 @@ def text_rows(pages):
         groups=[]
         for w in sorted(p.words,key=lambda w:((w.bbox[1]+w.bbox[3])/2,w.bbox[0])):
             center=(w.bbox[1]+w.bbox[3])/2
-            group=next((g for g in reversed(groups[-4:]) if abs(g[0]-center)<=max(2,median*.4)),None)
+            group=next((g for g in reversed(groups[-4:]) if abs(g[0]-center)<=max(2,median*.7)),None)
             if group is None:groups.append([center,[w]])
             else:group[1].append(w)
         for _,words in groups:result.append(Row(p.page,p.method,tuple(sorted(words,key=lambda w:w.bbox[0]))))
@@ -94,11 +94,16 @@ def reference(rows,kind):
         if kind=='po' and re.search(r'\bp\.?o\.?\s+box\b',row.text,re.I):continue
         if re.match(r'\s*(?:date|total|amount|due|currency)\b',row.text[match.end():],re.I):continue
         after=row.text[match.end():].lstrip(' .:#-')
+        if re.match(r'^(?:not provided|none|null|n/a|unavailable|missing)\b',after,re.I):continue
         # Bare INV-001/PO-123 is itself the reference, not a label plus suffix.
         if re.match(r'-\d',row.text[match.end():]):
             start=match.start();value=ref_value(row.text[start:])
         else:value=ref_value(after)
         if value:candidates.append((value,row.evidence()));continue
+        if kind=='invoice' and re.search(r'invoice\s+(?:no\.?|number)|invoice\s*[#:]|inv\s*[#:]',row.text,re.I):
+            token=re.match(r'([A-Za-z][A-Za-z-]{2,})(?=\s|$)',after)
+            if token and token.group(1).lower() not in ['date','total','amount','number']:
+                candidates.append((token.group(1),row.evidence()));continue
         # Look below the label only within its column; avoid stealing a date or
         # the supplier's left-column address from a two-column invoice header.
         if kind=='invoice' and not re.search(r'invoice\s+(?:no\.?|number)|invoice\s*[#:]|inv\s*[#:]|inv\s+no',row.text,re.I):continue
@@ -107,6 +112,7 @@ def reference(rows,kind):
         anchor=label_words[0].bbox[0]
         for below in rows[i+1:i+4]:
             if below.page!=row.page or below.bbox[1]-row.bbox[3]>50:break
+            if re.search(r'\b(?:po|date|tax|subtotal|total|amount)\b',below.text,re.I):break
             words=tuple(w for w in below.words if anchor-15<=w.bbox[0]<=anchor+180)
             if not words:continue
             value=ref_value(' '.join(w.text for w in words))
@@ -270,5 +276,5 @@ def line_items(rows):
 def parse_invoice(pages):
     rows=text_rows(pages)
     lines,warnings=line_items(rows)
-    header={'vendor_name':supplier(rows,pages),'invoice_number':reference(rows,'invoice'),'po_reference':reference(rows,'po'),'invoice_date':date_reading(rows),'currency':currency(rows),'subtotal':monetary_field(rows,r'\b(?:subtotal|sub-total|net total)\b'),'grand_total':monetary_field(rows,r'\b(?:grand total|invoice total|amount due|balance due|total due|total)\b',r'\b(?:subtotal|sub-total|tax total|vat total|net total|total tax|total vat|total net)\b')}
-    return {'parser_version':'x2-geometry-baseline-0.4','header':{k:asdict(v) for k,v in header.items()},'lines':[{k:asdict(v) if isinstance(v,Reading) else v for k,v in line.items()} for line in lines],'warnings':sorted(set(warnings+[w for p in pages for w in p.warnings]))}
+    header={'vendor_name':supplier(rows,pages),'invoice_number':reference(rows,'invoice'),'po_reference':reference(rows,'po'),'invoice_date':date_reading(rows),'currency':currency(rows),'subtotal':monetary_field(rows,r'\b(?:subtotal|sub-total|net total)\b'),'tax_total':monetary_field(rows,r'\b(?:tax total|total tax|tax|gst|vat)\b',r'\b(?:analysis|rate|base)\b'),'grand_total':monetary_field(rows,r'\b(?:grand total|invoice total|amount due|balance due|total due|total)\b',r'\b(?:subtotal|sub-total|tax total|vat total|net total|total tax|total vat|total net)\b')}
+    return {'parser_version':'x2-geometry-baseline-0.6','header':{k:asdict(v) for k,v in header.items()},'lines':[{k:asdict(v) if isinstance(v,Reading) else v for k,v in line.items()} for line in lines],'warnings':sorted(set(warnings+[w for p in pages for w in p.warnings]))}

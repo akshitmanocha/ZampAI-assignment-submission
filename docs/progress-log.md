@@ -104,3 +104,17 @@ Metrics compare exact same images, retain correlated variant counts, distinguish
 Validation: `make test` 91 passed, 16 database tests skipped locally (prior dedicated PostgreSQL run passed). Native and real scanned PDF paths executed. Rebuilt Docker image, imported OCR/vision modules in non-root container and verified native invoice extraction there. Browser desktop/mobile checks passed; API stays anonymous-401, readiness stays intentionally 503 pending full pipeline. See docs/ocr-results.md for primary report and next steps.
 
 Final OCR regression: encrypted PDFs are classified as PDF_ENCRYPTED even when pdfplumber wraps the password exception; initially failing regression fixed and full 91-test suite passed. Free-model comparison processes completed; no further provider requests running.
+
+## 2026-11-10 — Frozen workflow edge-case validation
+
+Implemented 25 authored validation cases in 15 groups: four main edge families plus duplicate/vendor/status/tax/tolerance/aggregation regressions and three stateful approvals. Curated inputs and explicit oracles before running the production validator; separate Fraction audit, no engine/LLM-generated expected outcomes. Frozen manifest hash remained 157ab0ed9a8fd142259e52e4f6c85300a67f4ac2d676fcd27d7daebef5f6a309 throughout debugging. All cases are validation, author-known, with no independent human audit or blind-test claim.
+
+Added bounded source-field normalization, exact printed-SKU/explicit-attribute procurement validator, SQL company snapshot reader, neutral deterministic native/scanned rendering, strict oracle/PDF evaluation, real PostgreSQL traces, reproducibility checks, nonzero exit on failed/incomplete runs, and human-readable PDF/report ZIP. Expectations and guide PDF remain outside runtime; application API stays closed.
+
+Found/fixed real errors: tilted rows lost items; empty extraction was incorrectly treated as arithmetic failure; uncertain later rows could hide a known failure; absent invoice IDs could steal a PO reference; alphabetic IDs were dropped. Added regressions. Scanned-PDF timestamp nondeterminism fixed. Original failed outputs retained, without altering labels.
+
+Final: 25/25 oracle-input initial recommendations and 100/100 case/PDF assignments pass all current assertions; 68 distinct PDF byte sequences, 24 unique context/action scenarios. Coverage 84% automatic/16% correct review on this deliberately enriched set, 83.3% deduplicated; not 90% live automation or future 100% precision. Cases verify exact reasons, normalized values, both offsetting price errors, extracted fields and no recommendation-side balance mutation.
+
+Three actual PostgreSQL traces pass using parsed native PDFs: sequential stale detection, repeat/no extra effect, concurrent approvals/no overspending; post-conflict recheck returns rejection. Fresh disposable schemas and recorded source hashes/version; existing records preserved. Full ordinary suite: 131 passed, 16 existing PostgreSQL tests skipped locally; three scenario database traces executed separately. Browser report preview and PDF links checked.
+
+Limits: deterministic SKU/attribute baseline only, not trained MiniLM/Nemotron; controlled layouts/mild corruption; no browser upload/jobs/review persistence. Approval tolerance-policy alignment remains before enabling tolerant-price recommendations through live approval. See docs/workflow-validation.md. No new external API calls, training, publication or deployment.

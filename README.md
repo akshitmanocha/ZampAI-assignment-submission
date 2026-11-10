@@ -55,3 +55,7 @@ uv run --project backend python -m reconcile.extract_cli /path/invoice.pdf --out
 ```
 
 It does not call an external model. [OCR results](docs/ocr-results.md) document the public-data comparison with the optional free Nemotron vision adapter, including failures, ambiguous fields, label visibility, cost and remaining limitations. Provider keys stay outside Git. Full upload-to-decision integration is still pending.
+
+## Edge-case validation dataset
+
+[Workflow validation](docs/workflow-validation.md) documents 25 frozen authored cases, 100 case/PDF assignments, independent expected answers and real PostgreSQL action traces. Run `make workflow-data-check`, `make workflow-test` and `make workflow-db-test` (last requires running Compose services). Results are acceptance checks on controlled synthetic data, not production accuracy or a replacement for ML evaluation. Expected answers are outside the runtime application.

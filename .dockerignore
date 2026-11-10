@@ -16,3 +16,5 @@ docs
 reconcile-design
 *.pdf
 .DS_Store
+
+fixtures/workflows/
