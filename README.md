@@ -1,76 +1,83 @@
 # Reconcile
 
-A working local invoice-review application: upload a real PDF, watch processing, inspect source evidence, resolve uncertain matches, and approve against the current purchase-order balance. Reconcile records approvals and allocations; it never executes payment.
+Reconcile helps a finance team check supplier invoices before approving them. It compares each invoice with a **purchase order**: the company's record of what it agreed to buy, in what quantity, and at what price.
 
-![Invoice workflow: upload, OCR, extract fields, SQL order lookup, MiniLM suggestions, business checks, review and staff approval.](docs/images/invoice-architecture.png)
+## Features
 
-The mobile OCR reads the invoice. SQL supplies company facts. MiniLM suggests matching products. Rules explain discrepancies, and staff resolve uncertainty before final approval. See the [illustrated architecture and evaluation guide](docs/architecture.md) for the complete explanation.
+- **Read invoice PDFs.** Upload a digital invoice or a scanned copy. The app reads the supplier, invoice number, totals and product rows.
+- **Watch the work happen.** See which processing steps are running and inspect the result of each check.
+- **Find the right order and products.** Search company records and suggest matching products, even when descriptions use different wording. A person confirms matches suggested from similar wording.
+- **Check the details.** Compare item prices, quantities, totals, supported tax calculations and pack sizes. For example, six boxes become 600 items only when there is evidence of 100 items per box.
+- **Catch duplicates and overbilling.** Look for earlier copies of an invoice and account for quantities already approved against an order.
+- **Handle uncertainty through human review.** Highlight the original invoice so staff can verify unclear readings, correct them and run the checks again.
+- **Keep a clear history.** Preserve original documents, readings, corrections, decisions and approvals. Staff can search past invoices and inspect remaining order balances.
+- **Control final approval.** Only authorized approvers can approve an invoice. The app checks the latest order balance again before recording approval. It does not send payments.
 
-The [submission code review](docs/code-review.md) records the date-validation and evaluation-provenance fixes. After removing the superseded matching prototype and its 17 prototype-only tests, **204 PostgreSQL-backed tests pass**, including the **11 edge-case checks**. The review report retains the earlier 221-test baseline.
+The current workflow supports English invoices in Indian rupees, one purchase order per invoice, individual items and boxes with verified pack sizes. Other formats require manual handling.
 
-## Start locally
+## Architecture
 
-Requires Docker with Compose and Python 3.12. The first build downloads the public, pinned MiniLM and mobile OCR models; invoice processing then runs locally without an API key.
+![Architecture showing invoice reading, order lookup, product suggestions, checks, human review and staff approval.](docs/images/invoice-architecture.png)
 
-```sh
-make local
+### How an invoice moves through the app
+
+1. **Upload and save.** A staff member uploads a PDF. The original file is saved so it can always be checked later.
+2. **Read the document.** Digital PDFs provide their text directly. For scanned pages, **PP-OCRv5 mobile** reads words from the image. This is called OCR.
+3. **Organize the information.** Parsing rules turn those words into fields and product rows, keeping links to their locations on the page.
+4. **Find company records.** A database search, using SQL, finds the supplier, purchase order, earlier invoices and remaining quantities.
+5. **Suggest matching products.** **MiniLM** compares the meaning of product descriptions and ranks likely matches from the eligible order. Its suggestions need human confirmation when wording alone supplies the match.
+6. **Check the facts.** Business rules compare the invoice with the order. For example, if 1,000 items were ordered and 400 already approved, only 600 remain available.
+7. **Show a recommendation.** The app explains the result using one of three outcomes:
+
+   | Recommendation | What it means |
+   |---|---|
+   | **Ready for approval** | The required checks have supporting evidence. An authorized person can approve it. |
+   | **Human review** | Important information is missing, unclear or uncertain. Someone must verify it and rerun the checks. |
+   | **Hold** | Evidence supports a problem, such as a duplicate, incorrect price or excessive quantity. |
+
+8. **Record the final action.** Corrections create a new result while preserving the original reading. Approval checks current balances again, records the approved quantities and saves the history.
+
+### The four main parts
+
+| Part | What it does |
+|---|---|
+| **Web interface — React** | The screens staff use to upload invoices, see progress, inspect evidence and review results. |
+| **Application server — FastAPI** | Connects the screens to the processing and saved records. Checks who is allowed to perform each action. |
+| **Background worker — Python** | Reads PDFs and runs checks while staff continue using the app. |
+| **Database — PostgreSQL** | Stores company orders, original documents, results, corrections and approval history. |
+
+## Repository structure
+
+```text
+backend/
+├── reconcile/       Main application: read invoices, check them and handle review
+├── migrations/      Instructions for creating and updating the database
+└── tests/           Checks that the application behaves as expected
+
+web/
+├── src/             The screens, buttons and page styling
+└── tests/           Checks that a person can complete the browser workflow
+
+ml/                  Dataset preparation, model experiments and evaluation results
+fixtures/            Fictional company/invoice examples and their expected outcomes
+scripts/             Helpers for setup, sample PDFs and evaluation
+docs/                Architecture images, explanations and detailed reports
+deploy/              Instructions for packaging the application with Docker
+notebooks/           Notebook used for the earlier GPU training experiment
+reconcile-design/    Original product requirements and design notes
+
+compose.yaml         Describes how the app, worker and database run together
+Makefile             Shortcuts for common development and verification tasks
 ```
 
-Open **http://127.0.0.1:8000**. Generated staff credentials are saved outside Git at `/tmp/reconcile-private/local-accounts.json`. The default stack binds to loopback. `make local` preserves existing documents, approvals and the database volume. Sign in as the approver for the complete workflow; the clerk can review but cannot approve.
+Inside `backend/reconcile/`, these files handle the main steps:
 
-The workspace includes downloadable fictional PDFs covering packaging, material conflicts, hidden price errors, competing partial invoices, semantic matching and a genuine scanned PDF. Their results depend on the current company ledger. Original PDFs, extracted readings, corrections, runs, versioned decisions and audit records persist in PostgreSQL.
-
-## What runs
-
-- Argon2id staff passwords, revocable 12-hour sessions, role checks, CSRF protection and database-backed login/upload limits.
-- Durable processing queue, real stage events, retries, worker heartbeats and fenced recovery after worker death.
-- Native PDF reading or PP-OCRv5 English mobile OCR (about 3.1M stored model values) in a bounded subprocess; source-page previews and original-coordinate field highlights.
-- Pinned `all-MiniLM-L6-v2` embeddings on CPU retrieve top product candidates after supplier/PO filtering. Similarity alone never confirms a match.
-- Decimal business checks: supplier/order eligibility, duplicates, specifications, explicit packaging conversions, line prices, arithmetic, uniform separated tax and cumulative quantity/value balances.
-- Human corrections and candidate choices preserve original readings and trigger a new validation run.
-- Approval rechecks locked, current records. Repeated approval has one effect; competing invoices cannot consume the same remaining quantity.
-- Searchable invoice history, review filters, order ledger, saved evaluation reports and operational CLI commands.
-
-## Verify
-
-```sh
-make install                  # local Python/frontend development dependencies
-make lint                     # unused Python imports/locals and TypeScript checks
-make models                   # CPU retrieval/OCR models for commands outside Docker
-make test                     # unit tests; DB cases skip without explicit test URLs
-make integration-test         # all tests, real PostgreSQL, private disposable schemas
-make submission-edge-test     # focused four edge families, expected/observed evidence
-# Install Chromium once for browser checks:
-web/node_modules/.bin/playwright install chromium
-make browser-test             # isolated company/app on loopback port 18000; cleaned afterward
-```
-
-Use `PLAYWRIGHT_BROWSERS_PATH` if Chromium is installed in a custom location. Browser tests exercise the actual UI, PDF processing, human correction, MiniLM selection, approval, source evidence, search, ledger, mobile layout and logout, with accessibility checks.
-
-See [local application and operations](docs/local-application.md), [demo walkthrough](docs/local-demo.md), and [test evidence](ml/results/local-application/). Public deployment and hiring submission are still pending. No CI/CD is configured.
-
-## Evaluation and limits
-
-![Three separate evaluations: publisher-labelled Indian GST extraction, product-ID-labelled retrieval, and authored business-rule acceptance scenarios.](docs/images/evaluation-and-labels.png)
-
-Our primary invoice-reading benchmark is now [Divya52/indian-gst-invoices](https://huggingface.co/datasets/Divya52/indian-gst-invoices), pinned to an immutable source revision. We evaluate every one of its **197 official test invoices**; 24 adversarial and 40 Hindi/Kannada documents form separate robustness suites. Publisher-supplied labels remain unchanged and never enter the reader. This replaces InvoiceOCR-Synth as the primary OCR benchmark; earlier results remain historical evidence.
-
-The [small-model OCR upgrade](docs/ocr-upgrade.md) compares the compact reader with Tesseract, a larger PP-OCR model and two GPU vision models below one billion parameters. GST columns and receipt rows now have source-based parsing. Development uses 24 training images, 60 model-selection images and 130 separate calibration images. No model was fine-tuned. The official test is a disclosed re-score of an already inspected test, not a new blind benchmark. OCR confidence remains a heuristic; high scores can still be wrong.
-
-```sh
-make invoice-data             # original images/metadata outside Git; verify frozen hashes
-docker compose --profile test build test
-make evaluate                 # actual local PDF/OCR reader; no training or model API calls
-```
-
-See [the Indian GST evaluation report](docs/indian-gst-evaluation.md), [frozen source manifest](ml/data/indian-gst-v1/), and [saved predictions and metrics](ml/results/indian-gst/). These labels measure extracted invoice fields. They provide no verified purchase-order ledger, catalog-match identities or approval history, so they cannot establish accept/reject accuracy or invoice automation.
-
-The earlier [25-scenario edge-case suite](docs/workflow-validation.md) passed 100 PDF checks and three database traces. These are author-known synthetic acceptance tests, not 100 independent invoices or guaranteed future accuracy. Its labels were authored before evaluation; no LLM generated the correct answers.
-
-The current [four submission edge cases](docs/submission-edge-cases.md) additionally pass **11/11 actual application checks**: missing packaging evidence, offsetting price errors, partial/concurrent billing and supplier-scoped duplicates, plus native/scanned controls. The scan correctly needs review for a misread pack string; simulated correction is reported separately from OCR accuracy. Each check uses an isolated PostgreSQL company and the real upload/worker/review/approval paths where specified.
-
-The live application now connects matching, review, persistence and approval, with additional source-quality and tax checks. [ML experiments](ml/README.md) remain separate from application tests. The trained cross-encoder experiment is not a live approval policy. The CPU embedding implementation is checked against the saved GPU diagnostic; semantic identity without explicit evidence still requires human confirmation.
-
-This release handles English/INR, one invoice per PO, individual-item orders and evidenced box conversions. Mixed/inclusive tax, credit notes, bundles and extra charges remain manual-review cases. OCR engine scores and embedding similarities are not correctness probabilities. Approximately 90% automation on representative unseen invoices has **not** been established; independent label audit and real-data evaluation remain necessary before production claims.
-
-The candidate guide PDF is intentionally absent from the repository. The optional Nemotron extractor remains available for explicit experiments; the application makes no external document/model calls during processing. Existing Kaggle and OCR reports are retained as historical evidence.
+| Files | Responsibility |
+|---|---|
+| `app.py`, `auth.py`, `invoice_api.py` | Sign-in, access permissions and actions requested from the web screens. |
+| `worker.py`, `ingest.py` | Process uploaded invoices in the background. |
+| `document_text.py`, `paddle_text.py` | Read text from digital PDFs and scanned pages. |
+| `invoice_parser.py`, `gst_parser.py` | Organize document readings into invoice fields and item rows. |
+| `retrieval.py` | Use MiniLM to suggest matching order products. |
+| `business_validation.py`, `tax_validation.py`, `pipeline.py` | Compare invoice details with company records and explain the recommendation. |
+| `workflows.py`, `history.py` | Preserve corrections, manage decisions and record approvals against current balances. |
