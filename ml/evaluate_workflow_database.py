@@ -5,7 +5,6 @@ Expected answers remain in this harness and never enter production functions.
 """
 import base64
 from concurrent.futures import ThreadPoolExecutor
-from copy import deepcopy
 from decimal import Decimal
 from datetime import date
 import hashlib,json,os,threading,uuid

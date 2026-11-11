@@ -5,7 +5,7 @@ import uuid
 from fastapi.responses import JSONResponse
 from sqlalchemy import select, text
 from reconcile.database import session
-from reconcile.models import Submission, Run
+from reconcile.models import Submission
 from reconcile.errors import AppError, response
 from reconcile.pipeline import canonical_hash
 

@@ -5,7 +5,6 @@ possible from a finite sample. Group bounds require independent/exchangeable
 future groups; synthetic family results cannot certify production.
 """
 import math
-import numpy as np
 from scipy.stats import beta
 
 

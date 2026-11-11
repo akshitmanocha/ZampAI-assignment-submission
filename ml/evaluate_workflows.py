@@ -3,7 +3,6 @@ from copy import deepcopy
 from decimal import Decimal
 from pathlib import Path
 import hashlib,json,time
-from collections import Counter,defaultdict
 from reconcile.business_validation import validate,from_extraction
 from reconcile.document_text import extract_document
 from reconcile.invoice_parser import parse_invoice

@@ -1,4 +1,8 @@
 > Historical milestone. The local application now integrates upload, retrieval, review and approval; see [current implementation](local-application.md). Scores and limitations below describe the original experiment.
+>
+> The standalone matching-policy prototype was removed during dead-code cleanup.
+> Live candidate retrieval is in `reconcile/retrieval.py`, persisted corrections
+> are in `reconcile/workflows.py`, and final checks run through the application API.
 
 # Matching with human review
 
@@ -15,9 +19,9 @@ The target is correct final outcomes with useful automation. Model scores cannot
 
 Do not use 'a human clicked approve' as a correctness label. Evaluate against independent expected outcomes, audit reviewed cases, and retain unresolved cases in the denominator. Report model-only, reviewed and combined results separately.
 
-## Implemented now
+## Historical prototype
 
-- `backend/reconcile/matching_review.py`: typed routing and reviewer-choice validation, default review, bounded top-k display, no forced choice, rejection of invalid scores/ineligible selections, missing evidence/conflicts and stale reviews. It produces a review attestation for later persistence; it does not store the review or authorize an invoice.
+- The [former standalone matching helper](https://github.com/akshitmanocha/ZampAI-assignment-submission/blob/42fd92c/backend/reconcile/matching_review.py) implemented typed routing and reviewer-choice validation. It was superseded by the application's persisted review workflow and removed along with its prototype-only unit tests. This historical source remains accessible in Git history.
 - Seventeen focused unit cases passed. Existing SQL approval service continues to enforce its current balance/state checks separately.
 - `ml/evaluate_retrieval.py`: real frozen-embedding retrieval and selected-cross-encoder reranking diagnostic on Kaggle. Models and data revision are recorded in results.
 

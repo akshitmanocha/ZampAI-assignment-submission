@@ -8,7 +8,6 @@ from collections import Counter
 from datetime import datetime,timezone
 from importlib.metadata import version
 import argparse
-import hashlib
 import json
 import os
 from pathlib import Path

@@ -1,5 +1,5 @@
 """Authenticated same-origin API and React application. Never executes payment."""
-from datetime import timedelta
+from importlib import import_module
 from pathlib import Path
 import os
 import subprocess
@@ -108,7 +108,7 @@ def create_app():
         try:
             selected=os.getenv('OCR_ENGINE','tesseract')
             if selected=='paddle':
-                import rapidocr
+                import_module('rapidocr')
                 from reconcile.ocr_models import verify
                 verify(os.getenv('OCR_MODEL_DIR','/opt/reconcile/ppocr-v5'),os.getenv('OCR_PROFILE','server'))
                 checks['ocr_engine']='ppocr-v5-'+os.getenv('OCR_PROFILE','server')

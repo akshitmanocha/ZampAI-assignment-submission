@@ -4,25 +4,19 @@ Sampling uses template metadata only for a balanced evaluation set. The parser
 receives PDF bytes only, never file IDs, gold values, template IDs or PO data.
 """
 import argparse
-from collections import Counter,defaultdict
-from decimal import Decimal
+from collections import Counter
 import hashlib
 import io
 import json
 from pathlib import Path
-import re
 import time
-import unicodedata
-from difflib import SequenceMatcher
 from datasets import load_dataset
 from huggingface_hub import hf_hub_download
 from PIL import Image
-from scipy.optimize import linear_sum_assignment
-import numpy as np
 import pytesseract
 from reconcile.document_text import extract_document
 from reconcile.invoice_parser import parse_invoice
-from extraction_metrics import MAP,normalized,equal,line_score,summarize
+from extraction_metrics import MAP,line_score,summarize
 
 SOURCE='alamgirqazi/invoice-ocr-synthetic'
 REVISION='673ff85be462eb7f3715ec188a295dd17ca11115'
@@ -35,7 +29,7 @@ REVISION='673ff85be462eb7f3715ec188a295dd17ca11115'
 def prepare(root):
     root.mkdir(parents=True,exist_ok=True)
     labels=json.loads(Path(hf_hub_download(SOURCE,'ground_truth_released.json',repo_type='dataset',revision=REVISION)).read_text())
-    counts=Counter();selected={};split_counts=Counter()
+    counts=Counter();selected={}
     # Exclude the first 100 source records, including our previously seen smoke
     # examples. Choose four later documents per template before reading results.
     for row in labels[100:]:

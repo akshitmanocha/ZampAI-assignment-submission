@@ -1,8 +1,6 @@
 """Ensure evaluation counts abstentions and wrong row amounts as failures."""
-from decimal import Decimal
 import importlib.util
 from pathlib import Path
-import sys
 source=Path(__file__).resolve().parents[2]/'ml/extraction_metrics.py'
 spec=importlib.util.spec_from_file_location('extraction_metrics',source)
 metrics=importlib.util.module_from_spec(spec);spec.loader.exec_module(metrics)

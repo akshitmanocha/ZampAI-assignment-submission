@@ -1,9 +1,8 @@
 import pytest
 from reconcile.invoice_routing import Finding,REQUIRED_RULES,route_invoice
-from reconcile.matching_review import MatchRoute
 
-MATCH=MatchRoute('matched','po-line','test-only verified match',())
-REVIEW=MatchRoute('needs_review',None,'ambiguous',())
+MATCH='po-line'  # test-only independently verified identity
+REVIEW=None
 
 def findings(**changes):
     return [changes.get(rule,Finding(rule,'pass',True)) for rule in REQUIRED_RULES]

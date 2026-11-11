@@ -6,7 +6,7 @@ A working local invoice-review application: upload a real PDF, watch processing,
 
 The mobile OCR reads the invoice. SQL supplies company facts. MiniLM suggests matching products. Rules explain discrepancies, and staff resolve uncertainty before final approval. See the [illustrated architecture and evaluation guide](docs/architecture.md) for the complete explanation.
 
-The [submission code review](docs/code-review.md) records the date-validation and evaluation-provenance fixes, **221 passing PostgreSQL-backed tests**, a passing browser journey and the latest **11/11 edge-case checks**.
+The [submission code review](docs/code-review.md) records the date-validation and evaluation-provenance fixes. After removing the superseded matching prototype and its 17 prototype-only tests, **204 PostgreSQL-backed tests pass**, including the **11 edge-case checks**. The review report retains the earlier 221-test baseline.
 
 ## Start locally
 
@@ -35,6 +35,7 @@ The workspace includes downloadable fictional PDFs covering packaging, material 
 
 ```sh
 make install                  # local Python/frontend development dependencies
+make lint                     # unused Python imports/locals and TypeScript checks
 make models                   # CPU retrieval/OCR models for commands outside Docker
 make test                     # unit tests; DB cases skip without explicit test URLs
 make integration-test         # all tests, real PostgreSQL, private disposable schemas

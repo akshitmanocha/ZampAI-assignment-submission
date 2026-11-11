@@ -9,7 +9,7 @@ from decimal import Decimal,InvalidOperation
 import re
 import statistics
 from typing import Literal
-from reconcile.document_types import PageText,Word
+from reconcile.document_types import Word
 
 PARSER_VERSION = 'x3-printed-gst-columns-1.0'
 

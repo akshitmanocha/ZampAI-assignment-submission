@@ -1,5 +1,4 @@
 """Authored regression inputs, independent of publisher evaluation answers."""
-from copy import deepcopy
 from dataclasses import asdict
 import pytest
 from reconcile.document_types import PageText,Word

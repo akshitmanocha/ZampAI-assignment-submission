@@ -1,7 +1,6 @@
 """Start the local stack, migrate, seed fictional master data and provision accounts."""
 from pathlib import Path
 import argparse
-import os
 import secrets
 import subprocess
 ROOT=Path(__file__).resolve().parents[1]

@@ -5,7 +5,6 @@ A low model score alone never establishes a confirmed invoice discrepancy.
 """
 from dataclasses import dataclass
 from typing import Literal
-from reconcile.matching_review import MatchRoute
 
 REQUIRED_RULES=frozenset({'scope','vendor_identity','vendor_status','purchase_order',
     'product_specification','unit_conversion','unit_price','remaining_quantity',
@@ -32,12 +31,14 @@ class InvoiceRoute:
     consumes_order_balance: bool = False
 
 
-def route_invoice(findings,match: MatchRoute):
+def route_invoice(findings,matched_po_line_id: str | None):
     """Inputs aggregate all lines per rule; every mandatory rule must pass.
 
     Upstream code must independently check source evidence. A model score or a
     populated extracted field is not itself 'verified'. All final state changes
     still need authenticated, audited, current-state transaction checks.
+    The line ID must come from verified product evidence or an eligible human
+    attestation, never from a similarity score alone.
     """
     findings=tuple(findings)
     if len({f.rule_id for f in findings})!=len(findings):
@@ -49,7 +50,7 @@ def route_invoice(findings,match: MatchRoute):
         return InvoiceRoute('reject',blocking,unresolved)
     if unresolved:
         return InvoiceRoute('human_review',('missing_or_unverified_evidence',),unresolved)
-    if match.state!='matched' or match.selected_po_line_id is None:
+    if matched_po_line_id is None:
         return InvoiceRoute('human_review',('product_match_not_confirmed',),())
     if any(by_id[rule].status!='pass' for rule in REQUIRED_RULES):
         return InvoiceRoute('human_review',('required_check_not_passed',),())

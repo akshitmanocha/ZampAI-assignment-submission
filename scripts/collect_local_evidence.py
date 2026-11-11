@@ -6,7 +6,6 @@ import hashlib
 import json
 import re
 import shutil
-import subprocess
 import zipfile
 ROOT=Path(__file__).resolve().parents[1]
 

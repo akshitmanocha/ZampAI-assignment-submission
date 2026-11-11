@@ -5,13 +5,10 @@ Exact printed SKU plus explicit attributes supplies the baseline identity check.
 Unresolved identity/conversion stays review; learned matching is not enabled.
 """
 from collections import defaultdict
-from copy import deepcopy
-from dataclasses import asdict
 from datetime import date
 from decimal import Decimal,ROUND_HALF_UP,InvalidOperation
 import re
 from reconcile.invoice_routing import Finding,route_invoice
-from reconcile.matching_review import MatchRoute
 from reconcile.history import identifier_key
 
 
@@ -169,6 +166,6 @@ def validate(document,company,document_sha256,*,today,reviewed_lines=None):
     for rule,status in [('product_specification',spec),('unit_conversion',conversion),('unit_price',price),('remaining_quantity',quantity)]:finding(rule,status,rule.upper(),values=values)
     details['unit_price']['line_checks']=price_checks
     details['remaining_quantity']['line_checks']=quantity_checks
-    match=MatchRoute('matched' if spec=='pass' and matched_ids else 'needs_review',matched_ids[0] if spec=='pass' and matched_ids else None,'deterministic_printed_sku_and_explicit_attributes',())
-    route=route_invoice(results.values(),match)
+    matched_po_line_id=matched_ids[0] if spec=='pass' and matched_ids else None
+    route=route_invoice(results.values(),matched_po_line_id)
     return {'bucket':route.bucket,'blocking_rules':sorted(k for k,v in results.items() if v.status=='fail' and v.evidence_verified),'unknown_rules':sorted(k for k,v in results.items() if v.status=='unknown'),'findings':details,'values':values,'po_id':po['id'] if po else None,'matched_po_line_ids':matched_ids,'normalized_lines':normalized,'history_mutated':False,'matcher':'exact printed SKU plus explicit attributes; no learned scoring','scope':'bounded two-way INR invoice validation over supplied company snapshot'}

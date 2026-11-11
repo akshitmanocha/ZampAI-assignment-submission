@@ -3,7 +3,7 @@
 A negative pair means this candidate is not the product; search other candidates
 or review the invoice. It never authorizes automatic invoice rejection.
 """
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass
 import math
 
 @dataclass(frozen=True)

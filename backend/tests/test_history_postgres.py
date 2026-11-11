@@ -16,7 +16,7 @@ from sqlalchemy.engine import make_url
 from sqlalchemy.orm import Session
 from alembic import command
 from alembic.config import Config
-from reconcile.models import Base, Vendor, PurchaseOrder, POLine, Invoice, InvoiceLine, Allocation, Approval
+from reconcile.models import Base, Vendor, PurchaseOrder, POLine, Invoice, InvoiceLine, Allocation
 from reconcile.history import identifier_key, find_duplicates, remaining_balance, previous_purchases, approve_invoice, HistoryConflict, rank_previous_purchases
 
 
@@ -103,7 +103,7 @@ class HistoryTests(unittest.TestCase):
 
     def test_duplicate_file_and_business_identifier(self):
         with Session(self.engine) as s,s.begin():
-            i=self.invoice(s)
+            self.invoice(s)
             exact=find_duplicates(s,self.vendor,'DIFFERENT',hashlib.sha256(b'INV-001').hexdigest(),D('3000'))
             self.assertEqual(exact[0]['kind'],'exact_file')
             repeat=find_duplicates(s,self.vendor,'INV-001','0'*64,D('3000'))
@@ -125,7 +125,7 @@ class HistoryTests(unittest.TestCase):
 
     def test_duplicate_approval_blocked(self):
         with Session(self.engine) as s,s.begin():
-            a=self.invoice(s);b=self.invoice(s,document='0'*64)
+            a=self.invoice(s);self.invoice(s,document='0'*64)
         self.assertEqual(self.approve(a),'DUPLICATE_REVIEW_REQUIRED')
 
     def test_aggregated_rows_cannot_overdraw(self):

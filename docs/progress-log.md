@@ -215,3 +215,28 @@ hash. Isolated schemas were used, browser fixture stopped, ordinary ledger retai
 See docs/code-review.md and ml/results/code-review-v1. User explicitly requested
 advancing main; no force push, environment publication or app deployment is part
 of this handover.
+
+## 2026-11-11 — Remove dead code and obsolete dependencies
+
+Removed unused imports and local bindings across the app, tests, evaluation tools
+and scripts; invoice-creation calls with side effects are retained. Removed the
+unreachable tax-rate label branch from the line editor. The standalone matching
+policy/review prototype had no live or evaluation caller beyond its own tests;
+removed it and its 17 prototype-only cases, and simplified invoice routing to take
+the already verified PO-line ID. Actual persisted review, semantic-confirmation,
+source-preservation and approval tests remain.
+
+Removed unused fastapi-users and its six now-unneeded transitive packages,
+deduplicated reportlab's development declaration, and regenerated the lockfile
+without changing retained package versions. Added pinned development Ruff checks,
+`make lint`, and TypeScript unused-local/parameter checks. CLI entry points,
+documented experiments, migrations and frozen benchmark artifacts are retained.
+
+Final verification uses a freshly synchronized, locked virtual environment in the
+model-equipped test container. All seven removed packages are explicitly absent;
+204 tests pass with real PostgreSQL and zero skips. Frontend production build and
+unused-code checks pass; the browser journey also passes in 20.5 seconds against
+the cleaned source and fresh dependency environment. The isolated browser fixture
+was stopped afterward. The earlier 221-test report remains historical evidence,
+not relabelled after retiring prototype tests. No OCR re-benchmark, model training,
+application deployment or environment publication is part of this cleanup.

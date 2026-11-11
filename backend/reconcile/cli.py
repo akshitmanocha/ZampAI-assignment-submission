@@ -5,15 +5,14 @@ from decimal import Decimal
 import getpass
 import hashlib
 import json
-import os
 from pathlib import Path
 import uuid
-from sqlalchemy import select, func, text
+from sqlalchemy import select, func
 from alembic import command
 from alembic.config import Config
 from reconcile.database import session
 from reconcile.models import (User, Vendor, PurchaseOrder, POLine, Invoice, InvoiceLine, Audit,
-    Approval, Allocation, Document, Submission, Run, Decision, RunEvent)
+    Approval, Allocation, Document, Submission, Run, Decision)
 from reconcile.auth import passwords
 from reconcile.history import approve_invoice, identifier_key, remaining_balance
 from reconcile.workflows import audit

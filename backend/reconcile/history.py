@@ -2,7 +2,6 @@
 from collections import defaultdict
 from decimal import Decimal, ROUND_HALF_UP
 import re
-import uuid
 from sqlalchemy import select, func
 from sqlalchemy.orm import Session
 from reconcile.models import Vendor, PurchaseOrder, POLine, Invoice, InvoiceLine, Approval, Allocation

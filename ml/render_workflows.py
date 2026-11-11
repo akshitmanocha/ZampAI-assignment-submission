@@ -1,7 +1,6 @@
 """Render neutral, reproducible invoice artifacts without reading expectations."""
 from pathlib import Path
 import hashlib,io,json,time
-from copy import deepcopy
 import numpy as np
 from PIL import Image,ImageFilter
 import pypdfium2

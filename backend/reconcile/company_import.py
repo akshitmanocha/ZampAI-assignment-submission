@@ -5,7 +5,6 @@ quantities and amounts cannot be erased by replacing an order line.
 """
 from datetime import date
 from decimal import Decimal
-import uuid
 from sqlalchemy import select
 from reconcile.models import Vendor, PurchaseOrder, POLine
 from reconcile.history import remaining_balance

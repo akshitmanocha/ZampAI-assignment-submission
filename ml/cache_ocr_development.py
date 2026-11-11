@@ -1,7 +1,6 @@
 """Cache label-free OCR pages so parser changes do not rerun the models."""
 import argparse
 from dataclasses import asdict
-import hashlib
 import json
 import os
 from pathlib import Path

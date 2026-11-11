@@ -1,13 +1,12 @@
 """Bounded optional free-model comparison on public synthetic documents only."""
 import argparse
-from collections import Counter
 from decimal import Decimal
 import json
 from pathlib import Path
 import time
 import urllib.request
 from reconcile.vision_extraction import request_vision,MODEL
-from extraction_metrics import MAP,line_score,summarize
+from extraction_metrics import line_score,summarize
 
 
 def run(data,out,key_file,split,max_requests=16):

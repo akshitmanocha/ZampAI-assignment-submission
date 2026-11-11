@@ -8,7 +8,6 @@ from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 from datetime import timedelta
 from decimal import Decimal
-import hashlib
 import io
 import json
 import os
@@ -25,8 +24,8 @@ from sqlalchemy.engine import make_url
 from reconcile.app import create_app
 from reconcile import database
 from reconcile.cli import migrate, seed, create_user, uid, verify
-from reconcile.models import (Submission, Run, Decision, Document, Allocation, Approval,
-    Correction, AuthSession, PurchaseOrder, POLine, RunEvent, now)
+from reconcile.models import (Submission, Run, Decision, Document, Approval,
+    AuthSession, PurchaseOrder, POLine, now)
 
 DATABASE = os.getenv('APPLICATION_TEST_DATABASE_URL')
 pytestmark = pytest.mark.skipif(not DATABASE, reason='requires explicit real PostgreSQL application test database')

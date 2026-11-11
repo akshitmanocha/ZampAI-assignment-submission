@@ -13,7 +13,7 @@ import os
 
 import pytest
 
-from test_application_postgres import h, ROOT  # shared isolated application harness
+from test_application_postgres import h as h, ROOT  # explicitly re-export the shared pytest fixture
 from render_workflows import render
 
 pytestmark = pytest.mark.skipif(

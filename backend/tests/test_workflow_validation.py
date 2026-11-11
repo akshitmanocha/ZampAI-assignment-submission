@@ -1,6 +1,6 @@
 from copy import deepcopy
 from pathlib import Path
-import hashlib,json,sys
+import json,sys
 import pytest
 from reconcile.business_validation import validate as validate_at_date
 

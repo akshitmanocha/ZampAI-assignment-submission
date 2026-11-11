@@ -1,7 +1,10 @@
-.PHONY: install test build dev
+.PHONY: install lint test build dev
 install:
 	UV_CACHE_DIR=$${UV_CACHE_DIR:-/tmp/reconcile-uv-cache} uv sync --project backend --frozen
 	npm ci --prefix web --cache /tmp/reconcile-npm-cache
+lint:
+	UV_CACHE_DIR=$${UV_CACHE_DIR:-/tmp/reconcile-uv-cache} uv run --project backend ruff check .
+	cd web && npm exec -- tsc --noEmit
 test:
 	UV_CACHE_DIR=$${UV_CACHE_DIR:-/tmp/reconcile-uv-cache} uv run --project backend pytest -q backend/tests
 build:
