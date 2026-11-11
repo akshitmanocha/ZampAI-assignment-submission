@@ -1,0 +1,23 @@
+{
+  "origin": "https://reconcile-invoices-xi.vercel.app",
+  "passed": true,
+  "checks": [
+    "session survived redeployment",
+    "original PDF bytes retained",
+    "approved invoice retained",
+    "order balances retained",
+    "new worker ready",
+    "logout revoked session"
+  ],
+  "health": {
+    "db": "ok",
+    "migrations": "at_head",
+    "worker": "ok",
+    "ocr": "ok",
+    "blob_store": "ok",
+    "matcher": "ok",
+    "code_version": "ba843b7",
+    "worker_heartbeat_age_s": 0.3,
+    "ocr_engine": "ppocr-v5-mobile"
+  }
+}

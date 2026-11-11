@@ -1,0 +1,68 @@
+{
+  "verified_at_utc": "2026-11-11T12:53:54.610270+00:00",
+  "url": "https://reconcile-invoices-xi.vercel.app",
+  "functional_commit": "ba843b7d1c7512e050fb6af015dd595db4fb6f61",
+  "vercel_project": "reconcile-invoices",
+  "database": {
+    "provider": "Neon",
+    "name": "reconcile-db",
+    "plan": "free_v3",
+    "region": "sin1"
+  },
+  "worker": {
+    "provider": "Vercel Daemon",
+    "instances": 1,
+    "memory_gib": 2,
+    "region": "sin1"
+  },
+  "verification": {
+    "postgresql_tests": {
+      "tests": 216,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "frontend_build": "passed",
+    "lint": "passed",
+    "live_api_checks": 11,
+    "browser_journey": "passed over public HTTPS with certificate verification enabled",
+    "redeployment_persistence": "passed: session, original document, approved invoice, ledger balances and new worker ready",
+    "public_http_statuses": {
+      "/": 200,
+      "/health/ready": 200,
+      "/api/invoices": 401
+    }
+  },
+  "upload_limit_bytes": 4194304,
+  "runtime_health": {
+    "db": "ok",
+    "migrations": "at_head",
+    "worker": "ok",
+    "ocr": "ok",
+    "blob_store": "ok",
+    "matcher": "ok",
+    "code_version": "ba843b7",
+    "worker_heartbeat_age_s": 0.3,
+    "ocr_engine": "ppocr-v5-mobile"
+  },
+  "source_sha256": {
+    "vercel.json": "d2631d4ec984772c4c1e144cf6029ed339464400bd69b8c46ee63038da964a67",
+    "deploy/Dockerfile": "47bc75acd09581d1caef4a4bdd3497949c3c2209e261fda529e112c2b600c97c",
+    "backend/reconcile/hosted.py": "45ffe7026e6f9566e45768fb56f53e11e006e8ff38eb7dac5a358de203937a33",
+    "backend/reconcile/database.py": "1c4713baf5369f43e8725c9868d9f9788d06e28918aa3c6f1795f798c4d834cf",
+    "backend/migrations/env.py": "81e2e69b6ad28c3af3b047575b4ab39c8de6960a957ff58dc5a313fbb619c7dc",
+    "backend/reconcile/settings.py": "1507195028648e1856d9b1958286accd0ccb83751d7fbb442dda43bdbf321434",
+    "backend/reconcile/worker.py": "b41df8872dbf33dd11c2127d5a17dc1b80a36e81e17a5fac692f1c0a939e3372",
+    "backend/reconcile/invoice_api.py": "77600f2bca18bdc519a2bc65162d435ee83f529b125984e48e8d23ad44919afc",
+    "web/src/main.tsx": "b641531eb5e22297ed761ce6c74a439b19681a3b57d87265e4e62da711e2c796"
+  },
+  "notes": [
+    "Fictional controlled verification data; no new extraction, retrieval or approval accuracy benchmark",
+    "Reviewer corrections and semantic choices are explicitly simulated from authored source evidence",
+    "One hardware verification invoice approved; main glove demo orders retain 600 available items each",
+    "Credentials and password hashes are excluded from this report and source repository",
+    "GitHub app connection was not authorized; deployment uses the Vercel CLI",
+    "Vercel Hobby daemon quota is 420 GB-hours and five active CPU-hours per month; one 2-GiB worker reaches memory quota after about 8.75 continuous days",
+    "Initial deployment was followed by a production redeployment to verify persistence"
+  ]
+}

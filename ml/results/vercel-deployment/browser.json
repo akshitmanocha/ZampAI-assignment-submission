@@ -1,0 +1,14 @@
+{
+  "origin": "https://reconcile-invoices-xi.vercel.app",
+  "passed": true,
+  "checks": [
+    "browser login",
+    "worker online",
+    "correct hosted upload limit",
+    "actual source highlight",
+    "saved approval and ledger",
+    "mobile layout",
+    "logout"
+  ],
+  "page_errors": []
+}

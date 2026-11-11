@@ -240,3 +240,35 @@ the cleaned source and fresh dependency environment. The isolated browser fixtur
 was stopped afterward. The earlier 221-test report remains historical evidence,
 not relabelled after retiring prototype tests. No OCR re-benchmark, model training,
 application deployment or environment publication is part of this cleanup.
+
+## 2026-11-11 — Vercel deployment and live verification
+
+User authorized deployment after connecting their Vercel CLI account. Created
+reconcile-invoices on Hobby and connected reconcile-db on Neon's free_v3 plan in
+Singapore after the user accepted the provider's integration terms. No paid plan
+was selected. The website/API use the existing production container stage; a
+separate 2-GiB Vercel Daemon runs the CPU OCR worker. Public URL:
+https://reconcile-invoices-xi.vercel.app.
+
+Added managed PostgreSQL URL normalization, serialized first/repeat migrations and
+demo initialization, hashed initial-approver provisioning without resetting
+existing passwords/sessions, graceful worker shutdown, and a hosted four-MiB
+upload limit exposed to the interface. Deployment secrets and generated app
+credentials remain outside Git. No environment publication or submission video.
+
+Verification: 216 tests with real PostgreSQL pass with zero skips, including
+concurrent/repeated hosted initialization. Frontend build and lint pass. Eleven
+actual public API checks pass, including approval replay, differently formatted
+duplicate, hidden price errors, overbilling, missing pack review, MiniLM human
+confirmation and actual mobile OCR/source correction. Corrections are explicitly
+simulated, not model accuracy. One fictional hardware verification invoice was
+approved; main glove demo balances remain 600 each. The public browser journey
+passes over verified HTTPS, including source highlights, ledger, mobile and logout.
+
+Redeployed the reviewed functional commit and verified the existing session,
+original PDF bytes, saved approval and balances survived; new worker readiness
+passes. Public root is 200, readiness is 200, unauthenticated invoices API is 401.
+Curated evidence is in ml/results/vercel-deployment. The Vercel GitHub app was not
+connected, so deployment currently uses the CLI. Hobby's finite daemon quotas and
+their approximately 8.75-day continuous-runtime implication are documented in
+docs/hosting.md. Existing model benchmarks remain unchanged.

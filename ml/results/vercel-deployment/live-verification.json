@@ -1,0 +1,81 @@
+{
+  "origin": "https://reconcile-invoices-xi.vercel.app",
+  "checks": [
+    {
+      "check": "authenticated_login",
+      "passed": true,
+      "secure_cookie": true
+    },
+    {
+      "check": "hosted_upload_limit",
+      "passed": true,
+      "bytes": 4194304
+    },
+    {
+      "check": "native_pdf_approval_and_replay",
+      "passed": true,
+      "invoice_id": "5ad6a3a3-184b-4f90-ba0e-8a4280727f22",
+      "bucket": "accept",
+      "remaining_bolts": "999",
+      "remaining_nuts": "999",
+      "original_retained": true
+    },
+    {
+      "check": "different_layout_duplicate",
+      "passed": true,
+      "bucket": "reject"
+    },
+    {
+      "check": "offsetting_price_errors",
+      "passed": true,
+      "bucket": "reject",
+      "line_errors": 2
+    },
+    {
+      "check": "partial_order_overbilling",
+      "passed": true,
+      "bucket": "reject",
+      "excess": [
+        "100.0000"
+      ]
+    },
+    {
+      "check": "missing_pack_review",
+      "passed": true,
+      "initial_bucket": "human_review",
+      "after_simulated_review": "accept",
+      "original_preserved": true
+    },
+    {
+      "check": "minilm_candidate_and_confirmation",
+      "passed": true,
+      "initial_bucket": "human_review",
+      "candidate_sku": "GLV-M",
+      "after_simulated_review": "accept"
+    },
+    {
+      "check": "actual_mobile_ocr_and_source_review",
+      "passed": true,
+      "engine": "ppocr-v5-mobile",
+      "initial_bucket": "human_review",
+      "after_simulated_review": "accept",
+      "original_preserved": true
+    },
+    {
+      "check": "demo_glove_order_balances_preserved",
+      "passed": true,
+      "remaining_per_order": "600"
+    },
+    {
+      "check": "logout_revokes_access",
+      "passed": true
+    }
+  ],
+  "passed": 11,
+  "completed": true,
+  "limitations": [
+    "Fictional controlled live checks; not new OCR or production accuracy metrics",
+    "Reviewer corrections/choices are explicitly simulated from authored source evidence",
+    "One hardware invoice approved for verification; glove demo balances left unchanged"
+  ]
+}
