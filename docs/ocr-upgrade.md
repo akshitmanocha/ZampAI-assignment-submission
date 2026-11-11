@@ -52,7 +52,7 @@ On the same 60 model-selection images and the same new GST parser:
 
 The row score requires exact normalized description, quantity, rate and net amount. Extra and missing rows count against it. The report also compares each OCR with the frozen original parser, so the OCR change and the GST parser change can be distinguished. These are development results; they are not the official-test headline.
 
-On the separate 130 calibration images, the compact reader gets 601/650 core labels correct (92.5% recall), 601/607 proposed values correct (99.0% conditional precision), and 85.8% complete-row F1. A confidence threshold alone cannot remove all observed mistakes: even thresholds through 99.9 retain errors; 100 retains no proposals. We therefore do not relabel OCR scores as probabilities or claim a calibrated automatic-approval guarantee. Business checks, explicit source-review flags, staff correction and separate authorised approval remain necessary.
+On the separate 130 calibration images, the compact reader gets 601/650 core labels correct (92.5% recall), 601/607 proposed values correct (99.0% conditional precision), and 85.8% complete-row F1. A confidence threshold alone cannot remove all observed mistakes: even thresholds through 99.9 retain errors; 100 retains only one of the 650 labelled core values (0.15% coverage). We therefore do not relabel OCR scores as probabilities or claim a calibrated automatic-approval guarantee. Business checks, explicit source-review flags, staff correction and separate authorised approval remain necessary.
 
 ## GPU comparisons and size verification
 
