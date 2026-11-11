@@ -17,7 +17,14 @@ POLICY = {
 STAGES = ['intake', 'text_layer', 'ocr', 'field_extraction', 'normalization',
           'vendor_match', 'po_match', 'line_match', 'policy_checks', 'decision', 'finalize']
 RECOMMENDATIONS = {'accept': 'ready_for_approval', 'human_review': 'needs_review', 'reject': 'hold'}
-MAX_BYTES = 10 * 1024 * 1024
+def upload_limit(value=None):
+    amount = int(value if value is not None else os.getenv('MAX_UPLOAD_BYTES', str(10 * 1024 * 1024)))
+    if not 1 <= amount <= 10 * 1024 * 1024:
+        raise ValueError('MAX_UPLOAD_BYTES must be between 1 and 10485760')
+    return amount
+
+
+MAX_BYTES = upload_limit()
 MAX_LINES = 100
 
 
@@ -30,5 +37,10 @@ def model_dir():
 
 
 def origins():
-    return {s.strip().rstrip('/') for s in os.getenv(
+    allowed = {s.strip().rstrip('/') for s in os.getenv(
         'APP_ORIGINS', 'http://127.0.0.1:8000,http://localhost:8000').split(',') if s.strip()}
+    for name in ['VERCEL_URL', 'VERCEL_PROJECT_PRODUCTION_URL']:
+        host = os.getenv(name, '')
+        if host and '/' not in host and host.endswith('.vercel.app'):
+            allowed.add('https://' + host)
+    return allowed

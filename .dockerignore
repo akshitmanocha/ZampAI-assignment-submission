@@ -1,5 +1,7 @@
 .git
 .env
+.env*
+.vercel
 **/.venv
 **/node_modules
 **/__pycache__

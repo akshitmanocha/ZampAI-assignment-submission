@@ -255,19 +255,24 @@ def process(run_id, fence):
 
 
 def main():
-    while True:
-        try:
-            pulse()
-            job = claim()
-            if job:
-                process(*job)
-            else:
-                time.sleep(.5)
-        except KeyboardInterrupt:
-            break
-        except Exception:
-            print('Worker database temporarily unavailable', flush=True)
-            time.sleep(2)
+    shutdown = threading.Event()
+    previous = signal.signal(signal.SIGTERM, lambda *_: shutdown.set())
+    try:
+        while not shutdown.is_set():
+            try:
+                pulse()
+                job = claim()
+                if job:
+                    process(*job)
+                else:
+                    shutdown.wait(.5)
+            except KeyboardInterrupt:
+                break
+            except Exception:
+                print('Worker database temporarily unavailable', flush=True)
+                shutdown.wait(2)
+    finally:
+        signal.signal(signal.SIGTERM, previous)
 
 
 if __name__ == '__main__':

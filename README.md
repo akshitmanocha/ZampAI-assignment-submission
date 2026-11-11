@@ -67,6 +67,7 @@ notebooks/           Notebook used for the earlier GPU training experiment
 reconcile-design/    Original product requirements and design notes
 
 compose.yaml         Describes how the app, worker and database run together
+vercel.json          Describes the hosted website and background worker on Vercel
 Makefile             Shortcuts for common development and verification tasks
 ```
 

@@ -92,7 +92,7 @@ For non-demo company data, prepare JSON with exactly `vendors` and `purchase_ord
 
 The original workflow-v1 labels and failed runs remain unchanged. That historical benchmark tests the bounded validator and controlled PDF representations. The live application adds tax classifications, OCR quality abstention, persistence and reviewer actions; its integration tests are a separate result. CPU/GPU embedding parity reuses the inspected 36-query diagnostic, not a new blind benchmark.
 
-Independent human label audit, representative unseen invoice accuracy, calibration and sustained 90% invoice automation are not established. The fine-tuned cross-encoder and Nemotron proposal experiment are not live automation policies. English/INR, one PO, individual-item lines and evidenced box conversions define the supported automatic scope; other cases stay review. Approval reversal, bank/payment integration, multi-tenant isolation and jurisdiction-complete tax compliance are outside this local case-study release. No cloud deployment or external messages were performed.
+Independent human label audit, representative unseen invoice accuracy, calibration and sustained 90% invoice automation are not established. The fine-tuned cross-encoder and Nemotron proposal experiment are not live automation policies. English/INR, one PO, individual-item lines and evidenced box conversions define the supported automatic scope; other cases stay review. Approval reversal, bank/payment integration, multi-tenant isolation and jurisdiction-complete tax compliance are outside this local case-study release. This document describes the local stack; see [hosting](hosting.md) for the Vercel deployment.
 
 ## Completed verification
 

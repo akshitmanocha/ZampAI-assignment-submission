@@ -1,0 +1,24 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "regions": ["sin1"],
+  "services": {
+    "app": {
+      "root": ".",
+      "framework": "container",
+      "entrypoint": "deploy/Dockerfile#runtime"
+    }
+  },
+  "rewrites": [
+    {"source": "/(.*)", "destination": {"service": "app"}}
+  ],
+  "daemons": {
+    "invoice-worker": {
+      "root": ".",
+      "entrypoint": "deploy/Dockerfile#runtime",
+      "command": ["python", "-m", "reconcile.hosted"],
+      "instances": {"sin1": 1},
+      "resources": {"requests": {"memory": "2Gi"}},
+      "terminationGracePeriodSeconds": 180
+    }
+  }
+}

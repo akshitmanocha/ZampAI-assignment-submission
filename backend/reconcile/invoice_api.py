@@ -26,6 +26,11 @@ from reconcile.api_common import mutation, get_submission, run_json, error_body
 router = APIRouter()
 
 
+@router.get('/api/config')
+def public_limits(request: Request):
+    return {'max_upload_bytes': MAX_BYTES, 'max_pages': 10}
+
+
 class StrictModel(BaseModel):
     model_config = ConfigDict(extra='forbid', strict=True)
 
@@ -57,7 +62,7 @@ async def upload(request: Request, file: UploadFile = File()):
     data = await file.read(MAX_BYTES + 1)
     await file.close()
     if len(data) > MAX_BYTES:
-        raise AppError('PDF_TOO_LARGE', 'The PDF must be at most 10 MiB.', 413)
+        raise AppError('PDF_TOO_LARGE', f'The PDF must be at most {MAX_BYTES / (1024 * 1024):g} MiB.', 413)
     if not data.startswith(b'%PDF-'):
         raise AppError('PDF_INVALID', 'This file does not contain a PDF header.', 422)
     fingerprint = hashlib.sha256(data).hexdigest()

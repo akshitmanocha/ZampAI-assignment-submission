@@ -73,8 +73,8 @@ Automatic checks cover the supported English/INR, single-PO, individual-item and
 explicit box-conversion workflow. Bundles, mixed/inclusive tax, credit notes and
 extra charges require manual handling. Low OCR scores trigger source review, but
 high scores can still be wrong. Neither 100% invoice accuracy nor 90% automation
-has been demonstrated on representative unseen invoices. Public deployment is
-pending.
+has been demonstrated on representative unseen invoices. The [hosted application](hosting.md)
+runs on Vercel with a separate processing worker and persistent Neon database.
 
 The diagrams are AI-generated documentation illustrations, not screenshots or
 measurements. Their text was checked against the implementation and saved reports.
