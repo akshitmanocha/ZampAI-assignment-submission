@@ -94,7 +94,8 @@ def checked_value(field, value):
         raise AppError('CORRECTION_INVALID', 'Enter a combined tax fraction, such as 0.18 for 18%.', 422)
     if field == 'invoice_date':
         try:
-            date.fromisoformat(value)
+            if date.fromisoformat(value).isoformat() != value:
+                raise ValueError('Use the canonical calendar date')
         except ValueError:
             raise AppError('CORRECTION_INVALID', 'Use an invoice date in YYYY-MM-DD format.', 422) from None
     if field == 'unit' and value not in ['EA', 'BOX']:

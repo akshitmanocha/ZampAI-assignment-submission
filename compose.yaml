@@ -76,6 +76,7 @@ services:
       - ./backend/tests:/app/backend/tests:ro
       - ./fixtures:/app/fixtures:ro
       - ./ml:/app/ml:ro
+      - ./scripts:/app/scripts:ro
     depends_on:
       db: {condition: service_healthy}
   browser-test:

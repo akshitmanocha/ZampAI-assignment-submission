@@ -164,3 +164,54 @@ Final official test: 891/985 correct core values (90.5% recall), 891/909 correct
 Corrected 60-image validation comparison: header recall 89.3% compact / 59.3% Tesseract, row F1 87.3% / 42.4% using the same GST parser. The 130-image calibration diagnostic has six high-confidence header errors, so OCR confidence thresholds alone are not a correctness guarantee. Existing business rules, source verification and separate staff approval remain.
 
 Final software verification: 200 real-PostgreSQL tests pass; the extended browser journey passes in 22.1 seconds, including actual compact-OCR upload, source highlight, explicit authored reviewer correction, preserved original reading and current benchmark page. The scanned fixture now correctly requires review for uncertain pack notation rather than being forced to auto-accept. Simulated correction is not counted as OCR accuracy. Axe reports zero violations in the scanned login/mobile workspace views. Frozen source/input hashes and all 261 unique prediction records were verified. No cloud deployment or environment publication.
+
+## 2026-11-11 — Focused submission edge-case acceptance
+
+Re-read the user-uploaded guide outside Git and selected four nontrivial PS-1
+families: missing box conversion evidence, offsetting line-price errors, partial
+and concurrent billing, and supplier-scoped duplicates/revisions. Added eleven
+focused actual-application checks, including two controls, with explicit authored
+expected outcomes and JUnit observed evidence. These reuse known fictional source
+fixtures; no blind evaluation, new model training or label generation is claimed.
+
+All eleven pass with real PostgreSQL, authenticated API uploads, the actual
+durable worker and saved decisions, plus review/approval actions where specified.
+The scan engine is asserted to be PP-OCRv5 mobile. Its observed EA/box -> EAbox
+error is flagged for source verification; the test explicitly distinguishes a
+simulated reviewer correction from OCR accuracy. Concurrent approvals permit only
+one 400-item allocation against the remaining 600, leaving 200. Different-layout
+duplicates are caught while another supplier's same invoice number is allowed;
+a changed total remains revision review. Ordinary company data is not modified.
+
+Added a reproducible evaluator, runtime-source/image provenance, expected/observed
+report and demo-input bundle. See docs/submission-edge-cases.md. No changes to the
+production model, business policy or confidence threshold; no deployment,
+environment publication or external communication. This focused check is not a
+new full-suite run or a production accuracy/automation measurement.
+
+## 2026-11-11 — Code review, documentation images and main-branch handover
+
+Reviewed the core authenticated workflow, original-source preservation, corrections,
+supplier/PO matching, duplicate identity, locked approvals, idempotency, cumulative
+balances and evaluation evidence. Reproduced a compact-date chronology bypass:
+20261001 was accepted but string comparison missed an order date of 2026-11-01.
+Fixed canonical review dates and actual calendar comparison, with six regressions.
+Archived edge reports now freeze/verify original run hashes and JUnit bytes;
+distinct expected test identities are required, with four provenance regressions.
+The runtime probe also uses the same UID/GID as test execution. No model/policy
+threshold tuning or new OCR benchmark was performed.
+
+Added two AI-generated architecture/evaluation illustrations to the README and a
+plain-language architecture guide. Sources and saved numbers were checked; images
+are labelled as illustrations. Candidate guide and credentials remain outside
+Git. Earlier benchmark results retain their original code identities, including
+the pre-review edge reports.
+
+Verification: full real-PostgreSQL suite 221 passed/zero skipped; TypeScript/Vite
+production build passed; browser journey passed; reviewed edge suite 11/11;
+provenance regressions 4/4 after the launcher correction. Current backend source
+was mounted read-only into the existing model-equipped test image and verified by
+hash. Isolated schemas were used, browser fixture stopped, ordinary ledger retained.
+See docs/code-review.md and ml/results/code-review-v1. User explicitly requested
+advancing main; no force push, environment publication or app deployment is part
+of this handover.

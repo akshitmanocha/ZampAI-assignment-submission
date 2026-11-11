@@ -1,0 +1,388 @@
+{
+  "version": "submission-edges-v1",
+  "reported_at_utc": "2026-11-11T08:21:37.510170+00:00",
+  "method": "Actual PDF bytes -> authenticated upload -> durable worker -> persisted recommendation -> authenticated review/approval where specified; isolated real PostgreSQL schemas.",
+  "labels": "Implementation-agent authored expectations from explicit printed fields and seeded company facts. No model-generated labels. Existing known fixtures, not an independent holdout.",
+  "ocr": "PP-OCRv5 mobile; engine asserted on the image-only scan control.",
+  "cases": [
+    {
+      "test": "test_happy_path_and_explicit_pack_size",
+      "status": "passed",
+      "seconds": 3.809,
+      "evidence": {
+        "expected": {
+          "bucket": "accept",
+          "quantity": "600",
+          "remaining_after": "0"
+        },
+        "family": "control",
+        "observed": {
+          "approval_http_status": 200,
+          "bucket": "accept",
+          "normalized_quantity": [
+            "600"
+          ],
+          "remaining_after": "0.0000",
+          "remaining_before": "600.0000"
+        }
+      }
+    },
+    {
+      "test": "test_missing_pack_needs_evidence_before_approval",
+      "status": "passed",
+      "seconds": 3.841,
+      "evidence": {
+        "expected": {
+          "after_supported_review": "accept",
+          "approval_blocked": true,
+          "initial_bucket": "human_review",
+          "original_preserved": true
+        },
+        "family": "missing_pack",
+        "observed": {
+          "after_supported_review": "accept",
+          "blocked_approval_http_status": 409,
+          "initial_bucket": "human_review",
+          "original_preserved": true,
+          "review_is_simulated": true,
+          "unknown_rules": [
+            "remaining_quantity",
+            "unit_conversion",
+            "unit_price",
+            "po_amount",
+            "tax"
+          ]
+        }
+      }
+    },
+    {
+      "test": "test_same_total_does_not_hide_wrong_item_prices[agreed-prices]",
+      "status": "passed",
+      "seconds": 2.865,
+      "evidence": {
+        "expected": {
+          "bucket": "accept",
+          "line_failures": 0
+        },
+        "family": "offsetting_prices",
+        "observed": {
+          "arithmetic_status": "pass",
+          "bucket": "accept",
+          "grand_total": "3300.00",
+          "line_price_checks": [
+            {
+              "actual_unit_price": "12.50",
+              "delta": "0.0000",
+              "expected_unit_price": "12.5000",
+              "po_line_id": "1132b61c-f289-5e5c-953c-94032de05bf2",
+              "source_line": 1,
+              "status": "pass",
+              "tolerance": "0.125000"
+            },
+            {
+              "actual_unit_price": "4.00",
+              "delta": "0.0000",
+              "expected_unit_price": "4.0000",
+              "po_line_id": "2de656e4-4422-5431-9168-aa47d4676259",
+              "source_line": 2,
+              "status": "pass",
+              "tolerance": "0.05"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "test": "test_same_total_does_not_hide_wrong_item_prices[offsetting-errors]",
+      "status": "passed",
+      "seconds": 2.846,
+      "evidence": {
+        "expected": {
+          "bucket": "reject",
+          "line_failures": 2
+        },
+        "family": "offsetting_prices",
+        "observed": {
+          "arithmetic_status": "pass",
+          "bucket": "reject",
+          "grand_total": "3300.00",
+          "line_price_checks": [
+            {
+              "actual_unit_price": "13.50",
+              "delta": "1.0000",
+              "expected_unit_price": "12.5000",
+              "po_line_id": "1132b61c-f289-5e5c-953c-94032de05bf2",
+              "source_line": 1,
+              "status": "fail",
+              "tolerance": "0.125000"
+            },
+            {
+              "actual_unit_price": "3.00",
+              "delta": "-1.0000",
+              "expected_unit_price": "4.0000",
+              "po_line_id": "2de656e4-4422-5431-9168-aa47d4676259",
+              "source_line": 2,
+              "status": "fail",
+              "tolerance": "0.05"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "test": "test_partial_invoice_uses_remaining_not_original_quantity[remaining-600]",
+      "status": "passed",
+      "seconds": 3.154,
+      "evidence": {
+        "expected": {
+          "bucket": "accept",
+          "remaining_after": "0",
+          "remaining_before": "600"
+        },
+        "family": "partial_invoices",
+        "observed": {
+          "approval_http_status": 200,
+          "bucket": "accept",
+          "quantity_checks": [
+            {
+              "excess": "0",
+              "po_line_id": "bbcbfa97-0401-5c80-b7f9-ea196d4cd1bb",
+              "remaining": "600.0000",
+              "requested": "600",
+              "status": "pass"
+            }
+          ],
+          "remaining_after": "0.0000"
+        }
+      }
+    },
+    {
+      "test": "test_partial_invoice_uses_remaining_not_original_quantity[over-by-100]",
+      "status": "passed",
+      "seconds": 2.927,
+      "evidence": {
+        "expected": {
+          "bucket": "reject",
+          "remaining_after": "600",
+          "remaining_before": "600"
+        },
+        "family": "partial_invoices",
+        "observed": {
+          "approval_http_status": 409,
+          "bucket": "reject",
+          "quantity_checks": [
+            {
+              "excess": "100.0000",
+              "po_line_id": "bbcbfa97-0401-5c80-b7f9-ea196d4cd1bb",
+              "remaining": "600.0000",
+              "requested": "700",
+              "status": "fail"
+            }
+          ],
+          "remaining_after": "600.0000"
+        }
+      }
+    },
+    {
+      "test": "test_competing_partial_approvals_cannot_spend_the_same_balance",
+      "status": "passed",
+      "seconds": 4.15,
+      "evidence": {
+        "expected": {
+          "approval_http_statuses": [
+            200,
+            409
+          ],
+          "initial_buckets": [
+            "accept",
+            "accept"
+          ],
+          "loser_bucket": "reject",
+          "remaining_after": "200"
+        },
+        "family": "partial_invoices",
+        "observed": {
+          "approval_http_statuses": [
+            200,
+            409
+          ],
+          "initial_buckets": [
+            "accept",
+            "accept"
+          ],
+          "loser_bucket": "reject",
+          "loser_decision_version": 2,
+          "remaining_after": "200.0000"
+        }
+      }
+    },
+    {
+      "test": "test_duplicate_different_pdf_bytes_is_still_detected",
+      "status": "passed",
+      "seconds": 4.083,
+      "evidence": {
+        "expected": {
+          "different_file_hashes": true,
+          "duplicate_status": "fail",
+          "first_still_approvable": true,
+          "second_bucket": "reject"
+        },
+        "family": "duplicates",
+        "observed": {
+          "copy_approval_http_status": 409,
+          "different_file_hashes": true,
+          "duplicate_status": "fail",
+          "first_approval_http_status": 200,
+          "first_bucket": "accept",
+          "second_bucket": "reject"
+        }
+      }
+    },
+    {
+      "test": "test_same_invoice_number_from_another_vendor_is_not_a_duplicate",
+      "status": "passed",
+      "seconds": 4.067,
+      "evidence": {
+        "expected": {
+          "bucket": "accept",
+          "duplicate_status": "pass"
+        },
+        "family": "duplicates",
+        "observed": {
+          "bucket": "accept",
+          "duplicate_status": "pass",
+          "shared_invoice_number": "SH-000123",
+          "vendor": "Brightline Hardware"
+        }
+      }
+    },
+    {
+      "test": "test_changed_total_with_same_identity_needs_revision_review",
+      "status": "passed",
+      "seconds": 3.988,
+      "evidence": {
+        "expected": {
+          "bucket": "human_review",
+          "duplicate_status": "unknown"
+        },
+        "family": "duplicates",
+        "observed": {
+          "bucket": "human_review",
+          "duplicate_finding": {
+            "matches": [],
+            "reason": "REVISION_OR_ID_UNRESOLVED",
+            "status": "unknown"
+          }
+        }
+      }
+    },
+    {
+      "test": "test_mobile_scan_keeps_original_and_routes_uncertain_reading_to_review",
+      "status": "passed",
+      "seconds": 5.376,
+      "evidence": {
+        "expected": {
+          "after_supported_review": "accept",
+          "engine": "ppocr-v5-mobile",
+          "original_preserved": true,
+          "safe_initial_buckets": [
+            "accept",
+            "human_review"
+          ]
+        },
+        "family": "scan_control",
+        "observed": {
+          "after_supported_review": "accept",
+          "engine": "ppocr-v5-mobile",
+          "initial_bucket": "human_review",
+          "original_description_reading": {
+            "alternatives": [],
+            "evidence": [
+              {
+                "bbox": [
+                  46.41192261185006,
+                  190.79999999999998,
+                  229.90091898428054,
+                  205.92
+                ],
+                "method": "ocr",
+                "page": 1,
+                "text": "GLV-M Nitrile gloves medium [BOX; 100 EAbox]"
+              }
+            ],
+            "minimum_ocr_score": 52.185,
+            "requires_source_verification": true,
+            "status": "found",
+            "value": "GLV-M Nitrile gloves medium [BOX; 100 EAbox]"
+          },
+          "original_preserved": true,
+          "simulated_review_used": true
+        }
+      }
+    }
+  ],
+  "families": {
+    "duplicates": {
+      "checks": 3,
+      "passed": 3
+    },
+    "missing_pack": {
+      "checks": 1,
+      "passed": 1
+    },
+    "offsetting_prices": {
+      "checks": 2,
+      "passed": 2
+    },
+    "partial_invoices": {
+      "checks": 3,
+      "passed": 3
+    }
+  },
+  "total": 11,
+  "passed": 11,
+  "failed": 0,
+  "skipped": 0,
+  "source_sha256": {
+    "backend/tests/test_submission_edge_cases.py": "86bf8343e53d5823e391b7799c7c224ffbcd0a4d38543b1c255ae0ae3c9b3d16",
+    "backend/tests/test_application_postgres.py": "00e59fa1f2f462193a045ed89aedca8350030603ef956467dae0aa62660b902a",
+    "backend/reconcile/pipeline.py": "6f567b839b1feef288e22d800fc5bcfa9fd91a46c16f15bd9fd05224455b7a00",
+    "backend/reconcile/business_validation.py": "b91dab33bfb2da6c171cb266a7d67cd072dca34a90c289deebbaafe018b03c1a",
+    "backend/reconcile/ingest.py": "e0f0676c17c14dac96f0d01413730291881d9d923f698ac437c82657e822572b",
+    "backend/reconcile/worker.py": "8cca471f18155083b4ea5836b551f989a1f604599f0bfd55f21d7b7e1d2965e5",
+    "backend/reconcile/invoice_parser.py": "73a2577f28787ebcf26947a15546c3e08f86980dd65b174c8d6baaa2ca635eb2",
+    "backend/reconcile/gst_parser.py": "7148534177de4eb9e30160ef54ab997c17357cda79ad9e53a87acfd07e54d05b",
+    "backend/reconcile/paddle_text.py": "fc08d20b9d2f1b951f39e56b01398d6c6ba05ea244b133e72017dd8b7e55e3f2",
+    "backend/reconcile/source_quality.py": "803cc7e7d72f8830e49fc2d238d4366634efb440d1768c89fac7e359b0335a3f",
+    "backend/reconcile/settings.py": "65700277302bf0864fe98669cdf9079bb5ac1df4b40de350fc15b2fb7566e252",
+    "backend/reconcile/workflows.py": "c49d0abf8c1459919507e3cdbc01ec6d517800a9c30c4402de415c445070ecf3",
+    "backend/reconcile/history.py": "1c972e1f36bf83dc199aa2a0e2242263952a098987b4f3ac04acd6804ac4852b",
+    "ml/render_workflows.py": "8996510963720ba84624e22aabf6d1a18e863d1f1b1f506594275a62c00883cb",
+    "fixtures/workflows/v1/manifest.json": "157ab0ed9a8fd142259e52e4f6c85300a67f4ac2d676fcd27d7daebef5f6a309"
+  },
+  "runtime_provenance": {
+    "test_image": "sha256:a9317a8d110bf96f52053647911fe3e5da2709ceda7ed9364cc38c698856636e",
+    "runtime_production_source_sha256": {
+      "backend/reconcile/pipeline.py": "6f567b839b1feef288e22d800fc5bcfa9fd91a46c16f15bd9fd05224455b7a00",
+      "backend/reconcile/business_validation.py": "b91dab33bfb2da6c171cb266a7d67cd072dca34a90c289deebbaafe018b03c1a",
+      "backend/reconcile/ingest.py": "e0f0676c17c14dac96f0d01413730291881d9d923f698ac437c82657e822572b",
+      "backend/reconcile/worker.py": "8cca471f18155083b4ea5836b551f989a1f604599f0bfd55f21d7b7e1d2965e5",
+      "backend/reconcile/invoice_parser.py": "73a2577f28787ebcf26947a15546c3e08f86980dd65b174c8d6baaa2ca635eb2",
+      "backend/reconcile/gst_parser.py": "7148534177de4eb9e30160ef54ab997c17357cda79ad9e53a87acfd07e54d05b",
+      "backend/reconcile/paddle_text.py": "fc08d20b9d2f1b951f39e56b01398d6c6ba05ea244b133e72017dd8b7e55e3f2",
+      "backend/reconcile/source_quality.py": "803cc7e7d72f8830e49fc2d238d4366634efb440d1768c89fac7e359b0335a3f",
+      "backend/reconcile/settings.py": "65700277302bf0864fe98669cdf9079bb5ac1df4b40de350fc15b2fb7566e252",
+      "backend/reconcile/workflows.py": "c49d0abf8c1459919507e3cdbc01ec6d517800a9c30c4402de415c445070ecf3",
+      "backend/reconcile/history.py": "1c972e1f36bf83dc199aa2a0e2242263952a098987b4f3ac04acd6804ac4852b"
+    },
+    "production_sources_match_checkout": true
+  },
+  "limitations": [
+    "Authored acceptance cases, not a production accuracy, precision or automation estimate.",
+    "Eleven checks comprise four edge families and two controls; related variants share invoice content.",
+    "Most examples use native PDF text. One image-only scan checks the deployed OCR and review path; this is not an OCR benchmark.",
+    "Review corrections are simulated from authored source/specification evidence, not an independent human accuracy measurement.",
+    "MiniLM semantic retrieval quality is not measured by these exact-SKU business scenarios."
+  ],
+  "all_passed": true
+}

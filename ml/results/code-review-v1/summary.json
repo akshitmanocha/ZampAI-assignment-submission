@@ -1,0 +1,72 @@
+{
+  "review_date": "2026-11-11",
+  "reported_at_utc": "2026-11-11T08:49:06.253993+00:00",
+  "review_scope": [
+    "Authenticated invoice upload and sessions",
+    "Original readings and reviewer corrections",
+    "Duplicate identity and supplier/order checks",
+    "Current-record approval, idempotency and concurrent balance allocation",
+    "Evaluation labels, archived evidence and metric claims",
+    "Frontend build and browser workflow",
+    "Documentation images and credential-pattern checks"
+  ],
+  "fixed_findings": [
+    {
+      "issue": "Compact review dates could evade the invoice-before-PO check",
+      "before": "20261001 accepted by the review validator, then text comparison missed an order date of 2026-11-01",
+      "after": "Review requires YYYY-MM-DD calendar dates; chronology compares parsed dates, including legacy compact inputs",
+      "regressions": 6
+    },
+    {
+      "issue": "Archived acceptance results could receive current source hashes and incomplete identities could pass a count-only check",
+      "after": "Run metadata freezes original hashes, runtime provenance and the JUnit digest; archived summaries verify evidence and retain original identity; all eleven distinct checks are required",
+      "regressions": 4
+    },
+    {
+      "issue": "Runtime source probe did not inherit the test process UID/GID",
+      "after": "Probe and test execution use the same caller UID/GID, including restrictive read-only source mounts",
+      "verification": "Final eleven-case integration run verified actual runtime source hashes before execution"
+    }
+  ],
+  "verification": {
+    "backend_postgresql": {
+      "tests": 221,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "frontend_production_build": "passed: tsc --noEmit and Vite build",
+    "browser_journeys": {
+      "passed": 1,
+      "failed": 0,
+      "seconds": 22.4
+    },
+    "focused_edges": {
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 46.56
+    },
+    "report_regressions_after_launcher_fix": {
+      "passed": 4,
+      "failed": 0
+    },
+    "git_diff_check": "passed",
+    "credential_pattern_scan": "No matching API keys or Kaggle proxy tokens in working files or commits ahead of origin/main; pattern-based check, not a security certification"
+  },
+  "runtime_note": "Current backend source mounted read-only into the existing model-equipped test image via a temporary Compose override; source hashes verified. Normal fresh builds copy the same source into the image. Private disposable PostgreSQL schemas; ordinary application records preserved.",
+  "ocr_benchmark_note": "No new OCR inference benchmark or model training in this review. Existing extraction scores remain the historical baseline-v4 report. Reader docstring clarified only; no OCR inference/parser behavior changed.",
+  "source_sha256": {
+    "backend/reconcile/workflows.py": "42dcf80e50f925ce89e4d8068e6146e9d06957c2ef47e9ec8af1884d75d3c5d0",
+    "backend/reconcile/pipeline.py": "6d9a9770f0338e34560985cf68cc595ddae7fb807073a3fb531809d9bb8c9b80",
+    "backend/tests/test_live_policy.py": "482ad5463bd964c2313b2e80173b9db19de52b5eff4428adf8c31f91f8ae18fb",
+    "backend/tests/test_submission_edge_cases.py": "86bf8343e53d5823e391b7799c7c224ffbcd0a4d38543b1c255ae0ae3c9b3d16",
+    "backend/tests/test_submission_report.py": "43e05eb164c117af0fd58520258e5ee0726af1eae0e01438d2d47db31483d368",
+    "scripts/evaluate_submission_edges.py": "1d32fcef3d0e19282c6cc24a0d587978920549e420af5c4fcff9853adf9f130d",
+    "compose.yaml": "0017ba5cb02a28551fc8e99d86423ce6971f8d491b9640a4f9bcd856e34bf4bf"
+  },
+  "generated_images_sha256": {
+    "docs/images/invoice-architecture.png": "16c354d5efe59c979e9c968f647e1d6e0dbace07810b0984c039e4c68703d6b1",
+    "docs/images/evaluation-and-labels.png": "de62bccba83a337d58fd71056d44b5de97136b4864ed23d07ed5f864b452aecd"
+  }
+}

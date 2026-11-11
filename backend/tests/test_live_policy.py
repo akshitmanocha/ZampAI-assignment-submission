@@ -5,7 +5,7 @@ import pytest
 from reconcile.pipeline import evaluate
 from reconcile.tax_validation import read_tax_rate
 from reconcile.document_types import PageText, Word
-from reconcile.workflows import apply_corrections
+from reconcile.workflows import apply_corrections, checked_value
 from reconcile.errors import AppError
 
 ROOT=Path(__file__).resolve().parents[2]
@@ -64,6 +64,26 @@ def test_review_cannot_edit_policy_currency_or_ledger_and_keeps_original():
     for path in ['policy.quantity_tolerance','header.currency','company.allocations']:
         with pytest.raises(AppError):apply_corrections(doc,{},[{'field_path':path,'value':'999','reason':'Attempt to change trusted policy'}],{})
     assert doc==original
+
+
+@pytest.mark.parametrize('value', ['20261001', '2026-W40-4', '2026-02-30'])
+def test_review_dates_require_real_yyyy_mm_dd_calendar_dates(value):
+    with pytest.raises(AppError, match='YYYY-MM-DD'):
+        checked_value('invoice_date', value)
+
+
+def test_review_accepts_canonical_calendar_date():
+    assert checked_value('invoice_date', '2026-10-01') == '2026-10-01'
+
+
+@pytest.mark.parametrize('invoice_date', ['2026-10-01', '20261001'])
+def test_invoice_before_order_requires_review_even_for_legacy_date_format(invoice_date):
+    doc, company = ordinary()
+    doc['invoice_date'] = invoice_date
+    company['purchase_orders'][0]['order_date'] = '2026-11-01'
+    result = evaluate(doc, company, 'date-regression')
+    assert result['bucket'] == 'human_review'
+    assert 'invoice_predates_order' in result['unknown_rules']
 
 
 def test_whole_table_repair_clears_previous_identity_attestations():

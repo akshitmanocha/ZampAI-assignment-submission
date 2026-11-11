@@ -42,3 +42,7 @@ invoice-data:
 	python ml/audit_indian_gst_splits.py
 evaluate:
 	python scripts/evaluate_invoices.py
+
+.PHONY: submission-edge-test
+submission-edge-test:
+	UV_CACHE_DIR=$${UV_CACHE_DIR:-/tmp/reconcile-uv-cache} uv run --project backend python scripts/evaluate_submission_edges.py

@@ -1,0 +1,21 @@
+{
+  "test_image": "sha256:a9317a8d110bf96f52053647911fe3e5da2709ceda7ed9364cc38c698856636e",
+  "runtime_production_source_sha256": {
+    "backend/reconcile/pipeline.py": "6d9a9770f0338e34560985cf68cc595ddae7fb807073a3fb531809d9bb8c9b80",
+    "backend/reconcile/business_validation.py": "b91dab33bfb2da6c171cb266a7d67cd072dca34a90c289deebbaafe018b03c1a",
+    "backend/reconcile/ingest.py": "e0f0676c17c14dac96f0d01413730291881d9d923f698ac437c82657e822572b",
+    "backend/reconcile/worker.py": "8cca471f18155083b4ea5836b551f989a1f604599f0bfd55f21d7b7e1d2965e5",
+    "backend/reconcile/invoice_parser.py": "73a2577f28787ebcf26947a15546c3e08f86980dd65b174c8d6baaa2ca635eb2",
+    "backend/reconcile/gst_parser.py": "7148534177de4eb9e30160ef54ab997c17357cda79ad9e53a87acfd07e54d05b",
+    "backend/reconcile/paddle_text.py": "fc08d20b9d2f1b951f39e56b01398d6c6ba05ea244b133e72017dd8b7e55e3f2",
+    "backend/reconcile/source_quality.py": "803cc7e7d72f8830e49fc2d238d4366634efb440d1768c89fac7e359b0335a3f",
+    "backend/reconcile/settings.py": "65700277302bf0864fe98669cdf9079bb5ac1df4b40de350fc15b2fb7566e252",
+    "backend/reconcile/workflows.py": "42dcf80e50f925ce89e4d8068e6146e9d06957c2ef47e9ec8af1884d75d3c5d0",
+    "backend/reconcile/history.py": "1c972e1f36bf83dc199aa2a0e2242263952a098987b4f3ac04acd6804ac4852b"
+  },
+  "production_sources_match_checkout": true,
+  "compose_files_sha256": {
+    "compose.yaml": "0017ba5cb02a28551fc8e99d86423ce6971f8d491b9640a4f9bcd856e34bf4bf",
+    "/tmp/reconcile-review.compose.yaml": "c32220de6f5430bf69d3e720a64a0bcb7dbd792a9215da02956005be310984b1"
+  }
+}

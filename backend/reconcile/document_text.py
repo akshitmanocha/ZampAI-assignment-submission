@@ -1,7 +1,7 @@
 """Native/scanned PDF text with page coordinates, before field parsing.
 
-Run on untrusted uploads only inside the planned resource-limited worker
-subprocess. This utility is not exposed through an upload endpoint yet.
+Untrusted uploads run inside the resource-limited worker subprocess. The same
+reader is available to explicitly invoked local evaluation commands.
 """
 from reconcile.document_types import Word,PageText
 import io

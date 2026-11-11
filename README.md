@@ -2,9 +2,15 @@
 
 A working local invoice-review application: upload a real PDF, watch processing, inspect source evidence, resolve uncertain matches, and approve against the current purchase-order balance. Reconcile records approvals and allocations; it never executes payment.
 
+![Invoice workflow: upload, OCR, extract fields, SQL order lookup, MiniLM suggestions, business checks, review and staff approval.](docs/images/invoice-architecture.png)
+
+The mobile OCR reads the invoice. SQL supplies company facts. MiniLM suggests matching products. Rules explain discrepancies, and staff resolve uncertainty before final approval. See the [illustrated architecture and evaluation guide](docs/architecture.md) for the complete explanation.
+
+The [submission code review](docs/code-review.md) records the date-validation and evaluation-provenance fixes, **221 passing PostgreSQL-backed tests**, a passing browser journey and the latest **11/11 edge-case checks**.
+
 ## Start locally
 
-Requires Docker with Compose and Python 3.12. The first build downloads the public, pinned MiniLM model; invoice processing then runs locally without an API key.
+Requires Docker with Compose and Python 3.12. The first build downloads the public, pinned MiniLM and mobile OCR models; invoice processing then runs locally without an API key.
 
 ```sh
 make local
@@ -29,9 +35,10 @@ The workspace includes downloadable fictional PDFs covering packaging, material 
 
 ```sh
 make install                  # local Python/frontend development dependencies
-make models                   # CPU model for commands outside Docker
+make models                   # CPU retrieval/OCR models for commands outside Docker
 make test                     # unit tests; DB cases skip without explicit test URLs
 make integration-test         # all tests, real PostgreSQL, private disposable schemas
+make submission-edge-test     # focused four edge families, expected/observed evidence
 # Install Chromium once for browser checks:
 web/node_modules/.bin/playwright install chromium
 make browser-test             # isolated company/app on loopback port 18000; cleaned afterward
@@ -39,9 +46,11 @@ make browser-test             # isolated company/app on loopback port 18000; cle
 
 Use `PLAYWRIGHT_BROWSERS_PATH` if Chromium is installed in a custom location. Browser tests exercise the actual UI, PDF processing, human correction, MiniLM selection, approval, source evidence, search, ledger, mobile layout and logout, with accessibility checks.
 
-See [local application and operations](docs/local-application.md), [demo walkthrough](docs/local-demo.md), and [test evidence](ml/results/local-application/). Cloud deployment, public access and hiring submission are intentionally excluded from this milestone. No CI/CD is configured.
+See [local application and operations](docs/local-application.md), [demo walkthrough](docs/local-demo.md), and [test evidence](ml/results/local-application/). Public deployment and hiring submission are still pending. No CI/CD is configured.
 
 ## Evaluation and limits
+
+![Three separate evaluations: publisher-labelled Indian GST extraction, product-ID-labelled retrieval, and authored business-rule acceptance scenarios.](docs/images/evaluation-and-labels.png)
 
 Our primary invoice-reading benchmark is now [Divya52/indian-gst-invoices](https://huggingface.co/datasets/Divya52/indian-gst-invoices), pinned to an immutable source revision. We evaluate every one of its **197 official test invoices**; 24 adversarial and 40 Hindi/Kannada documents form separate robustness suites. Publisher-supplied labels remain unchanged and never enter the reader. This replaces InvoiceOCR-Synth as the primary OCR benchmark; earlier results remain historical evidence.
 
@@ -56,6 +65,8 @@ make evaluate                 # actual local PDF/OCR reader; no training or mode
 See [the Indian GST evaluation report](docs/indian-gst-evaluation.md), [frozen source manifest](ml/data/indian-gst-v1/), and [saved predictions and metrics](ml/results/indian-gst/). These labels measure extracted invoice fields. They provide no verified purchase-order ledger, catalog-match identities or approval history, so they cannot establish accept/reject accuracy or invoice automation.
 
 The earlier [25-scenario edge-case suite](docs/workflow-validation.md) passed 100 PDF checks and three database traces. These are author-known synthetic acceptance tests, not 100 independent invoices or guaranteed future accuracy. Its labels were authored before evaluation; no LLM generated the correct answers.
+
+The current [four submission edge cases](docs/submission-edge-cases.md) additionally pass **11/11 actual application checks**: missing packaging evidence, offsetting price errors, partial/concurrent billing and supplier-scoped duplicates, plus native/scanned controls. The scan correctly needs review for a misread pack string; simulated correction is reported separately from OCR accuracy. Each check uses an isolated PostgreSQL company and the real upload/worker/review/approval paths where specified.
 
 The live application now connects matching, review, persistence and approval, with additional source-quality and tax checks. [ML experiments](ml/README.md) remain separate from application tests. The trained cross-encoder experiment is not a live approval policy. The CPU embedding implementation is checked against the saved GPU diagnostic; semantic identity without explicit evidence still requires human confirmation.
 

@@ -1,5 +1,6 @@
 """Application orchestration over extracted fields, SQL facts and review evidence."""
 from copy import deepcopy
+from datetime import date
 from decimal import Decimal
 import hashlib
 import json
@@ -78,8 +79,13 @@ def evaluate(document, company, fingerprint, reviewed_lines=None):
     scope_reasons = list(document.get('unsupported_features', []))
     if len(doc['lines']) > 100:
         scope_reasons.append('More than 100 invoice lines')
-    if po and doc.get('invoice_date') and po.get('order_date') and doc['invoice_date'] < po['order_date']:
-        result['unknown_rules'].append('invoice_predates_order')
+    if po and doc.get('invoice_date') and po.get('order_date'):
+        try:
+            if date.fromisoformat(doc['invoice_date']) < date.fromisoformat(po['order_date']):
+                result['unknown_rules'].append('invoice_predates_order')
+        except ValueError:
+            # Invalid invoice dates are already withheld by required_fields.
+            result['unknown_rules'].append('order_date_unresolved')
     tax = check_tax(doc, company, result['normalized_lines'], result['po_id'])
     result['findings']['tax'] = tax
     if tax['status'] == 'fail':
