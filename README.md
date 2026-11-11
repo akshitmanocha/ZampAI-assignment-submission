@@ -70,6 +70,9 @@ compose.yaml         Describes how the app, worker and database run together
 Makefile             Shortcuts for common development and verification tasks
 ```
 
+For a brief explanation of how the datasets were prepared, which edge cases were
+checked and what results we obtained, read [Data preparation and edge-case results](docs/data-and-edge-cases.md).
+
 Inside `backend/reconcile/`, these files handle the main steps:
 
 | Files | Responsibility |
