@@ -12,6 +12,11 @@ email or password. It creates a normal, revocable browser session for the config
 demo approver; approval checks and history still apply. Normal installations retain
 staff sign-in. No passwords are stored in this repository.
 
+The password-free demo update passed **223 tests** and a fresh-browser check on
+12 November 2026. New visitors reached the dashboard directly; refresh reused
+the session, admin actions remained blocked, and the worker stayed online.
+See the [public demo verification](../ml/results/public-demo/verification.json).
+
 The Vercel configuration runs the website and API in a container, with a separate
 background worker for invoice processing. Neon PostgreSQL stores original PDFs,
 company orders, corrections and approvals, so replacing a container preserves data.

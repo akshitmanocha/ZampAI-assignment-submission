@@ -1,0 +1,57 @@
+{
+  "verified_at_utc": "2026-11-12T15:45:22.021762+00:00",
+  "functional_commit": "e48c35a",
+  "url": "https://reconcile-invoices-xi.vercel.app",
+  "deployment_id": "dpl_DhWewAo8ThHJfLUbkvskQQirudMi",
+  "public_demo_enabled": true,
+  "verification": {
+    "postgresql_tests": {
+      "passed": 223,
+      "failed": 0,
+      "skipped": 0
+    },
+    "frontend_build": "passed",
+    "lint": "passed",
+    "browser": {
+      "url": "https://reconcile-invoices-xi.vercel.app",
+      "passed": true,
+      "checked_at": "2026-11-12T15:44:46.072Z",
+      "checks": [
+        "fresh browser opens without password",
+        "separate sessions for separate visitors",
+        "session reused on refresh",
+        "secure HttpOnly cookie",
+        "approver role retained",
+        "admin routes restricted",
+        "purchase-order and evaluation navigation",
+        "worker online",
+        "mobile layout"
+      ],
+      "page_errors": []
+    },
+    "health": {
+      "http_status": 200,
+      "db": "ok",
+      "migrations": "at_head",
+      "worker": "ok",
+      "ocr": "ok",
+      "blob_store": "ok",
+      "matcher": "ok",
+      "code_version": "e48c35a",
+      "worker_heartbeat_age_s": 0.3,
+      "ocr_engine": "ppocr-v5-mobile"
+    }
+  },
+  "source_sha256": {
+    "backend/reconcile/app.py": "ac546446d40e7f37f76b5825808376bcc3df59b64e5b31ce8e3d8d4e53789c35",
+    "backend/reconcile/auth.py": "f60dbab547e48e23e6033d05e1775439fcf5859b07cbadf665c4c3e99799a8ee",
+    "web/src/main.tsx": "1d939c2905b04b974a9e2c37bac4637241ad8abdda8b372936855be707f2a475"
+  },
+  "notes": [
+    "Public demo visitors enter the shared fictional workspace without entering credentials.",
+    "Regular sessions, CSRF checks, approval checks and audit history are retained. Admin routes remain restricted.",
+    "Passwordless access requires PUBLIC_DEMO_MODE=true and SEED_DEMO_DATA=true; normal installations retain password login.",
+    "No new OCR, retrieval or invoice-approval accuracy benchmark was performed.",
+    "Live browser checks did not upload or approve invoices or change order balances."
+  ]
+}
