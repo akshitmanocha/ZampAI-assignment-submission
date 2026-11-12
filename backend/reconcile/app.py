@@ -34,7 +34,11 @@ def create_app():
         api = request.url.path == '/api' or request.url.path.startswith('/api/')
         try:
             if api:
-                if not (request.url.path == '/api/auth/login' and request.method == 'POST'):
+                public_entry = (request.method, request.url.path) in {
+                    ('POST', '/api/auth/login'), ('POST', '/api/auth/demo'),
+                    ('GET', '/api/auth/config'),
+                }
+                if not public_entry:
                     token = request.cookies.get(auth.COOKIE)
                     if not token:
                         raise AppError('UNAUTHENTICATED', 'Sign in to continue.', 401)
@@ -128,12 +132,30 @@ def create_app():
         success = all(checks[k] == v for k, v in {'db': 'ok', 'migrations': 'at_head', 'worker': 'ok', 'ocr': 'ok', 'blob_store': 'ok', 'matcher': 'ok'}.items())
         return JSONResponse(checks, status_code=200 if success else 503)
 
+    @app.get('/api/auth/config')
+    def auth_config():
+        return {'public_demo': auth.public_demo_enabled()}
+
+    @app.post('/api/auth/demo')
+    def demo_login(request: Request):
+        if not auth.public_demo_enabled():
+            raise AppError('NOT_FOUND', 'Public demo access is not enabled.', 404)
+        with session() as db, db.begin():
+            token, error = auth.demo_login(db, request.cookies.get(auth.COOKIE),
+                request.client.host if request.client else 'unknown')
+        if error:
+            raise error
+        return session_response(token)
+
     @app.post('/api/auth/login')
     def login(body: Login, request: Request):
         with session() as db, db.begin():
             token, error = auth.login(db, body.email, body.password, request.client.host if request.client else 'unknown')
         if error:
             raise error
+        return session_response(token)
+
+    def session_response(token):
         result = Response(status_code=204)
         result.set_cookie(auth.COOKIE, token, max_age=43200, httponly=True, secure=auth.secure_cookie(), samesite='lax', path='/api')
         return result

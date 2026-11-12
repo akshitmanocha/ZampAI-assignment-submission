@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { createRoot } from 'react-dom/client';
-import { api, post, labels, money, date } from './api';
+import { api, post, labels, money, date, ApiError } from './api';
 import './style.css';
 
 type User = { display_name: string; email: string; role: string };
@@ -110,12 +110,30 @@ function Reports() {
 }
 function App() {
   const [user,setUser]=useState<User|null>(null),[loading,setLoading]=useState(true),[route,setRoute]=useState(window.location.hash.slice(1)),[health,setHealth]=useState<any>(null);
-  const refresh=useCallback(()=>api<User>('/api/auth/me').then(setUser).catch(()=>setUser(null)).finally(()=>setLoading(false)),[]);
+  const [demoEnabled,setDemoEnabled]=useState(false),[entryError,setEntryError]=useState('');
+  const refresh=useCallback(async()=>{
+    setLoading(true);setEntryError('');
+    try {
+      const config=await api<{public_demo:boolean}>('/api/auth/config');
+      setDemoEnabled(config.public_demo);
+      let account:User;
+      try {account=await api<User>('/api/auth/me');}
+      catch(error) {
+        if(!(error instanceof ApiError)||error.code!=='UNAUTHENTICATED')throw error;
+        if(!config.public_demo){setUser(null);return;}
+        await post('/api/auth/demo');
+        account=await api<User>('/api/auth/me');
+      }
+      setUser(account);
+    } catch(error){setUser(null);setEntryError((error as Error).message);}
+    finally{setLoading(false);}
+  },[]);
   useEffect(()=>{void refresh();const change=()=>setRoute(window.location.hash.slice(1));const expire=()=>setUser(null);window.addEventListener('hashchange',change);window.addEventListener('session-expired',expire);return()=>{window.removeEventListener('hashchange',change);window.removeEventListener('session-expired',expire);};},[refresh]);
   useEffect(()=>{if(!user)return;const check=()=>fetch('/health/ready').then(r=>r.json()).then(setHealth).catch(()=>setHealth(null));void check();const t=setInterval(check,15000);return()=>clearInterval(t);},[user]);
   if(loading)return <div className="loading" role="status">Opening your workspace…</div>;
+  if(!user&&(demoEnabled||entryError))return <main className="loading"><div><h1>Reconcile demo</h1><ErrorBox message={entryError}/><button className="primary" onClick={()=>void refresh()}>Open demo workspace</button></div></main>;
   if(!user)return <Login onLogin={()=>void refresh()}/>;
   const id=route.startsWith('/invoices/')?route.split('/')[2]:null;
-  return <div className="layout"><aside><a className="brand" href="#"><span className="brand-symbol">r</span>Reconcile</a><p className="workspace">FINANCE WORKSPACE</p><nav>{[['','Invoice activity','◫'],['/orders','Purchase orders','▤'],['/reports','Evaluation & scope','◈']].map(([path,label,icon])=><a href={'#'+path} key={path} className={(path?route===path:!route||!!id)?'active':''}><span aria-hidden="true">{icon}</span>{label}</a>)}</nav><div className="aside-note"><span className={'service-dot '+(health?.worker==='ok'?'online':'')}/><span role="status">{!health?'Checking worker…':health.worker==='ok'?'Processing worker online':'Worker unavailable'}</span><p>Every decision, explained.<br/>No payment execution.</p></div></aside><main><header><span>Workspace / {id?'Invoice review':route==='/orders'?'Purchase orders':route==='/reports'?'Evaluation':'Overview'}</span><div className="account"><span>{user.display_name}<small>{user.role}</small></span><button onClick={async()=>{await post('/api/auth/logout');setUser(null);}}>Sign out</button></div></header>{health&&health.worker!=='ok'&&<div className="notice">The processing worker is unavailable. Saved records remain accessible; new runs will wait in the queue.</div>}{id?<Detail key={id} id={id} user={user}/>:route==='/orders'?<Orders/>:route==='/reports'?<Reports/>:<Dashboard user={user}/>}<footer>Evidence first. Human approval always.<span>Single-company workspace · Times in IST</span></footer></main></div>;
+  return <div className="layout"><aside><a className="brand" href="#"><span className="brand-symbol">r</span>Reconcile</a><p className="workspace">FINANCE WORKSPACE</p><nav>{[['','Invoice activity','◫'],['/orders','Purchase orders','▤'],['/reports','Evaluation & scope','◈']].map(([path,label,icon])=><a href={'#'+path} key={path} className={(path?route===path:!route||!!id)?'active':''}><span aria-hidden="true">{icon}</span>{label}</a>)}</nav><div className="aside-note"><span className={'service-dot '+(health?.worker==='ok'?'online':'')}/><span role="status">{!health?'Checking worker…':health.worker==='ok'?'Processing worker online':'Worker unavailable'}</span><p>Every decision, explained.<br/>No payment execution.</p></div></aside><main><header><span>Workspace / {id?'Invoice review':route==='/orders'?'Purchase orders':route==='/reports'?'Evaluation':'Overview'}</span><div className="account"><span>{user.display_name}<small>{demoEnabled?'Public demo':user.role}</small></span>{!demoEnabled&&<button onClick={async()=>{await post('/api/auth/logout');setUser(null);}}>Sign out</button>}</div></header>{demoEnabled&&<div className="notice">Public demo · Explore the invoice checks using shared example records. No sign-in required.</div>}{health&&health.worker!=='ok'&&<div className="notice">The processing worker is unavailable. Saved records remain accessible; new runs will wait in the queue.</div>}{id?<Detail key={id} id={id} user={user}/>:route==='/orders'?<Orders/>:route==='/reports'?<Reports/>:<Dashboard user={user}/>}<footer>Evidence first. Human approval always.<span>Single-company workspace · Times in IST</span></footer></main></div>;
 }
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App/></React.StrictMode>);

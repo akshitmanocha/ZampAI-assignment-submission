@@ -32,3 +32,17 @@ def test_backend_serves_built_ui(tmp_path, monkeypatch):
     monkeypatch.setenv('WEB_DIST', str(tmp_path))
     with TestClient(create_app()) as client:
         assert '<title>Reconcile</title>' in client.get('/').text
+
+
+def test_public_demo_entry_is_opt_in_and_requires_demo_data(monkeypatch):
+    monkeypatch.delenv('PUBLIC_DEMO_MODE', raising=False)
+    monkeypatch.delenv('SEED_DEMO_DATA', raising=False)
+    with TestClient(create_app()) as client:
+        assert client.get('/api/auth/config').json() == {'public_demo': False}
+        headers = {'X-Reconcile-Client': 'web'}
+        assert client.post('/api/auth/demo', json={}, headers=headers).status_code == 404
+        monkeypatch.setenv('PUBLIC_DEMO_MODE', 'true')
+        assert client.get('/api/auth/config').json() == {'public_demo': False}
+        assert client.post('/api/auth/demo', json={}, headers=headers).status_code == 404
+        monkeypatch.setenv('SEED_DEMO_DATA', 'true')
+        assert client.get('/api/auth/config').json() == {'public_demo': True}

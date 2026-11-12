@@ -277,6 +277,69 @@ def test_login_rate_limit_uses_persistent_database(h):
     assert client.post('/api/auth/login',json={'email':'missing@test.invalid','password':'wrong'},headers={'X-Reconcile-Client':'web'}).status_code==429
 
 
+def enable_public_demo(monkeypatch, email='approver@test.invalid'):
+    monkeypatch.setenv('PUBLIC_DEMO_MODE', 'true')
+    monkeypatch.setenv('SEED_DEMO_DATA', 'true')
+    monkeypatch.setenv('INITIAL_APPROVER_EMAIL', email)
+
+
+def test_public_demo_creates_revocable_session_without_password(h, monkeypatch):
+    enable_public_demo(monkeypatch)
+    monkeypatch.setenv('SESSION_COOKIE_SECURE', 'true')
+    with TestClient(create_app(), base_url='https://testserver') as client:
+        assert client.get('/api/invoices').status_code == 401
+        assert client.post('/api/auth/demo', json={}).status_code == 403
+        headers = {'X-Reconcile-Client': 'web'}
+        assert client.post('/api/auth/demo', json={}, headers={**headers, 'Origin': 'https://foreign.invalid'}).status_code == 403
+        response = client.post('/api/auth/demo', json={}, headers=headers)
+        assert response.status_code == 204
+        assert all(value in response.headers['set-cookie'] for value in ['HttpOnly', 'Secure', 'SameSite=lax', 'Path=/api'])
+        me = client.get('/api/auth/me')
+        assert me.json()['email'] == 'approver@test.invalid'
+        assert me.json()['role'] == 'approver' and 'password' not in me.text
+        token = client.cookies.get('reconcile_session')
+        assert client.post('/api/auth/demo', json={}, headers=headers).status_code == 204
+        assert client.cookies.get('reconcile_session') == token
+        assert client.get('/api/purchase-orders').status_code == 200
+        assert client.get('/api/admin/diagnostics').status_code == 403
+        assert client.post('/api/auth/logout', json={}, headers=headers).status_code == 204
+        assert client.get('/api/invoices').status_code == 401
+
+
+@pytest.mark.parametrize('email', ['clerk@test.invalid', 'admin@test.invalid', 'missing@test.invalid'])
+def test_public_demo_cannot_select_other_roles_or_missing_account(h, monkeypatch, email):
+    enable_public_demo(monkeypatch, email)
+    with TestClient(create_app()) as client:
+        response = client.post('/api/auth/demo', json={}, headers={'X-Reconcile-Client': 'web'})
+        assert response.status_code == 503
+        assert not client.cookies.get('reconcile_session')
+
+
+def test_public_demo_session_creation_is_rate_limited(h, monkeypatch):
+    enable_public_demo(monkeypatch)
+    with TestClient(create_app()) as client:
+        for _ in range(10):
+            client.cookies.clear()
+            assert client.post('/api/auth/demo', json={}, headers={'X-Reconcile-Client': 'web'}).status_code == 204
+        client.cookies.clear()
+        assert client.post('/api/auth/demo', json={}, headers={'X-Reconcile-Client': 'web'}).status_code == 429
+
+
+def test_public_demo_can_process_and_approve_without_password(h, monkeypatch):
+    enable_public_demo(monkeypatch)
+    original_client = h.client
+    with TestClient(create_app()) as client:
+        assert client.post('/api/auth/demo', json={}, headers={'X-Reconcile-Client': 'web'}).status_code == 204
+        h.client = client
+        try:
+            invoice_id, detail, _ = h.processed()
+            assert detail['decision']['bucket'] == 'accept'
+            assert h.post('/api/invoices/'+invoice_id+'/approve', {'expected_decision_version': 1}).status_code == 200
+            assert Decimal(h.balance()['remaining_qty']) == 0
+        finally:
+            h.client = original_client
+
+
 def test_corrupt_pdf_is_processing_failure_and_retry_has_new_run(h):
     upload,original=h.upload(data=b'%PDF-1.7\ncorrupt-content')
     failed=h.wait(upload['run']['id'])

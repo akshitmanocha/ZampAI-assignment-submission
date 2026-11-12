@@ -7,8 +7,10 @@ checks and a browser journey. A second production deployment confirmed that the
 signed-in session, original PDF, approval and order balances survived. See the
 [verification summary](../ml/results/vercel-deployment/summary.json).
 
-Application sign-in details were delivered separately to the owner. They are not
-the owner's Vercel login, and no passwords are stored in this repository.
+The public demo opens directly into its shared fictional workspace, without an
+email or password. It creates a normal, revocable browser session for the configured
+demo approver; approval checks and history still apply. Normal installations retain
+staff sign-in. No passwords are stored in this repository.
 
 The Vercel configuration runs the website and API in a container, with a separate
 background worker for invoice processing. Neon PostgreSQL stores original PDFs,
@@ -37,6 +39,7 @@ company orders, corrections and approvals, so replacing a container preserves da
 | `INITIAL_APPROVER_EMAIL` | Sign-in name for the initial approver. |
 | `INITIAL_APPROVER_PASSWORD_HASH` | Argon2id password hash; the original password is kept separately. |
 | `SEED_DEMO_DATA=true` | Create fictional purchase orders once for the case-study demo. |
+| `PUBLIC_DEMO_MODE=true` | Allow password-free entry to the shared demo approver; requires `SEED_DEMO_DATA=true`. Disabled by default. |
 | `SESSION_COOKIE_SECURE=true` | Send sign-in cookies over HTTPS. |
 | `APP_ORIGINS` | Exact public website address; Vercel-provided deployment hosts are also recognized. |
 | `MAX_UPLOAD_BYTES=4194304` | Four-MiB file limit. |
