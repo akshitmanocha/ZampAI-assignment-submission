@@ -73,6 +73,8 @@ Makefile             Shortcuts for common development and verification tasks
 
 For a brief explanation of how the datasets were prepared, which edge cases were
 checked and what results we obtained, read [Data preparation and edge-case results](docs/data-and-edge-cases.md).
+For a visual walkthrough of the whole project, read the [illustrated report](docs/project-report.md)
+or its [PDF version](docs/reports/reconcile-project-report.pdf).
 
 Inside `backend/reconcile/`, these files handle the main steps:
 
