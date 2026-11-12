@@ -340,6 +340,71 @@ def test_public_demo_can_process_and_approve_without_password(h, monkeypatch):
             h.client = original_client
 
 
+def test_demo_reset_restores_balances_and_old_retry_cannot_erase_new_run(h, monkeypatch):
+    from reconcile.models import Correction, RunEvent
+    enable_public_demo(monkeypatch)
+    upload_key, reset_key = str(uuid.uuid4()), str(uuid.uuid4())
+    invoice_id, _, _ = h.processed(key=upload_key)
+    assert h.post('/api/invoices/'+invoice_id+'/approve', {'expected_decision_version': 1}).status_code == 200
+    review_id, _, _ = h.processed('missing-pack')
+    reviewed = h.post('/api/invoices/'+review_id+'/review', {'expected_decision_version': 1, 'corrections': [
+        {'field_path': 'lines[1].pack_factor', 'value': '100', 'reason': 'Fictional supplier confirms 100 gloves per box.'}]})
+    assert reviewed.status_code == 202
+    assert h.wait(reviewed.json()['run']['id'])['state'] == 'completed'
+    reset = h.post('/api/demo/reset', {'confirmation': 'RESET DEMO'}, key=reset_key)
+    assert reset.status_code == 200, reset.text
+    assert reset.json()['removed_invoices'] == 2
+    assert h.client.get('/api/invoices').json()['items'] == []
+    assert h.client.get('/api/auth/me').status_code == 200
+    for po in ['0147', '0148', '0149', '0150', '0151']:
+        assert Decimal(h.balance(po)['remaining_qty']) == 600
+    with database.session() as db:
+        for model in [Submission, Document, Run, Decision, Correction, RunEvent]:
+            assert db.scalar(select(func.count()).select_from(model)) == 0
+        assert verify(db)['ok']
+    new_id, detail, _ = h.processed(key=upload_key)
+    assert new_id != invoice_id and detail['decision']['bucket'] == 'accept'
+    replay = h.post('/api/demo/reset', {'confirmation': 'RESET DEMO'}, key=reset_key)
+    assert replay.status_code == 200 and replay.headers['Idempotent-Replayed'] == 'true'
+    assert len(h.client.get('/api/invoices').json()['items']) == 1
+
+
+def test_demo_reset_requires_demo_mode_approver_confirmation_and_csrf(h, monkeypatch):
+    body = {'confirmation': 'RESET DEMO'}
+    assert h.post('/api/demo/reset', body).status_code == 404
+    enable_public_demo(monkeypatch)
+    assert h.post('/api/demo/reset', {'confirmation': 'wrong'}).status_code == 422
+    assert h.client.post('/api/demo/reset', json=body).status_code == 403
+    assert h.post('/api/demo/reset', body, client=h.login('clerk')).status_code == 403
+    assert h.post('/api/demo/reset', body, client=h.login('admin')).status_code == 403
+    monkeypatch.setenv('SEED_DEMO_DATA', 'false')
+    assert h.post('/api/demo/reset', body).status_code == 404
+
+
+def test_demo_reset_refuses_active_processing_without_removing_documents(h, monkeypatch):
+    enable_public_demo(monkeypatch)
+    h.stop_worker()
+    uploaded, original = h.upload()
+    response = h.post('/api/demo/reset', {'confirmation': 'RESET DEMO'})
+    assert response.status_code == 409 and response.json()['error']['code'] == 'RUN_IN_PROGRESS'
+    assert h.client.get('/api/invoices/'+uploaded['invoice']['id']+'/document').content == original
+
+
+def test_demo_reset_rolls_back_everything_if_reseeding_fails(h, monkeypatch):
+    from reconcile.errors import AppError
+    enable_public_demo(monkeypatch)
+    invoice_id, _, _ = h.processed()
+    assert h.post('/api/invoices/'+invoice_id+'/approve', {'expected_decision_version': 1}).status_code == 200
+
+    def unavailable(db):
+        raise AppError('DEMO_RESET_FAILED', 'Try resetting again shortly.', 503, retryable=True)
+
+    monkeypatch.setattr('reconcile.cli.seed', unavailable)
+    assert h.post('/api/demo/reset', {'confirmation': 'RESET DEMO'}).status_code == 503
+    assert h.client.get('/api/invoices/'+invoice_id).status_code == 200
+    assert Decimal(h.balance()['remaining_qty']) == 0
+
+
 def test_corrupt_pdf_is_processing_failure_and_retry_has_new_run(h):
     upload,original=h.upload(data=b'%PDF-1.7\ncorrupt-content')
     failed=h.wait(upload['run']['id'])

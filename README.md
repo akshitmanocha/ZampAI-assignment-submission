@@ -5,6 +5,7 @@ Reconcile helps a finance team check supplier invoices before approving them. It
 ## Features
 
 - **Open the public demo directly.** Explore the shared fictional workspace without entering a password.
+- **Repeat the demo.** Reset the shared demo history and restore the starting order balances after confirming.
 - **Read invoice PDFs.** Upload a digital invoice or a scanned copy. The app reads the supplier, invoice number, totals and product rows.
 - **Watch the work happen.** See which processing steps are running and inspect the result of each check.
 - **Find the right order and products.** Search company records and suggest matching products, even when descriptions use different wording. A person confirms matches suggested from similar wording.

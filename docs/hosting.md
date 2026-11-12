@@ -17,6 +17,13 @@ The password-free demo update passed **223 tests** and a fresh-browser check on
 the session, admin actions remained blocked, and the worker stayed online.
 See the [public demo verification](../ml/results/public-demo/verification.json).
 
+Use **Reset demo** in the top-right corner to repeat a demonstration. Its
+confirmation clears the shared invoice documents, decisions, corrections and
+demo approvals, then restores the original fictional orders and opening balances.
+The five active glove orders each return to 600 remaining. Accounts and browser
+sessions remain available. Reset waits for processing to finish; outside public
+demo mode this action is disabled.
+
 The Vercel configuration runs the website and API in a container, with a separate
 background worker for invoice processing. Neon PostgreSQL stores original PDFs,
 company orders, corrections and approvals, so replacing a container preserves data.
@@ -61,8 +68,8 @@ features, and Daemons run only in production.
 To deploy from an authorized Vercel CLI session, link this repository to the
 `reconcile-invoices` project, set the production variables, then run
 `vercel deploy --prod`. The existing configuration keeps database contents across
-deployments. Do not reset the database to repeat a demo; use separate order
-contexts or inspect the current balance.
+deployments. To repeat the fictional demonstration from its starting balances,
+use the confirmed **Reset demo** action in the app.
 
 The owner must install/authorize the Vercel GitHub integration to enable automatic
 deployments from GitHub. A direct CLI deployment works independently of that link.

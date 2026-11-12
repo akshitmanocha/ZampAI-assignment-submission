@@ -2,7 +2,7 @@
 from datetime import timedelta
 from decimal import Decimal
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 import base64
 import hashlib
 import json
@@ -52,6 +52,23 @@ class Approve(StrictModel):
 
 class Reject(Approve):
     reason: str = Field(min_length=5, max_length=2000)
+
+
+class DemoReset(StrictModel):
+    confirmation: Literal['RESET DEMO']
+
+
+@router.post('/api/demo/reset')
+def demo_reset(body: DemoReset, request: Request):
+    auth.require_role(request.state.user, 'approver')
+    if not auth.public_demo_enabled():
+        raise AppError('NOT_FOUND', 'Reset is available only in the public demo.', 404)
+
+    def operation(db, user):
+        from reconcile.demo_reset import reset_demo
+        return 200, reset_demo(db, user.email)
+
+    return mutation(request, body.model_dump(), operation)
 
 
 @router.post('/api/invoices')
